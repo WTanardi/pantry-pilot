@@ -7,18 +7,28 @@
   </head>
   <body class="">
     <header class="border-b-[1px] border-black">
-      <div class="flex justify-between items-center py-8 container mx-auto">
+      <div class="container flex items-center justify-between py-8 mx-auto">
         <div class="flex gap-8">
           <a href="./index.html">
-            <img src="../logorecipeat.png" alt="Logo" class="w-28" />
+            <img src="../img/logo.png" alt="Logo" class="w-28" />
           </a>
         </div>
         <div>
-          <ul class="flex gap-8 font-semibold items-center">
-            <li>Product</li>
-            <li>About</li>
-            <li class="border-dotted border-black border-2 py-1 px-6">Login</li>
-            <li class="border-2 border-black py-1 px-6">Sign In</li>
+          <ul class="flex items-center gap-8 font-semibold">
+            <a href="">
+              <li>Product</li>
+            </a>
+            <a href="">
+              <li>About</li>
+            </a>
+            <a href="">
+              <li class="px-6 py-1 border-2 border-black border-dotted">
+                Login
+              </li>
+            </a>
+            <a href="">
+              <li class="px-6 py-1 border-2 border-black">Sign In</li>
+            </a>
           </ul>
         </div>
       </div>
@@ -30,9 +40,9 @@
         <div class="w-1/3 h-screen tracking-tight">
           <!-- Heading -->
           <div class="pt-24">
-            <p class="text-8xl font-semibold">
+            <p class="font-semibold text-8xl">
               Bring your
-              <span class="text-rose-600 font-bold">kitchen</span> to life
+              <span class="font-bold text-rose-600">kitchen</span> to life
             </p>
           </div>
           <!-- Subheading -->
@@ -45,17 +55,28 @@
           <!-- Call To Action -->
           <div>
             <button
-              class="border-rose-600 border-2 bg-rose-600 rounded-lg py-2 px-6 text-white font-light"
+              class="px-6 py-2 font-light text-white border-2 rounded-lg border-rose-600 bg-rose-600"
             >
               Start Cooking
             </button>
           </div>
         </div>
         <!-- Hero Middle -->
-        <div class="w-1/3">
-          <!-- Hero Image -->
-          <div>
-            <img src="" alt="" />
+        <div class="flex flex-row flex-wrap justify-center w-1/3 gap-8 mt-24 bg-red-50">
+          <div class="ingredient-box">
+            <img src="../img/bun.png" alt="Hamburger bun" >
+          </div>
+          <div class="ingredient-box">
+            <img src="../img/beef.png" alt="Hamburger bun" >
+          </div>
+          <div class="ingredient-box">
+            <img src="../img/lettuce.png" alt="Hamburger bun" >
+          </div>
+          <div class="ingredient-box">
+            <img src="../img/tomato.png" alt="Hamburger bun" >
+          </div>
+          <div class="ingredient-box">
+            <img src="../img/onion.png" alt="Hamburger bun" >
           </div>
         </div>
         <!-- Hero Right -->
