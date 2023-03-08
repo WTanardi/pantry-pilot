@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+</head>
+
+<body class="">
+    <header class="border-b-[1px] border-black">
+      <div class="container flex items-center justify-between py-8 mx-auto">
+        <div class="flex gap-8">
+          <a href="./index.html">
+            <img src="../img/logo.png" alt="Logo" class="w-28" />
+          </a>
+        </div>
+        <div>
+          <ul class="flex items-center gap-8 font-semibold">
+            <a href="">
+              <li>Product</li>
+            </a>
+            <a href="">
+              <li>About</li>
+            </a>
+            <a href="">
+              <li class="px-6 py-1 border-2 border-black border-dotted">
+                Login
+              </li>
+            </a>
+            <a href="">
+              <li class="px-6 py-1 border-2 border-black">Sign In</li>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="container flex flex-col items-center m-auto justify-center text-center mt-10 mb-24 py-4"> 
+      
+      <h1 class="text-5xl font-medium">Register Your Account</h1>
+      <form id="formRegister" class="container flex flex-col gap-8 mt-16 mb-7 items-center justify-center w-1/4" action="post">
+          
+          <div class="flex flex-col w-full">
+            <label for="name" type="name" class="text-left font-medium mb-1">Name<span class="text-rose-600">*</span></label>
+            <input name="name" id="name" class="border border-black h-10 px-2" type="text" required>
+          </div>
+          <div div class="flex flex-col w-full">
+            <label for="birth" type="birth" class="text-left font-medium mb-1">Birth<span class="text-rose-600">*</span></label>
+            <input name="birth" id="birth" class="border border-black h-10 px-2" type="date" required>
+          </div>
+          <div class="flex flex-col w-full">
+              <label for="adress" type="adress" class="text-left font-medium mb-1">Adress<span class="text-rose-600">*</span></label>
+              <input name="adress" id="adress" class="border border-black h-10 px-2" type="text" required>
+          </div>
+          <div class="flex flex-col w-full">
+              <label for="phone" type="phone" class="text-left font-medium mb-1">Phone Number<span class="text-rose-600">*</span></label>
+              <input name="phone" id="phone" class="border border-black h-10 px-2" type="tel" maxlength="13" required>
+          </div>
+          <div class="flex flex-col w-full">
+            <label for="email" type="email" class="text-left font-medium mb-1">Email</label>
+            <input name="email" id="email" class="border border-black h-10 px-2" type="email" required>
+          </div>
+          <div class="flex flex-col w-full">
+              <label for="password" type="password" class="text-left font-medium mb-1" required>Password<span class="text-rose-600">*</span></label>
+              <input name="password" id="password" class="border border-black h-10 px-2" type="password" minlength="8" required>
+              <div class="err"></div>
+          </div>
+          <button type="submit" class="h-12 w-full mt-4 bg-rose-600 text-white font-medium hover:bg-rose-700">Sign in</button>
+      </form>
+      <p class="">Already have account? <span><a href="login.html" class="text-blue-700 font-bold hover:text-blue-500">Login</a></span></p>
+    </div>
+
+    
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script> -->
+    <!-- <script src="../js/formValidate.js"></script> -->
+</body>
+</html>
