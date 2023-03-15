@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/0dc907d2a4.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Admin | Restaurant</title>
+  </head>
+  <body>
+    <header class="border-b-[1px] border-black">
+      <div class="container flex items-center justify-between py-8 mx-auto">
+        <div class="flex">
+          <a href="./index.html">
+            <img src="../../../img/logo.png" alt="Logo" class="w-28" />
+          </a>
+        </div>
+        <div>
+          <div class="flex items-center gap-8">
+            <a href="" class="flex items-center gap-4">
+              <p>William Tarnadi</p>
+              <i class="fa-solid fa-circle-user fa-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container flex">
+      <!-- Side Bar -->
+      <nav class="flex w-1/4 py-8 pl-8 h-screen bg-rose-600 text-rose-300">
+        <ul class="flex flex-col text-xl w-full gap-6">
+          <a href="../food/index.html">
+            <li class="flex items-baseline hover:text-white text-white">
+              <i class="fa-solid fa-bowl-food mr-6"></i>
+              <h3>Food</h3>
+            </li>
+          </a>
+          <a href="./index.html">
+            <li class="flex items-baseline hover:text-white">
+              <i class="fa-solid fa-utensils mr-7"></i>
+              <h3>Resto</h3>
+            </li>
+          </a>
+          <a href="../order/index.html">
+            <li class="flex items-baseline hover:text-white">
+              <i class="fa-solid fa-receipt mr-8"></i>
+              <h3>Order</h3>
+            </li>
+          </a>
+        </ul>
+      </nav>
+      <!-- Main Content -->
+      <div class="w-3/4 py-6 px-8 max-h-screen overflow-y-auto">
+        <form action="" method="post">
+          <div>
+            <label for="name">Food name</label>
+            <input type="text" name="name">
+          </div>
+          <div>
+            <p>Recipes</p>
+            <div>
+              <label for="">Ingridient</label>
+              
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
