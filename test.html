@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Recipe Search - Find Delicious Recipes Based on Your Ingredients
+    </title>
+    <!-- Import TailwindCSS -->
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <a href="#" class="flex-shrink-0 text-white"> Recipe Search </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gray-900">
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1
+            class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl"
+          >
+            Find Delicious Recipes Based on Your Ingredients
+          </h1>
+          <p class="mt-4 max-w-xl mx-auto text-xl text-gray-300">
+            Input the ingredients you have in your kitchen and we'll show you
+            recipes you can make!
+          </p>
+          <form class="mt-8 max-w-lg mx-auto">
+            <div class="flex items-center">
+              <input
+                type="text"
+                name="ingredients"
+                id="ingredients"
+                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                placeholder="Enter your ingredients..."
+              />
+              <button
+                type="submit"
+                class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Search Recipes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800">
+      <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-gray-400 text-sm">
+          © 2023 Recipe Search. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
