@@ -6,7 +6,7 @@
 @tailwind components;
 
 .ingredient-box {
-  @apply flex items-center w-36 h-36 border-4 border-rose-500 rounded-3xl select-none;
+  @apply flex items-center w-36 h-36 border-4 border-rose-600 rounded-3xl select-none;
 }
 
 .hero-step {
@@ -15,7 +15,7 @@
 
 .hero-step:focus,
 .active {
-  @apply border-rose-500 bg-rose-500 rounded-2xl text-white;
+  @apply border-rose-600 bg-rose-600 rounded-2xl text-white;
 }
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
