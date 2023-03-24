@@ -1,3 +1,4 @@
+// Hero mode change
 const kitchenBtn = document.querySelector("#kitchenBtn");
 const pantryBtn = document.querySelector("#pantryBtn");
 const recipeBtn = document.querySelector("#recipeBtn");

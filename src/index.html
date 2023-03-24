@@ -13,16 +13,70 @@
   <body class="text-slate-800 scroll-smooth bg-[#fffdfa]">
     <!-- Header -->
     <header class="border-b-[1px] border-black">
-      <div class="container flex items-center justify-between py-8 mx-auto">
+      <div
+        class="container 2xl:max-w-7xl flex items-center justify-between py-8 px-4 md:px-8 mx-auto"
+      >
         <!-- Logo -->
-        <div class="flex gap-8">
+        <div class="flex">
           <a href="./index.html">
             <img src="../img/logo.svg" alt="Logo" class="w-28" />
           </a>
         </div>
         <!-- Nav -->
-        <div>
-          <ul class="flex items-center gap-8 font-semibold">
+        <div class="relative">
+          <!-- Hamburger menu button -->
+          <button
+            type="button"
+            class="block md:hidden z-50 text-gray-800 hover:text-gray-900 focus:text-gray-900 focus:outline-none"
+            id="navBtn"
+          >
+            <i class="fa-solid fa-burger fa-2x"></i>
+          </button>
+          <!-- Mobile menu -->
+          <div
+            class="fixed hidden inset-0 bg-white z-40 transition overflow-y-auto"
+            id="mobNav"
+          >
+            <div class="flex flex-col items-center justify-center h-full">
+              <ul
+                class="flex flex-col text-4xl items-center gap-12 text-gray-800 font-bold px-8 py-4"
+              >
+                <li>
+                  <a href="">About Us</a>
+                </li>
+                <li>
+                  <a href="">Contact</a>
+                </li>
+                <li>
+                  <a href="./login.html">Login</a>
+                </li>
+                <li>
+                  <a href="./user/dashboard.html">
+                    <button
+                      class="px-4 py-2 text-white border-2 rounded-lg border-rose-600 bg-rose-600"
+                    >
+                      Start Cooking
+                    </button>
+                  </a>
+                </li>
+                <button id="closeBtn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill="#333"
+                      d="M9.414 8l5.293-5.293c.39-.39.39-1.024 0-1.414s-1.024-.39-1.414 0L8 6.586 2.707 1.293c-.39-.39-1.024-.39-1.414 0s-.39 1.024 0 1.414L6.586 8l-5.293 5.293c-.39.39-.39 1.024 0 1.414.195.195.451.293.707.293s.512-.098.707-.293L8 9.414l5.293 5.293c.195.195.451.293.707.293s.512-.098.707-.293c.39-.39.39-1.024 0-1.414L9.414 8z"
+                    />
+                  </svg>
+                </button>
+              </ul>
+            </div>
+          </div>
+          <!-- Desktop menu -->
+          <ul class="hidden md:flex items-center gap-8 font-semibold">
             <li>
               <a href="">About Us</a>
             </li>
@@ -45,25 +99,23 @@
         </div>
       </div>
     </header>
-    <main class="container mx-auto">
+    <main class="container 2xl:max-w-7xl mx-auto">
       <!-- Hero -->
-      <section class="flex pt-16">
+      <section class="flex pt-12">
         <!-- Hero Left -->
-        <div class="w-2/6 px-8">
+        <div class="w-full text-center lg:text-left lg:pl-8">
           <!-- Heading -->
-          <div>
-            <p class="font-semibold text-8xl">
-              Navigate your
-              <span class="font-bold text-rose-600"> Pantry</span> like a pro.
-            </p>
-          </div>
+          <p class="font-semibold text-6xl min-[424px]:text-7xl md:text-8xl">
+            Navigate your <br />
+            <span class="font-bold text-rose-600"> Pantry</span>
+            <br />like a <br class="max-lg:hidden" />
+            pro.
+          </p>
           <!-- Subheading -->
-          <div class="py-8">
-            <p class="text-lg text-stone-500">
-              Input the ingredients you have in your kitchen and we'll show you
-              recipes you can make!
-            </p>
-          </div>
+          <p class="py-8 text-lg max-lg:mx-auto text-stone-500 max-w-xs">
+            Input any ingredients you have in your kitchen and we'll show you
+            recipes you can make!
+          </p>
           <!-- Call To Action -->
           <div>
             <a href="./user/dashboard.html">
@@ -76,10 +128,10 @@
           </div>
         </div>
         <!-- Hero Middle -->
-        <div class="w-3/6 flex">
+        <div class="flex max-lg:hidden">
           <div class="flex" id="kitchenHero">
             <div
-              class="flex-row flex flex-wrap justify-center items-center gap-4 py-28"
+              class="flex-row flex flex-wrap items-center max-xl:justify-center gap-4"
             >
               <div class="ingredient-box">
                 <img src="../img/bun.png" alt="Hamburger Bun" />
@@ -105,13 +157,18 @@
               <div class="ingredient-box">
                 <img src="../img/olive_oil.png" alt="Olive Oil" />
               </div>
+              <div class="ingredient-box max-xl:hidden">
+                <img src="../img/ketchup.png" alt="Ketchup" />
+              </div>
             </div>
           </div>
           <div class="hidden" id="pantryHero">test</div>
           <div class="hidden" id="recipeHero">test 2</div>
         </div>
         <!-- Hero Right -->
-        <div class="w-1/6 flex flex-col justify-center items-center gap-2">
+        <div
+          class="max-lg:hidden flex flex-col pr-8 justify-center items-center gap-2"
+        >
           <button class="hero-step appearance-none active" id="kitchenBtn">
             <p class="font-bold text-2xl">Kitchen</p>
             <p>Any ingredients you have in your kitchen</p>
@@ -128,21 +185,23 @@
       </section>
       <!-- What we Offer -->
       <section class="flex flex-col pt-16">
-        <div class="text-center text-6xl font-bold pb-8">
+        <div
+          class="text-center text-4xl min-[424px]:text-5xl md:text-6xl font-bold md:pb-8"
+        >
           <p>What we offer</p>
         </div>
         <div class="max-w-7xl mx-auto px-8">
           <div class="flex flex-wrap -mx-4">
             <!-- 1 -->
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
               <div class="flex justify-center">
                 <img class="w-64" src="../img/rendang.png" alt="" />
               </div>
               <div class="text-center px-4 py-4">
-                <h2 class="text-gray-900 font-bold text-3xl mb-4">
+                <p class="text-gray-900 font-bold text-3xl mb-4">
                   Local Recipes
-                </h2>
-                <p class="text-gray-700 text-base mb-4">
+                </p>
+                <p class="text-gray-700 text-sm mb-4">
                   Experience the unique and delicious flavors of your region
                   with our collection of local recipes! Discover easy-to-follow
                   recipes that will make mealtime a memorable experience for you
@@ -151,15 +210,15 @@
               </div>
             </div>
             <!-- 2 -->
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
               <div class="flex justify-center">
                 <img class="w-64" src="../img/spaghetti.png" alt="" />
               </div>
               <div class="text-center px-4 py-4">
-                <h2 class="text-gray-900 font-bold text-3xl mb-4">
+                <p class="text-gray-900 font-bold text-3xl mb-4">
                   International Recipes
-                </h2>
-                <p class="text-gray-700 text-base mb-4">
+                </p>
+                <p class="text-gray-700 mb-4 text-sm">
                   Explore the world through your taste buds with our collection
                   of international recipes! From classic French cuisine to spicy
                   Indian curries, discover new and exciting flavors that will
@@ -168,15 +227,13 @@
               </div>
             </div>
             <!-- 3 -->
-            <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+            <div class="mx-auto w-full md:w-1/2 lg:w-1/3 px-4">
               <div class="flex justify-center">
                 <img class="w-64" src="../img/foodbox.png" alt="" />
               </div>
               <div class="text-center px-4 py-4">
-                <h2 class="text-gray-900 font-bold text-3xl mb-4">
-                  Food Order
-                </h2>
-                <p class="text-gray-700 text-base mb-4">
+                <p class="text-gray-900 font-bold text-3xl mb-4">Food Order</p>
+                <p class="text-gray-700 mb-4 text-sm">
                   Try out new flavors from your favorite restaurants before
                   cooking! Order from nearby restaurants and get delicious meals
                   delivered straight to your door. Explore new cuisines with
@@ -189,12 +246,25 @@
       </section>
       <!-- Who are we? -->
       <section class="pt-16">
-        <div class="container mx-auto flex flex-row items-center px-6">
-          <div class="w-1/2 flex justify-center">
+        <div
+          class="container mx-auto flex flex-col lg:grid lg:grid-rows-4 lg:grid-cols-2 items-center px-6"
+        >
+          <!-- 1 -->
+          <div
+            class="text-4xl min-[424px]:text-5xl md:text-6xl font-bold text-gray-800 lg:row-start-1 lg:col-start-2 lg:row-span-1 lg:col-span-3 lg:bottom-0 lg:left-0 lg:flex lg:self-end"
+          >
+            <p>Who are we?</p>
+          </div>
+          <!-- 2 -->
+          <div
+            class="w-full lg:w-1/2 flex lg\:grid justify-center lg:row-start-1 lg:col-start-1 lg:row-span-4 lg:col-span-2"
+          >
             <img src="../img/team.png" alt="About Us" />
           </div>
-          <div class="w-1/2 pr-24">
-            <h2 class="text-6xl font-bold text-gray-800 mb-8">Who are we?</h2>
+          <!-- 3 -->
+          <div
+            class="max-lg:max-w-xl text-center lg:text-left items-center lg:row-start-2 lg:col-start-2 lg:row-span-3 lg:col-span-3"
+          >
             <p class="text-gray-700 mb-4">
               Here at Pantry Pilot, we believe that cooking delicious, healthy
               meals at home should be easy and stress-free.
@@ -222,21 +292,23 @@
       </section>
       <!-- What our customers say -->
       <section class="py-16">
-        <h2 class="text-6xl font-bold mb-8 text-center">
+        <p
+          class="max-md:max-w-xs text-4xl min-[424px]:text-5xl md:text-6xl font-bold mb-8 md:mb-12 text-center mx-auto"
+        >
           What our customers say
-        </h2>
-        <div class="flex flex-wrap -mx-4 gap-12 justify-center">
-          <div class="w-1/4">
+        </p>
+        <div class="flex flex-wrap mx-8 gap-6 lg:gap-12 justify-center">
+          <div class="md:w-1/4">
             <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
               <div class="px-4 py-4">
-                <p class="text-gray-800 text-base mb-4">
+                <p class="text-gray-800 mb-4">
                   "I have tried many recipe websites but none of them are as
                   easy to use and accurate as Pantry Pilot. I'm always able to
                   find a great recipe based on what I have in my fridge."
                 </p>
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-purple-500"
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
                   >
                     <img
                       class="h-full w-full object-cover"
@@ -252,17 +324,17 @@
               </div>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
               <div class="px-4 py-4">
-                <p class="text-gray-800 text-base mb-4">
+                <p class="text-gray-800 mb-4">
                   "As someone who's not the most confident cook, I love how easy
                   these recipes are to follow. They've helped me step up my
                   cooking game and impress my friends and family!"
                 </p>
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-purple-500"
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
                   >
                     <img
                       class="h-full w-full object-cover"
@@ -278,18 +350,18 @@
               </div>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
               <div class="px-4 py-4">
-                <p class="text-gray-800 text-base mb-4">
+                <p class="text-gray-800 mb-4">
                   "I've tried a ton of different recipe websites, but this one
                   is by far the best. The recipes are delicious and unique, and
-                  the fact that I can order food directly from the site is so
-                  convenient."
+                  the fact that I can order food directly from the site is
+                  great!"
                 </p>
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-purple-500"
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
                   >
                     <img
                       class="h-full w-full object-cover"
@@ -305,17 +377,17 @@
               </div>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
               <div class="px-4 py-4">
-                <p class="text-gray-800 text-base mb-4">
+                <p class="text-gray-800 mb-4">
                   "This tool has saved me so much time and money on meal
                   planning. I no longer have to guess what to make for dinner or
-                  run to the grocery store for a single ingredient. Love it!"
+                  run to the grocery store for a single ingredient."
                 </p>
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-purple-500"
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
                   >
                     <img
                       class="h-full w-full object-cover"
@@ -331,17 +403,17 @@
               </div>
             </div>
           </div>
-          <div class="w-1/4">
+          <div class="md:w-1/4">
             <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
               <div class="px-4 py-4">
-                <p class="text-gray-800 text-base mb-4">
+                <p class="text-gray-800 mb-4">
                   "This website is a lifesaver! I'm always looking for new
                   recipes, and the fact that I can customize them based on
                   what's in my pantry is amazing. Highly recommend!"
                 </p>
                 <div class="flex items-center">
                   <div
-                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-purple-500"
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
                   >
                     <img
                       class="h-full w-full object-cover"
@@ -368,5 +440,6 @@
       </div>
     </footer>
   </body>
-  <script src="../js/script.js"></script>
+  <script src="../js/heroMode.js"></script>
+  <script src="../js/pageNavigation.js"></script>
 </html>
