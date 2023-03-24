@@ -10,11 +10,17 @@
 }
 
 .hero-step {
-@apply w-40 px-3 pb-2 pt-1 border-4 border-transparent text-left ;
+  @apply w-40 px-3 pb-2 pt-1 border-4 border-transparent text-left;
 }
 
-.hero-step:focus, .active{
+.hero-step:focus,
+.active {
   @apply border-rose-500 bg-rose-500 rounded-2xl text-white;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 @tailwind utilities;
