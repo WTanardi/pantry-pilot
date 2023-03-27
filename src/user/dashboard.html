@@ -11,15 +11,15 @@
     <title>PantryPilot</title>
   </head>
   <body class="text-slate-800 scroll-smooth bg-[#fffdfa]">
-    <!-- Header -->
     <main class="flex mx-auto">
       <!-- Pantry -->
       <div
-        class="w-1/4 flex flex-col h-screen bg-rose-600 text-white items-center"
+        id="pantry"
+        class="w-full lg:w-1/4 flex flex-col h-screen bg-rose-600 text-white items-center max-lg:pb-16"
       >
         <!-- Pantry title -->
-        <div class="text-center w-full p-8">
-          <div class="">
+        <div class="text-center w-full flex flex-col p-8 justify-between">
+          <div class="h-16">
             <div class="text-3xl font-bold">PantryPilot</div>
             <div class="font-light">You have 0 ingredients</div>
           </div>
@@ -32,17 +32,17 @@
             <button
               class="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none"
             >
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fa-solid fa-magnifying-glass pointer-events-none"></i>
             </button>
           </div>
         </div>
         <!-- Pantry Content -->
         <div
-          class="overflow-y-scroll items-center scrollbar-hide flex flex-col"
+          class="flex flex-col md:flex-row md:flex-wrap md:gap-8 md:justify-center overflow-y-scroll items-center scrollbar-hide max-lg:pb-8"
         >
           <!-- Pantry Essentials -->
           <div
-            class="w-10/12 p-4 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+            class="w-10/12 md:max-w-xs p-4 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
           >
             <!-- Card top -->
             <div class="flex gap-2 pb-3 mb-3 border-b-2">
@@ -53,7 +53,7 @@
               </div>
               <!-- Card title and ingredient number -->
               <div>
-                <div class="text-lg">Pantry Essentials</div>
+                <div class="xl:text-lg">Pantry Essentials</div>
                 <div class="text-black/50 text-sm">4/69 Ingredients</div>
               </div>
             </div>
@@ -104,7 +104,7 @@
           </div>
           <!-- Vegetables and Greens -->
           <div
-            class="w-10/12 p-4 mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
           >
             <!-- Card top -->
             <div class="flex gap-2 pb-3 mb-3 border-b-2">
@@ -115,7 +115,7 @@
               </div>
               <!-- Card title and ingredient number -->
               <div>
-                <div class="text-lg">Vegetables & Greens</div>
+                <div class="xl:text-lg">Vegetables</div>
                 <div class="text-black/50 text-sm">4/69 Ingredients</div>
               </div>
             </div>
@@ -156,7 +156,7 @@
           </div>
           <!-- Meats -->
           <div
-            class="w-10/12 p-4 mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
           >
             <!-- Card top -->
             <div class="flex gap-2 pb-3 mb-3 border-b-2">
@@ -167,7 +167,7 @@
               </div>
               <!-- Card title and ingredient number -->
               <div>
-                <div class="text-lg">Meats</div>
+                <div class="xl:text-lg">Meats</div>
                 <div class="text-black/50 text-sm">4/69 Ingredients</div>
               </div>
             </div>
@@ -213,7 +213,7 @@
           </div>
           <!-- Fruits -->
           <div
-            class="w-10/12 p-4 mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
           >
             <!-- Card top -->
             <div class="flex gap-2 pb-3 mb-3 border-b-2">
@@ -224,7 +224,7 @@
               </div>
               <!-- Card title and ingredient number -->
               <div>
-                <div class="text-lg">Fruits</div>
+                <div class="xl:text-lg">Fruits</div>
                 <div class="text-black/50 text-sm">4/69 Ingredients</div>
               </div>
             </div>
@@ -270,7 +270,7 @@
           </div>
           <!-- Poultry -->
           <div
-            class="w-10/12 p-4 mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
           >
             <!-- Card top -->
             <div class="flex gap-2 pb-3 mb-3 border-b-2">
@@ -281,7 +281,7 @@
               </div>
               <!-- Card title and ingredient number -->
               <div>
-                <div class="text-lg">Poultry</div>
+                <div class="xl:text-lg">Poultry</div>
                 <div class="text-black/50 text-sm">4/69 Ingredients</div>
               </div>
             </div>
@@ -327,7 +327,7 @@
           </div>
           <!-- Fish -->
           <div
-            class="w-10/12 p-4 mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
           >
             <!-- Card top -->
             <div class="flex gap-2 pb-3 mb-3 border-b-2">
@@ -338,7 +338,7 @@
               </div>
               <!-- Card title and ingredient number -->
               <div>
-                <div class="text-lg">Fish</div>
+                <div class="xl:text-lg">Fish</div>
                 <div class="text-black/50 text-sm">4/69 Ingredients</div>
               </div>
             </div>
@@ -385,20 +385,27 @@
         </div>
       </div>
       <!-- Recipe -->
-      <div class="w-3/4 flex flex-col h-screen">
+      <div
+        id="recipe"
+        class="w-full lg:w-3/4 lg:flex flex-col h-screen max-lg:hidden"
+      >
         <!-- Recipe Header -->
-        <div class="w-full p-8 text-white flex flex-col bg-emerald-500">
-          <div class="flex justify-between items-center">
+        <div
+          class="w-full p-8 text-white flex flex-col bg-emerald-500 justify-between"
+        >
+          <div
+            class="flex justify-between text-center max-lg:justify-center items-center h-16"
+          >
             <div class="text-3xl font-semibold">You can make 420 Recipes</div>
-
-            <div>
-              <div class="flex items-center gap-8">
-                <a href="" class="flex font-semibold items-center gap-4">
-                  <p>William Tanardi</p>
-                  <i class="fa-solid fa-circle-user fa-2xl"></i>
-                </a>
-              </div>
-            </div>
+            <nav class="flex items-center gap-4 max-lg:hidden">
+              <a href="../index.html" class="flex font-semibold items-center">
+                <i class="fa-solid fa-house fa-2xl"></i>
+              </a>
+              <a href="" class="flex font-semibold items-center">
+                <i class="fa-solid fa-circle-user fa-2xl"></i>
+              </a>
+              <a href="" class="flex font-semibold items-center"> </a>
+            </nav>
           </div>
           <div class="relative mt-4">
             <input
@@ -409,7 +416,7 @@
             <button
               class="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none"
             >
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fa-solid fa-magnifying-glass pointer-events-none"></i>
             </button>
           </div>
         </div>
@@ -419,7 +426,7 @@
         >
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -434,7 +441,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -449,7 +456,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -464,7 +471,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -479,7 +486,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -494,7 +501,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -509,7 +516,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -524,7 +531,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -539,7 +546,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -554,7 +561,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -569,7 +576,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -584,7 +591,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -599,7 +606,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -614,7 +621,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -629,7 +636,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -644,7 +651,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -659,7 +666,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -674,7 +681,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -689,7 +696,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -704,7 +711,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -719,7 +726,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -734,7 +741,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -749,7 +756,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -764,52 +771,7 @@
           </div>
           <!-- Recipe Card -->
           <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
-          >
-            <!-- Card image -->
-            <div>
-              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
-              <!-- <img src="" alt="" /> -->
-            </div>
-            <!-- Recipe details -->
-            <div>
-              <div class="text-lg">Roasted Pepper</div>
-              <div class="font-light text-sm">You have all 2 Ingredients</div>
-            </div>
-          </div>
-          <!-- Recipe Card -->
-          <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
-          >
-            <!-- Card image -->
-            <div>
-              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
-              <!-- <img src="" alt="" /> -->
-            </div>
-            <!-- Recipe details -->
-            <div>
-              <div class="text-lg">Roasted Pepper</div>
-              <div class="font-light text-sm">You have all 2 Ingredients</div>
-            </div>
-          </div>
-          <!-- Recipe Card -->
-          <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
-          >
-            <!-- Card image -->
-            <div>
-              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
-              <!-- <img src="" alt="" /> -->
-            </div>
-            <!-- Recipe details -->
-            <div>
-              <div class="text-lg">Roasted Pepper</div>
-              <div class="font-light text-sm">You have all 2 Ingredients</div>
-            </div>
-          </div>
-          <!-- Recipe Card -->
-          <div
-            class="flex rounded-lg shadow-lg w-96 gap-4 border-2 items-center"
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
           >
             <!-- Card image -->
             <div>
@@ -824,7 +786,39 @@
           </div>
         </div>
       </div>
+      <!-- Mobile navigation -->
+      <nav
+        class="h-16 fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 bg-white shadow lg:hidden"
+      >
+        <a
+          href="../index.html"
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/home.svg" class="w-7" alt="Home" />
+          <span class="text-xs mt-1">Home</span>
+        </a>
+        <button
+          id="pantryBtn"
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/cupboard.svg" class="w-7" alt="Pantry" />
+          <span class="text-xs mt-1">Pantry</span>
+        </button>
+        <button
+          id="recipeBtn"
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/recipe.svg" class="w-7" alt="Recipe Book" />
+          <span class="text-xs mt-1">Recipe</span>
+        </button>
+        <a
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/profile.svg" class="w-7" alt="Home" />
+          <span class="text-xs mt-1">Profile</span>
+        </a>
+      </nav>
     </main>
   </body>
-  <script src="../js/script.js"></script>
+  <script src="../../js/dashboardNavigation.js"></script>
 </html>
