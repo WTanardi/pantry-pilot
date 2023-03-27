@@ -30,7 +30,7 @@ pantryBtn.addEventListener("click", () => {
 recipeBtn.addEventListener("click", () => {
   kitchenHero.style.display = "none";
   pantryHero.style.display = "none";
-  recipeHero.style.display = "flex";
+  recipeHero.style.display = "block";
 
   kitchenBtn.classList.remove("active");
   pantryBtn.classList.remove("active");
