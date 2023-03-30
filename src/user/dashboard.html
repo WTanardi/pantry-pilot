@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link href="../../dist/output.css" rel="stylesheet" />
+    <title>PantryPilot</title>
+  </head>
+  <body class="text-slate-800 scroll-smooth bg-[#fffdfa]">
+    <main class="flex mx-auto">
+      <!-- Pantry -->
+      <div
+        id="pantry"
+        class="w-full lg:w-1/4 flex flex-col h-screen bg-rose-600 text-white items-center max-lg:pb-16"
+      >
+        <!-- Pantry title -->
+        <div class="text-center w-full flex flex-col p-8 justify-between">
+          <div class="h-16">
+            <div class="text-3xl font-bold">PantryPilot</div>
+            <div class="font-light">You have 0 ingredients</div>
+          </div>
+          <div class="relative mt-4">
+            <input
+              class="block w-full py-2 px-3 leading-5 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              type="text"
+              placeholder="Search..."
+            />
+            <button
+              class="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none"
+            >
+              <i class="fa-solid fa-magnifying-glass pointer-events-none"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Pantry Content -->
+        <div
+          class="flex flex-col md:flex-row md:flex-wrap md:gap-8 md:justify-center overflow-y-scroll items-center scrollbar-hide max-lg:pb-8"
+        >
+          <!-- Pantry Essentials -->
+          <div
+            class="w-10/12 md:max-w-xs p-4 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+          >
+            <!-- Card top -->
+            <div class="flex gap-2 pb-3 mb-3 border-b-2">
+              <!-- Card logo -->
+              <div class="">
+                <div class="w-12 h-12 bg-red-300"></div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <!-- Card title and ingredient number -->
+              <div>
+                <div class="xl:text-lg">Pantry Essentials</div>
+                <div class="text-black/50 text-sm">4/69 Ingredients</div>
+              </div>
+            </div>
+            <!-- Card Bottom -->
+            <div class="flex flex-wrap gap-2 align-middle">
+              <!-- Ingredients -->
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                butter
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                egg
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                milk
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                onion
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                sugar
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                flour
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                olive oil
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                rice
+              </div>
+            </div>
+          </div>
+          <!-- Vegetables and Greens -->
+          <div
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+          >
+            <!-- Card top -->
+            <div class="flex gap-2 pb-3 mb-3 border-b-2">
+              <!-- Card logo -->
+              <div class="">
+                <div class="w-12 h-12 bg-red-300"></div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <!-- Card title and ingredient number -->
+              <div>
+                <div class="xl:text-lg">Vegetables</div>
+                <div class="text-black/50 text-sm">4/69 Ingredients</div>
+              </div>
+            </div>
+            <!-- Card Bottom -->
+            <div class="flex flex-wrap gap-2 align-middle">
+              <!-- Ingredients -->
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                garlic
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                onion
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                bell pepper
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                carrot
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                scallion
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                tomato
+              </div>
+            </div>
+          </div>
+          <!-- Meats -->
+          <div
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+          >
+            <!-- Card top -->
+            <div class="flex gap-2 pb-3 mb-3 border-b-2">
+              <!-- Card logo -->
+              <div class="">
+                <div class="w-12 h-12 bg-red-300"></div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <!-- Card title and ingredient number -->
+              <div>
+                <div class="xl:text-lg">Meats</div>
+                <div class="text-black/50 text-sm">4/69 Ingredients</div>
+              </div>
+            </div>
+            <!-- Card Bottom -->
+            <div class="flex flex-wrap gap-2 align-middle">
+              <!-- Ingredients -->
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                ground beef
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef steak
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                sausage
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef roast
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                salami
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                lamb chops
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                prosciutto
+              </div>
+            </div>
+          </div>
+          <!-- Fruits -->
+          <div
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+          >
+            <!-- Card top -->
+            <div class="flex gap-2 pb-3 mb-3 border-b-2">
+              <!-- Card logo -->
+              <div class="">
+                <div class="w-12 h-12 bg-red-300"></div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <!-- Card title and ingredient number -->
+              <div>
+                <div class="xl:text-lg">Fruits</div>
+                <div class="text-black/50 text-sm">4/69 Ingredients</div>
+              </div>
+            </div>
+            <!-- Card Bottom -->
+            <div class="flex flex-wrap gap-2 align-middle">
+              <!-- Ingredients -->
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                ground beef
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef steak
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                sausage
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef roast
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                salami
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                lamb chops
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                prosciutto
+              </div>
+            </div>
+          </div>
+          <!-- Poultry -->
+          <div
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+          >
+            <!-- Card top -->
+            <div class="flex gap-2 pb-3 mb-3 border-b-2">
+              <!-- Card logo -->
+              <div class="">
+                <div class="w-12 h-12 bg-red-300"></div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <!-- Card title and ingredient number -->
+              <div>
+                <div class="xl:text-lg">Poultry</div>
+                <div class="text-black/50 text-sm">4/69 Ingredients</div>
+              </div>
+            </div>
+            <!-- Card Bottom -->
+            <div class="flex flex-wrap gap-2 align-middle">
+              <!-- Ingredients -->
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                ground beef
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef steak
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                sausage
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef roast
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                salami
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                lamb chops
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                prosciutto
+              </div>
+            </div>
+          </div>
+          <!-- Fish -->
+          <div
+            class="w-10/12 md:max-w-xs p-4 max-md:mt-8 bg-white flex-col flex border-white text-black border-2 rounded-2xl"
+          >
+            <!-- Card top -->
+            <div class="flex gap-2 pb-3 mb-3 border-b-2">
+              <!-- Card logo -->
+              <div class="">
+                <div class="w-12 h-12 bg-red-300"></div>
+                <!-- <img src="" alt=""> -->
+              </div>
+              <!-- Card title and ingredient number -->
+              <div>
+                <div class="xl:text-lg">Fish</div>
+                <div class="text-black/50 text-sm">4/69 Ingredients</div>
+              </div>
+            </div>
+            <!-- Card Bottom -->
+            <div class="flex flex-wrap gap-2 align-middle">
+              <!-- Ingredients -->
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                ground beef
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef steak
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                sausage
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                beef roast
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                salami
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                lamb chops
+              </div>
+              <div
+                class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+              >
+                prosciutto
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Recipe -->
+      <div
+        id="recipe"
+        class="w-full lg:w-3/4 lg:flex flex-col h-screen max-lg:hidden"
+      >
+        <!-- Recipe Header -->
+        <div
+          class="w-full p-8 text-white flex flex-col bg-emerald-500 justify-between"
+        >
+          <div
+            class="flex justify-between text-center max-lg:justify-center items-center h-16"
+          >
+            <div class="text-3xl font-semibold">You can make 420 Recipes</div>
+            <nav class="flex items-center gap-4 max-lg:hidden">
+              <a href="../index.html" class="flex font-semibold items-center">
+                <i class="fa-solid fa-house fa-2xl"></i>
+              </a>
+              <a href="" class="flex font-semibold items-center">
+                <i class="fa-solid fa-circle-user fa-2xl"></i>
+              </a>
+              <a href="" class="flex font-semibold items-center"> </a>
+            </nav>
+          </div>
+          <div class="relative mt-4">
+            <input
+              class="block w-full py-2 px-3 leading-5 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              type="text"
+              placeholder="Search..."
+            />
+            <button
+              class="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none"
+            >
+              <i class="fa-solid fa-magnifying-glass pointer-events-none"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Recipes -->
+        <div
+          class="p-4 flex flex-wrap gap-y-4 justify-evenly overflow-y-scroll scrollbar-hide"
+        >
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div
+            class="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center"
+          >
+            <!-- Card image -->
+            <div>
+              <div class="rounded-lg w-32 h-24 bg-red-300"></div>
+              <!-- <img src="" alt="" /> -->
+            </div>
+            <!-- Recipe details -->
+            <div>
+              <div class="text-lg">Roasted Pepper</div>
+              <div class="font-light text-sm">You have all 2 Ingredients</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile navigation -->
+      <nav
+        class="h-16 fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 bg-white shadow lg:hidden"
+      >
+        <a
+          href="../index.html"
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/home.svg" class="w-7" alt="Home" />
+          <span class="text-xs mt-1">Home</span>
+        </a>
+        <button
+          id="pantryBtn"
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/cupboard.svg" class="w-7" alt="Pantry" />
+          <span class="text-xs mt-1">Pantry</span>
+        </button>
+        <button
+          id="recipeBtn"
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/recipe.svg" class="w-7" alt="Recipe Book" />
+          <span class="text-xs mt-1">Recipe</span>
+        </button>
+        <a
+          class="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+        >
+          <img src="../../img/profile.svg" class="w-7" alt="Home" />
+          <span class="text-xs mt-1">Profile</span>
+        </a>
+      </nav>
+    </main>
+  </body>
+  <script src="../../js/dashboardNavigation.js"></script>
+</html>

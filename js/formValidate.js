@@ -30,22 +30,3 @@ const validate = () => {
     setSuccess(pass);
   }
 };
-
-// $(document).ready(function () {
-//   $("#formRegister").validate({
-//     rules: {
-//       password: {
-//         required: true,
-//         minlength: 2,
-//       },
-//     },
-
-//     message: {
-//       minlength: "Password at least 4 characters",
-//     },
-
-//     submitHandler: function (form) {
-//       form.submit();
-//     },
-//   });
-// });

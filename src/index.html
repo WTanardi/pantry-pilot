@@ -7,114 +7,741 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-    <link href="/dist/output.css" rel="stylesheet" />
-    <title>RecipEat</title>
+    <link href="../dist/output.css" rel="stylesheet" />
+    <title>PantryPilot</title>
   </head>
-  <body>
+  <body class="text-slate-800 scroll-smooth bg-[#fffdfa]">
+    <!-- Header -->
     <header class="border-b-[1px] border-black">
-      <div class="container flex items-center justify-between py-8 mx-auto">
-        <div class="flex gap-8">
+      <div
+        class="container 2xl:max-w-7xl flex items-center justify-between py-8 px-4 md:px-8 mx-auto"
+      >
+        <!-- Logo -->
+        <div class="flex">
           <a href="./index.html">
-            <img src="../img/logo.png" alt="Logo" class="w-28" />
+            <img src="../img/logo.svg" alt="Logo" class="w-28" />
           </a>
         </div>
-        <div>
-          <ul class="flex items-center gap-8 font-semibold">
-            <a href="">
-              <li>Product</li>
-            </a>
-            <a href="">
-              <li>About</li>
-            </a>
-            <a href="./login.html">
-              <li class="px-6 py-1 border-2 border-black border-dotted">
-                Login
-              </li>
-            </a>
-            <a href="./register.html">
-              <li class="px-6 py-1 border-2 border-black">Sign In</li>
-            </a>
+        <!-- Nav -->
+        <div class="relative">
+          <!-- Hamburger menu button -->
+          <button
+            type="button"
+            class="block md:hidden z-50 text-gray-800 hover:text-gray-900 focus:text-gray-900 focus:outline-none"
+            id="navBtn"
+          >
+            <i class="fa-solid fa-burger fa-2x"></i>
+          </button>
+          <!-- Mobile menu -->
+          <div
+            class="fixed hidden inset-0 bg-white z-40 transition overflow-y-auto"
+            id="mobNav"
+          >
+            <div class="flex flex-col items-center justify-center h-full">
+              <ul
+                class="flex flex-col text-4xl items-center gap-12 text-gray-800 font-bold px-8 py-4"
+              >
+                <li>
+                  <a href="#about">About Us</a>
+                </li>
+                <li>
+                  <a href="">Contact</a>
+                </li>
+                <li>
+                  <a href="./login.html">Login</a>
+                </li>
+                <li>
+                  <a href="./user/dashboard.html">
+                    <button
+                      class="px-4 py-2 text-white border-2 rounded-lg border-rose-600 bg-rose-600"
+                    >
+                      Start Cooking
+                    </button>
+                  </a>
+                </li>
+                <button id="closeBtn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill="#333"
+                      d="M9.414 8l5.293-5.293c.39-.39.39-1.024 0-1.414s-1.024-.39-1.414 0L8 6.586 2.707 1.293c-.39-.39-1.024-.39-1.414 0s-.39 1.024 0 1.414L6.586 8l-5.293 5.293c-.39.39-.39 1.024 0 1.414.195.195.451.293.707.293s.512-.098.707-.293L8 9.414l5.293 5.293c.195.195.451.293.707.293s.512-.098.707-.293c.39-.39.39-1.024 0-1.414L9.414 8z"
+                    />
+                  </svg>
+                </button>
+              </ul>
+            </div>
+          </div>
+          <!-- Desktop menu -->
+          <ul class="hidden md:flex items-center gap-8 font-semibold">
+            <li>
+              <a href="#about">About Us</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="./login.html">Login</a>
+            </li>
+            <li>
+              <a href="./user/dashboard.html">
+                <button
+                  class="px-4 py-2 text-white border-2 rounded-lg border-rose-600 bg-rose-600"
+                >
+                  Start Cooking
+                </button>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </header>
-    <main class="container mx-auto">
+    <main class="container 2xl:max-w-7xl mx-auto">
       <!-- Hero -->
-      <section class="flex">
+      <section class="flex pt-12">
         <!-- Hero Left -->
-        <div class="w-2/6 px-8">
+        <div class="w-full text-center lg:text-left lg:pl-8">
           <!-- Heading -->
-          <div class="pt-24">
-            <p class="font-semibold text-8xl">
-              Bring your
-              <span class="font-bold text-rose-600"> kitchen</span> to life
-            </p>
-          </div>
+          <p class="font-semibold text-6xl min-[424px]:text-7xl md:text-8xl">
+            Navigate your <br />
+            <span class="font-bold text-rose-600"> Pantry</span>
+            <br />like a <br class="max-lg:hidden" />
+            pro.
+          </p>
           <!-- Subheading -->
-          <div class="py-8">
-            <p class="text-lg text-stone-500">
-              With RecipEat you can now cook with anything you have in your
-              kitchen.
-            </p>
-          </div>
+          <p class="py-8 text-lg max-lg:mx-auto text-stone-500 max-w-xs">
+            Input any ingredients you have in your kitchen and we'll show you
+            recipes you can make!
+          </p>
           <!-- Call To Action -->
           <div>
-            <button
-              class="px-6 py-2 font-light text-white border-2 rounded-lg border-rose-600 bg-rose-600"
-            >
-              Start Cooking
-            </button>
+            <a href="./user/dashboard.html">
+              <button
+                class="px-4 py-2 font-semibold text-white border-2 rounded-lg border-rose-600 bg-rose-600"
+              >
+                Start Cooking
+              </button>
+            </a>
           </div>
         </div>
         <!-- Hero Middle -->
-        <div class="flex-row flex flex-wrap justify-center items-center w-3/6 gap-2 py-28 pt-24">
-          <div class="ingredient-box">
-            <img src="../img/bun.png" alt="Hamburger Bun" />
+        <div class="flex max-lg:hidden">
+          <!-- 1 -->
+          <div class="flex transition-all" id="kitchenHero">
+            <div
+              class="flex-row flex flex-wrap items-center max-xl:justify-center gap-4"
+            >
+              <div class="ingredient-box">
+                <img src="../img/bun.png" alt="Hamburger Bun" />
+              </div>
+              <div class="ingredient-box">
+                <img src="../img/beef.png" alt="Ground Beef" />
+              </div>
+              <div class="ingredient-box">
+                <img src="../img/lettuce.png" alt="Iceberg Lettuce" />
+              </div>
+              <div class="ingredient-box">
+                <img src="../img/tomato.png" alt="Tomatoes" />
+              </div>
+              <div class="ingredient-box">
+                <img src="../img/onion.png" alt="Brown Onions" />
+              </div>
+              <div class="ingredient-box">
+                <img src="../img/cheese.png" alt="American Cheese" />
+              </div>
+              <div class="ingredient-box">
+                <img src="../img/egg.png" alt="Eggs" />
+              </div>
+              <div class="ingredient-box">
+                <img src="../img/olive_oil.png" alt="Olive Oil" />
+              </div>
+              <div class="ingredient-box max-xl:hidden">
+                <img src="../img/ketchup.png" alt="Ketchup" />
+              </div>
+            </div>
           </div>
-          <div class="ingredient-box">
-            <img src="../img/beef.png" alt="Ground Beef" />
+          <!-- 2 -->
+          <div class="hidden" id="pantryHero">
+            <div class="flex-row flex flex-wrap items-center justify-center">
+              <!-- Card -->
+              <div
+                class="mx-12 p-4 bg-white flex-col border-2 border-rose-600 flex text-black rounded-2xl"
+              >
+                <!-- Card top -->
+                <div class="flex gap-2 pb-3 mb-3 border-b-2">
+                  <!-- Card logo -->
+                  <div class="">
+                    <div class="w-12 h-12 bg-red-300"></div>
+                    <!-- <img src="" alt=""> -->
+                  </div>
+                  <!-- Card title and ingredient number -->
+                  <div>
+                    <div class="xl:text-lg">Pantry Essentials</div>
+                    <div class="text-black/50 text-sm">4/69 Ingredients</div>
+                  </div>
+                </div>
+                <!-- Card Bottom -->
+                <div class="flex flex-wrap gap-2 align-middle">
+                  <!-- Ingredients -->
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    butter
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    egg
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    milk
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    onion
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    sugar
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    flour
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    olive oil
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    rice
+                  </div>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="mx-12 p-4 bg-white flex-col border-2 border-rose-600 flex text-black rounded-2xl"
+              >
+                <!-- Card top -->
+                <div class="flex gap-2 pb-3 mb-3 border-b-2">
+                  <!-- Card logo -->
+                  <div class="">
+                    <div class="w-12 h-12 bg-red-300"></div>
+                    <!-- <img src="" alt=""> -->
+                  </div>
+                  <!-- Card title and ingredient number -->
+                  <div>
+                    <div class="xl:text-lg">Pantry Essentials</div>
+                    <div class="text-black/50 text-sm">4/69 Ingredients</div>
+                  </div>
+                </div>
+                <!-- Card Bottom -->
+                <div class="flex flex-wrap gap-2 align-middle">
+                  <!-- Ingredients -->
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    butter
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    egg
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    milk
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    onion
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    sugar
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    flour
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    olive oil
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    rice
+                  </div>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="mx-12 p-4 bg-white flex-col border-2 border-rose-600 flex text-black rounded-2xl"
+              >
+                <!-- Card top -->
+                <div class="flex gap-2 pb-3 mb-3 border-b-2">
+                  <!-- Card logo -->
+                  <div class="">
+                    <div class="w-12 h-12 bg-red-300"></div>
+                    <!-- <img src="" alt=""> -->
+                  </div>
+                  <!-- Card title and ingredient number -->
+                  <div>
+                    <div class="xl:text-lg">Pantry Essentials</div>
+                    <div class="text-black/50 text-sm">4/69 Ingredients</div>
+                  </div>
+                </div>
+                <!-- Card Bottom -->
+                <div class="flex flex-wrap gap-2 align-middle">
+                  <!-- Ingredients -->
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    butter
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    egg
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    milk
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    onion
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    sugar
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    flour
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    olive oil
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    rice
+                  </div>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="mx-12 p-4 bg-white flex-col border-2 border-rose-600 flex text-black rounded-2xl max-xl:hidden"
+              >
+                <!-- Card top -->
+                <div class="flex gap-2 pb-3 mb-3 border-b-2">
+                  <!-- Card logo -->
+                  <div class="">
+                    <div class="w-12 h-12 bg-red-300"></div>
+                    <!-- <img src="" alt=""> -->
+                  </div>
+                  <!-- Card title and ingredient number -->
+                  <div>
+                    <div class="xl:text-lg">Pantry Essentials</div>
+                    <div class="text-black/50 text-sm">4/69 Ingredients</div>
+                  </div>
+                </div>
+                <!-- Card Bottom -->
+                <div class="flex flex-wrap gap-2 align-middle">
+                  <!-- Ingredients -->
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    butter
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    egg
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    milk
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    onion
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    sugar
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    flour
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    olive oil
+                  </div>
+                  <div
+                    class="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500"
+                  >
+                    rice
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="ingredient-box">
-            <img src="../img/lettuce.png" alt="Iceberg Lettuce" />
-          </div>
-          <div class="ingredient-box">
-            <img src="../img/tomato.png" alt="Tomatoes" />
-          </div>
-          <div class="ingredient-box">
-            <img src="../img/onion.png" alt="Brown Onions" />
-          </div>
-          <div class="ingredient-box">
-            <img src="../img/cheese.png" alt="American Cheese" />
-          </div>
-          <div class="ingredient-box">
-            <img src="../img/egg.png" alt="Eggs" />
-          </div>
-          <div class="ingredient-box">
-            <img src="../img/olive_oil.png" alt="Olive Oil" />
+          <!-- 3 -->
+          <div class="hidden" id="recipeHero">
+            <div
+              class="h-full bg-[#fafcff] shadow-md rounded-lg max-xl:mx-12 xl:mr-32 border-2 border-rose-600"
+            >
+              <!-- Image -->
+              <img
+                src="../img/burger.jpg"
+                alt="Burger"
+                class="w-full h-28 object-cover"
+              />
+              <!-- Content -->
+              <div class="p-6 text-sm">
+                <!-- Title -->
+                <h2 class="text-2xl font-bold mb-4">Classic Burger</h2>
+                <!-- Ingredients -->
+                <h3 class="font-semibold mb-2">Ingredients:</h3>
+                <ul class="mb-4">
+                  <li>1 lb ground beef</li>
+                  <li>1 tsp salt</li>
+                  <li>1/2 tsp black pepper</li>
+                  <li>4 slices cheese</li>
+                  <li>4 hamburger buns</li>
+                  <li>
+                    Lettuce, tomato, onion, ketchup, mustard, and mayo for
+                    serving
+                  </li>
+                </ul>
+                <!-- Instructions -->
+                <h3 class="font-semibold mb-2">Instructions:</h3>
+                <ol>
+                  <li>Preheat grill to high.</li>
+                  <li>
+                    In a large bowl, combine ground beef, salt, and black
+                    pepper. Mix well and form into four patties.
+                  </li>
+                  <li>
+                    Grill patties for 3-4 minutes per side, or until fully
+                    cooked. During the last minute of cooking, add a slice of
+                    cheese to each patty.
+                  </li>
+                  <li>
+                    To assemble, place lettuce, tomato, and onion on the bottom
+                    half of each bun. Top with a cooked patty and your desired
+                    condiments. Serve immediately.
+                  </li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
         <!-- Hero Right -->
-        <div class="w-1/6 flex flex-col justify-center items-center gap-2">
-          <div class="hero-step">
+        <div
+          class="max-lg:hidden flex flex-col pr-8 justify-center items-center gap-12"
+        >
+          <button class="hero-step appearance-none active" id="kitchenBtn">
             <p class="font-bold text-2xl">Kitchen</p>
-            <p>Lorem ipsum dolor sit amet</p>
-          </div>
-          <div class="hero-step">
+            <p>Any ingredients you have in your kitchen</p>
+          </button>
+          <button id="pantryBtn" class="hero-step appearance-none">
             <p class="font-bold text-2xl">Pantry</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div class="hero-step">
+            <p>Input them into our pantry</p>
+          </button>
+          <button id="recipeBtn" class="hero-step appearance-none">
             <p class="font-bold text-2xl">Recipe</p>
-            <p>Lorem ipsum dolor sit amet.</p>
+            <p>And we'll show you the recipes you can make!</p>
+          </button>
+        </div>
+      </section>
+      <!-- What we Offer -->
+      <section class="flex flex-col pt-16">
+        <div
+          class="text-center text-4xl min-[424px]:text-5xl md:text-6xl font-bold md:pb-8"
+        >
+          <p>What we offer</p>
+        </div>
+        <div class="max-w-7xl mx-auto px-8">
+          <div class="flex flex-wrap -mx-4">
+            <!-- 1 -->
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+              <div class="flex justify-center">
+                <img class="w-64" src="../img/rendang.png" alt="" />
+              </div>
+              <div class="text-center px-4 py-4">
+                <p class="text-gray-900 font-bold text-3xl mb-4">
+                  Local Recipes
+                </p>
+                <p class="text-gray-700 text-sm mb-4">
+                  Experience the unique and delicious flavors of your region
+                  with our collection of local recipes! Discover easy-to-follow
+                  recipes that will make mealtime a memorable experience for you
+                  and your loved ones.
+                </p>
+              </div>
+            </div>
+            <!-- 2 -->
+            <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+              <div class="flex justify-center">
+                <img class="w-64" src="../img/spaghetti.png" alt="" />
+              </div>
+              <div class="text-center px-4 py-4">
+                <p class="text-gray-900 font-bold text-3xl mb-4">
+                  International Recipes
+                </p>
+                <p class="text-gray-700 mb-4 text-sm">
+                  Explore the world through your taste buds with our collection
+                  of international recipes! From classic French cuisine to spicy
+                  Indian curries, discover new and exciting flavors that will
+                  take your taste buds on a culinary journey.
+                </p>
+              </div>
+            </div>
+            <!-- 3 -->
+            <div class="mx-auto w-full md:w-1/2 lg:w-1/3 px-4">
+              <div class="flex justify-center">
+                <img class="w-64" src="../img/foodbox.png" alt="" />
+              </div>
+              <div class="text-center px-4 py-4">
+                <p class="text-gray-900 font-bold text-3xl mb-4">Food Order</p>
+                <p class="text-gray-700 mb-4 text-sm">
+                  Try out new flavors from your favorite restaurants before
+                  cooking! Order from nearby restaurants and get delicious meals
+                  delivered straight to your door. Explore new cuisines with
+                  ease.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Who are we? -->
+      <section id="about" class="pt-16">
+        <div
+          class="container mx-auto flex flex-col lg:grid lg:grid-rows-4 lg:grid-cols-2 items-center px-6"
+        >
+          <!-- 1 -->
+          <div
+            class="text-4xl min-[424px]:text-5xl md:text-6xl font-bold text-gray-800 lg:row-start-1 lg:col-start-2 lg:row-span-1 lg:col-span-3 lg:bottom-0 lg:left-0 lg:flex lg:self-end"
+          >
+            <p>Who are we?</p>
+          </div>
+          <!-- 2 -->
+          <div
+            class="w-full lg:w-1/2 flex lg\:grid justify-center lg:row-start-1 lg:col-start-1 lg:row-span-4 lg:col-span-2"
+          >
+            <img src="../img/team.png" alt="About Us" />
+          </div>
+          <!-- 3 -->
+          <div
+            class="max-lg:max-w-xl text-center lg:text-left items-center lg:row-start-2 lg:col-start-2 lg:row-span-3 lg:col-span-3"
+          >
+            <p class="text-gray-700 mb-4">
+              Here at Pantry Pilot, we believe that cooking delicious, healthy
+              meals at home should be easy and stress-free.
+            </p>
+            <p class="text-gray-700 mb-4">
+              That's why we've created a platform that helps you make the most
+              of the ingredients you have in your pantry, fridge, and freezer.
+              With our innovative recipe generator, you can quickly and easily
+              find recipes that match your dietary preferences and available
+              ingredients.
+            </p>
+            <p class="text-gray-700 mb-8">
+              Our mission is to make home cooking more accessible and enjoyable
+              for everyone, regardless of their cooking skills or experience.
+            </p>
+            <a href="./login.html">
+              <button
+                class="px-4 py-2 font-semibold text-white border-2 rounded-lg border-rose-600 bg-rose-600"
+              >
+                Join Us Now
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- What our customers say -->
+      <section class="py-16">
+        <p
+          class="max-md:max-w-xs text-4xl min-[424px]:text-5xl md:text-6xl font-bold mb-8 md:mb-12 text-center mx-auto"
+        >
+          What our customers say
+        </p>
+        <div class="flex flex-wrap mx-8 gap-6 lg:gap-12 justify-center">
+          <div class="md:w-1/4">
+            <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
+              <div class="px-4 py-4">
+                <p class="text-gray-800 mb-4">
+                  "I have tried many recipe websites but none of them are as
+                  easy to use and accurate as Pantry Pilot. I'm always able to
+                  find a great recipe based on what I have in my fridge."
+                </p>
+                <div class="flex items-center">
+                  <div
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
+                  >
+                    <img
+                      class="h-full w-full object-cover"
+                      src="https://source.unsplash.com/featured/400x400/?woman,face&1"
+                      alt="testimonial author"
+                    />
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-gray-800 text-sm font-semibold">Jane Doe</p>
+                    <p class="text-gray-600 text-sm">Los Angeles, CA</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/4">
+            <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
+              <div class="px-4 py-4">
+                <p class="text-gray-800 mb-4">
+                  "As someone who's not the most confident cook, I love how easy
+                  these recipes are to follow. They've helped me step up my
+                  cooking game and impress my friends and family!"
+                </p>
+                <div class="flex items-center">
+                  <div
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
+                  >
+                    <img
+                      class="h-full w-full object-cover"
+                      src="https://source.unsplash.com/featured/400x400/?man,face"
+                      alt="testimonial author"
+                    />
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-gray-800 text-sm font-semibold">Mike</p>
+                    <p class="text-gray-600 text-sm">Houston, TX</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/4">
+            <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
+              <div class="px-4 py-4">
+                <p class="text-gray-800 mb-4">
+                  "I've tried a ton of different recipe websites, but this one
+                  is by far the best. The recipes are delicious and unique, and
+                  the fact that I can order food directly from the site is
+                  great!"
+                </p>
+                <div class="flex items-center">
+                  <div
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
+                  >
+                    <img
+                      class="h-full w-full object-cover"
+                      src="https://source.unsplash.com/featured/400x400/?woman,face&2"
+                      alt="testimonial author"
+                    />
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-gray-800 text-sm font-semibold">Sofia</p>
+                    <p class="text-gray-600 text-sm">New York City, NY</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/4">
+            <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
+              <div class="px-4 py-4">
+                <p class="text-gray-800 mb-4">
+                  "This tool has saved me so much time and money on meal
+                  planning. I no longer have to guess what to make for dinner or
+                  run to the grocery store for a single ingredient."
+                </p>
+                <div class="flex items-center">
+                  <div
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
+                  >
+                    <img
+                      class="h-full w-full object-cover"
+                      src="https://source.unsplash.com/featured/400x400/?woman,face&3"
+                      alt="testimonial author"
+                    />
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-gray-800 text-sm font-semibold">Rachel</p>
+                    <p class="text-gray-600 text-sm">Chicago, IL</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/4">
+            <div class="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
+              <div class="px-4 py-4">
+                <p class="text-gray-800 mb-4">
+                  "This website is a lifesaver! I'm always looking for new
+                  recipes, and the fact that I can customize them based on
+                  what's in my pantry is amazing. Highly recommend!"
+                </p>
+                <div class="flex items-center">
+                  <div
+                    class="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500"
+                  >
+                    <img
+                      class="h-full w-full object-cover"
+                      src="https://source.unsplash.com/featured/400x400/?woman,face&4"
+                      alt="testimonial author"
+                    />
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-gray-800 text-sm font-semibold">Jessica</p>
+                    <p class="text-gray-600 text-sm">Miami, FL</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
-    <footer></footer>
+    <footer class="bg-rose-600 text-white py-6">
+      <div class="container mx-auto flex justify-center items-center">
+        <span class="font-semibold">
+          © 2023 Pantry Pilot. All rights reserved.
+        </span>
+      </div>
+    </footer>
   </body>
-  <style>
-    .material-symbols-outlined {
-      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
-    }
-  </style>
+  <script src="../js/heroMode.js"></script>
+  <script src="../js/pageNavigation.js"></script>
 </html>
