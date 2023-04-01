@@ -15,7 +15,7 @@
       <div class="container flex items-center justify-between py-8 mx-auto">
         <div class="flex">
           <a href="./index.html">
-            <img src="../../../img/logo.png" alt="Logo" class="w-28" />
+            <img src="../../../img/logo.svg" alt="Logo" class="w-28" />
           </a>
         </div>
         <div>
@@ -28,23 +28,23 @@
         </div>
       </div>
     </header>
-    <main class="container flex">
+    <main class="flex mx-auto">
       <!-- Side Bar -->
-      <nav class="flex w-1/4 py-8 pl-8 h-screen bg-rose-600 text-rose-300">
-        <ul class="flex flex-col text-xl w-full gap-6">
-          <a href="../food/index.html">
+      <nav class="flex w-1/4 h-screen bg-rose-600 text-rose-300">
+        <ul class="flex flex-col text-xl p-8 w-full gap-6">
+          <a href="./food.html">
             <li class="flex items-baseline hover:text-white">
               <i class="fa-solid fa-bowl-food mr-6"></i>
-              <h3>Food</h3>
+              <h3>Recipe</h3>
             </li>
           </a>
-          <a href="../resto/index.html">
+          <a href="./resto.html">
             <li class="flex items-baseline hover:text-white">
               <i class="fa-solid fa-utensils mr-7"></i>
               <h3>Resto</h3>
             </li>
           </a>
-          <a href="./index.html">
+          <a href="./order.html">
             <li class="flex items-baseline hover:text-white text-white">
               <i class="fa-solid fa-receipt mr-8"></i>
               <h3>Order</h3>
@@ -53,10 +53,10 @@
         </ul>
       </nav>
       <!-- Main Content -->
-      <div class="w-3/4 py-6 px-8 max-h-screen overflow-y-auto">
+      <div class="flex flex-col gap-8 pt-6 pb-8 px-8 w-full max-h-screen overflow-y-scroll scrollbar-hide">
         <h1 class="text-4xl font-semibold">Orders</h1>
         <!-- Header Menu -->
-        <div class="flex gap-6 my-8">
+        <div class="flex gap-6">
           <!-- Search -->
           <div class="relative">
             <input
@@ -161,6 +161,16 @@
           </a>
           
         </ul>
+        <!-- Pagination -->
+        <nav class="flex justify-center gap-1 text-xs font-medium">
+          <ul class="flex gap-2">
+            <li><a href=""  class="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white"><</a></li>
+            <li><a href=""  class="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white text-white bg-blue-400">1</a></li>
+            <li><a href=""  class="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white">2</a></li>
+            <li><a href=""  class="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white">3</a></li>
+            <li><a href=""  class="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white">></a></li>
+          </ul>
+        </nav>
       </div>
     </main>
   </body>
