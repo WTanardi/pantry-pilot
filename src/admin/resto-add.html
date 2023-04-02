@@ -8,7 +8,7 @@
       src="https://kit.fontawesome.com/0dc907d2a4.js"
       crossorigin="anonymous"
     ></script>
-    <title>Admin | Add Recipe</title>
+    <title>Admin | Add Restaurant</title>
   </head>
   <body>
     <header class="border-b-[1px] border-black">
@@ -57,205 +57,176 @@
         class="py-6 px-8 w-full max-h-screen overflow-y-scroll scrollbar-hide"
       >
         <div class="flex gap-4 items-center">
-          <a href="./food.html" class="mt-1 w-5 hover:text-neutral-400"><i class="fa-solid fa-angle-left fa-xl"></i></a>
-          <h1 class="text-4xl font-semibold lead">Recipe | Add</h1>
+            <!-- Back -->
+            <a href="./resto.html" class="mt-1 w-5 hover:text-neutral-400">
+                <i class="fa-solid fa-angle-left fa-xl"></i>
+            </a>
+          <h1 class="text-4xl font-semibold lead">Restaurant | Add</h1>
         </div>
         <form action="" method="post" class="grid grid-cols-5 gap-x-4 gap-y-5 mt-8">
           <!-- Name -->
-          <div class="flex flex-col gap-1.5 col-span-2">
-            <label for="fname">Food Name</label>
+          <div class="flex flex-col gap-1.5 col-span-3">
+            <label for="rname">Restaurant Name</label>
             <input
               type="text"
-              name="fname"
+              name="rname"
               class="border border-black px-2 py-1"
               required
             />
           </div>
-          <!-- Category -->
-          <div class="flex flex-col gap-1.5 col-span-1">
-            <label for="fcategory">Category</label>
-            <select
-              id="fcategory"
-              class="border border-black h-full"
-              required
-            >
-              <option></option>
-              <option value="appetizer">Appetizer</option>
-              <option value="mainCourse">Main Course</option>
-              <option value="dessert">Dessert</option>
-            </select>
-          </div>
-          <!-- Food Image -->
+          <!-- Resto Image -->
           <div class="flex flex-col gap-1.5 col-span-2">
-            <label for="fimg">Food Image</label>
+            <label for="fimg">Restaurant Image</label>
             <input
             name="fimg"
-            class="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer"
+            class="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer" 
+            placeholder = ""
             type="file"
             >
           </div>
           <!-- Desc -->
-          <div class="flex flex-col gap-1.5 col-span-5">
+          <div class="flex flex-col gap-1.5 col-span-3">
             <label for="fdesc">Description</label>
             <textarea
             name="fdesc"
             class="border border-black px-2 py-1"
             ></textarea>
           </div>
-          <!-- Ingridients Input -->
-          <div class="grid grid-cols-5 gap-4 col-span-5" id="ingridInput">
-            <h5 class="col-span-full text-2xl">Recipe</h5>
-            <!-- Ingridient -->
-            <div class="flex flex-col gap-1.5 col-span-3">
-              <label for="fingredient">Ingredient</label>
-              <select
-                id="fingredient"
-                class="border border-black h-full"
-                required
-              >
-                <option></option>
-                <option value="beef">Beef</option>
-                <option value="chicken">Chicken</option>
-                <option value="flour">Flour</option>
-                <option value="galangal">Galangal</option>
-                <option value="lemon">Lemon</option>
-                <option value="lemongrass">Lemon Grass</option>
-              </select>
-            </div>
-            <!-- Amount -->
-            <div class="flex flex-col gap-1.5 col-span-1">
-              <label for="famount">Amount</label>
-              <input
-                type="number"
-                name="famount"
-                class="border border-black px-2 py-1"
-                required
-              />
-            </div>
-            <!-- Measurement -->
-            <div class="flex flex-col gap-1.5 col-span-1">
-              <label for="fcategory">Measurement</label>
-              <select
-                id="fcategory"
-                class="border border-black h-full"
-                required
-              >
-                <option></option>
-                <option value="tsp">tsp</option>
-                <option value="tbsp">tbsp</option>
-                <option value="cup">cup</option>
-                <option value="oz">Oz</option>
-                <option value="pound">Pound</option>
-                <option value="g">gram</option>
-                <option value="mg">miligram</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid grid-cols-5 gap-4 col-span-5">
-            <!-- Ingridient -->
-            <div class="flex flex-col col-span-3">
-              <select
-                id="fingredient"
-                class="border border-black h-full"
-                required
-              >
-                <option></option>
-                <option value="beef">Beef</option>
-                <option value="chicken">Chicken</option>
-                <option value="flour">Flour</option>
-                <option value="galangal">Galangal</option>
-                <option value="lemon">Lemon</option>
-                <option value="lemongrass">Lemon Grass</option>
-              </select>
-            </div>
-            <!-- Amount -->
-            <div class="flex flex-col col-span-1">
-              <input
-                type="number"
-                name="famount"
-                class="border border-black px-2 py-1"
-                required
-              />
-            </div>
-            <!-- Measurement -->
-            <div class="flex flex-col col-span-1">
-              <select
-                id="fcategory"
-                class="border border-black h-full"
-                required
-              >
-                <option></option>
-                <option value="tsp">tsp</option>
-                <option value="tbsp">tbsp</option>
-                <option value="cup">cup</option>
-                <option value="oz">Oz</option>
-                <option value="pound">Pound</option>
-                <option value="g">gram</option>
-                <option value="mg">miligram</option>
-              </select>
-            </div>
-          </div>
-          <div class="grid grid-cols-5 gap-4 col-span-5">
-            <!-- Ingridient -->
-            <div class="flex flex-col col-span-3">
-              <select
-                id="fingredient"
-                class="border border-black h-full"
-                required
-              >
-                <option></option>
-                <option value="beef">Beef</option>
-                <option value="chicken">Chicken</option>
-                <option value="flour">Flour</option>
-                <option value="galangal">Galangal</option>
-                <option value="lemon">Lemon</option>
-                <option value="lemongrass">Lemon Grass</option>
-              </select>
-            </div>
-            <!-- Amount -->
-            <div class="flex flex-col col-span-1">
-              <input
-                type="number"
-                name="famount"
-                class="border border-black px-2 py-1"
-                required
-              />
-            </div>
-            <!-- Measurement -->
-            <div class="flex flex-col col-span-1">
-              <select
-                id="fcategory"
-                class="border border-black h-full"
-                required
-              >
-                <option></option>
-                <option value="tsp">tsp</option>
-                <option value="tbsp">tbsp</option>
-                <option value="cup">cup</option>
-                <option value="oz">Oz</option>
-                <option value="pound">Pound</option>
-                <option value="g">gram</option>
-                <option value="mg">miligram</option>
-              </select>
-            </div>
-          </div>
-          <button type="button" class="col-end-5 text-red-700 hover:text-red-500 justify-self-end flex items-center gap-3">
-            Remove Ingredient
-            <i class="fa-solid fa-square-minus fa-2xl "></i>
-          </button>
-          <button type="button" class="col-end-6 text-indigo-700 hover:text-indigo-500 justify-self-end flex items-center gap-3">
-            Add Ingredient          
-            <i class="fa-solid fa-square-plus fa-2xl "></i>
-          </button>
-
-          <!-- Step -->
-          <div class="flex flex-col gap-1.5 col-span-5">
-            <label for="fstep">Steps</label>
+          <!-- Location -->
+          <div class="flex flex-col gap-1.5 col-span-2">
+            <label for="rname">Location</label>
             <textarea
-            name="fstep"
+            name="rname"
             class="border border-black px-2 py-1"
             ></textarea>
           </div>
+          <!-- Menu Input -->
+          <div class="grid grid-cols-5 gap-4 col-span-5" id="ingridInput">
+            <h5 class="col-span-full text-2xl">Menu</h5>
+            <!-- Food -->
+            <div class="flex flex-col gap-1.5 col-span-2">
+              <label for="fingredient">Food</label>
+              <select
+                id="fingredient"
+                class="border border-black h-full"
+                required
+              >
+                <option></option>
+                <option value="beef">Beef</option>
+                <option value="chicken">Chicken</option>
+                <option value="flour">Flour</option>
+                <option value="galangal">Galangal</option>
+                <option value="lemon">Lemon</option>
+                <option value="lemongrass">Lemon Grass</option>
+              </select>
+            </div>
+            <!-- Price -->
+            <div class="flex flex-col gap-1.5 col-span-1">
+              <label for="famount">Price</label>
+              <input
+                type="number"
+                name="famount"
+                class="border border-black px-2 py-1"
+                required
+              />
+            </div>
+            <!-- Food Image -->
+            <div class="flex flex-col gap-1.5 col-span-2">
+                <label for="fimg">Food Image</label>
+                <input
+                name="fimg"
+                class="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer" 
+                placeholder = ""
+                type="file"
+                >
+              </div>
+            
+          </div>
+          
+          <div class="grid grid-cols-5 gap-4 col-span-5" id="ingridInput">
+            <!-- Food -->
+            <div class="flex flex-col gap-1.5 col-span-2">
+              <select
+                id="fingredient"
+                class="border border-black h-full"
+                required
+              >
+                <option></option>
+                <option value="beef">Beef</option>
+                <option value="chicken">Chicken</option>
+                <option value="flour">Flour</option>
+                <option value="galangal">Galangal</option>
+                <option value="lemon">Lemon</option>
+                <option value="lemongrass">Lemon Grass</option>
+              </select>
+            </div>
+            <!-- Price -->
+            <div class="flex flex-col gap-1.5 col-span-1">
+              <input
+                type="number"
+                name="famount"
+                class="border border-black px-2 py-1"
+                required
+              />
+            </div>
+            <!-- Food Image -->
+            <div class="flex flex-col gap-1.5 col-span-2">
+                <input
+                name="fimg"
+                class="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer" 
+                placeholder = ""
+                type="file"
+                >
+              </div>
+            
+          </div>
+
+          <div class="grid grid-cols-5 gap-4 col-span-5" id="ingridInput">
+            <!-- Food -->
+            <div class="flex flex-col gap-1.5 col-span-2">
+              <select
+                id="fingredient"
+                class="border border-black h-full"
+                required
+              >
+                <option></option>
+                <option value="beef">Beef</option>
+                <option value="chicken">Chicken</option>
+                <option value="flour">Flour</option>
+                <option value="galangal">Galangal</option>
+                <option value="lemon">Lemon</option>
+                <option value="lemongrass">Lemon Grass</option>
+              </select>
+            </div>
+            <!-- Price -->
+            <div class="flex flex-col gap-1.5 col-span-1">
+              <input
+                type="number"
+                name="famount"
+                class="border border-black px-2 py-1"
+                required
+              />
+            </div>
+            <!-- Food Image -->
+            <div class="flex flex-col gap-1.5 col-span-2">
+                <input
+                name="fimg"
+                class="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer" 
+                placeholder = ""
+                type="file"
+                >
+              </div>
+            
+          </div>
+          
+          <button type="button" class="col-end-5 text-red-700 hover:text-red-500 justify-self-end flex items-center gap-3">
+            Remove Menu
+            <i class="fa-solid fa-square-minus fa-2xl "></i>
+          </button>
+          <button type="button" class="col-end-6 text-indigo-700 hover:text-indigo-500 justify-self-end flex items-center gap-3">
+            Add Menu
+            <i class="fa-solid fa-square-plus fa-2xl "></i>
+          </button>
           <button class="h-12 mt-4 w-full bg-sky-500 text-white hover:bg-sky-700 font-semibold">
             Submit
           </button>          
