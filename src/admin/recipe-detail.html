@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/0dc907d2a4.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Admin | Food</title>
+  </head>
+
+  <body>
+    <header class="border-b-[1px] border-black">
+      <div class="container flex items-center justify-between py-8 mx-auto">
+        <div class="flex">
+          <a href="../index.html">
+            <img src="../../../img/logo.svg" alt="Logo" class="w-28" />
+          </a>
+        </div>
+        <div>
+          <div class="flex items-center gap-8">
+            <a href="" class="flex items-center gap-4">
+              <p>William Tanardi</p>
+              <i class="fa-solid fa-circle-user fa-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="flex mx-auto">
+      <!-- Side Bar -->
+      <nav class="flex w-1/4 h-screen bg-rose-600 text-rose-300">
+          <ul class="flex flex-col p-8 text-xl gap-6">
+            <a href="./food.html">
+              <li class="flex items-baseline hover:text-white text-white">
+                <i class="fa-solid fa-bowl-food mr-6"></i>
+                <h3>Recipe</h3>
+              </li>
+            </a>
+            <a href="./resto.html">
+              <li class="flex items-baseline hover:text-white">
+                <i class="fa-solid fa-utensils mr-7"></i>
+                <h3>Resto</h3>
+              </li>
+            </a>
+            <a href="./order.html">
+              <li class="flex items-baseline hover:text-white">
+                <i class="fa-solid fa-receipt mr-8"></i>
+                <h3>Order</h3>
+              </li>
+            </a>
+          </ul>
+      </nav>
+      <!-- Main Content -->
+      <div class="py-6 px-8 w-full max-h-screen overflow-y-scroll scrollbar-hide">
+        <!-- Header -->
+        <div class="flex gap-4 items-center">
+            <a href="./food.html" class="mt-1 w-5 hover:text-neutral-400"><i class="fa-solid fa-angle-left fa-xl"></i></a>
+            <div class="flex flex-col gap-0.5">
+                <h1 class="text-4xl font-semibold lead">Rawon</h1>
+                <p class="font-light">Main Course</p>
+            </div>
+        </div>
+        <!-- Menu -->
+        <div class="flex gap-4 justify-end">
+            <button class="text-white px-3 py-2 text-sm bg-blue-700 hover:bg-blue-400 rounded">
+                Edit 
+                <i class="fa-solid fa-pen-to-square "></i>
+              </button>
+              <button class="text-white px-3 py-2 text-sm bg-red-700 hover:bg-red-400 rounded">
+                Remove
+                <i class="fa-solid fa-trash "></i>
+              </button>
+        </div>
+        <!-- Content -->
+        <img src="https://loremflickr.com/1080/360/food" alt="" class="my-8"/>
+        <div class="flex flex-col gap-4">
+            <!-- Desc -->
+            <p class="indent-8 text-justify">Rawon is an Indonesian dish originating from Ponorogo in the form of black soup with a mixture of special spices using kluwek. Rawon, spread outside Ponorogo because Ponorogo has played an important role from time to time, so that it is known as a special dish from East Java (Arekan area), the people of Central Java to the east (Surakarta area). The meat for rawon is generally beef cut into small pieces, mainly the brisket.</p>
+            <!-- Recipe -->
+            <h2 class="font-medium text-xl">Recipes : </h2>
+            <table class="table-auto w-1/2">
+                <!-- <thead>
+                    <tr>
+                        <th class="text-start">No.</th>
+                        <th class="text-start">Amounts</th>
+                        <th class="text-start">Ingredients</th>
+                        <th class="text-start">Unit</th>
+                    </tr>
+                </thead> -->
+                <!-- Ingredients -->
+                <tbody class="">
+                    <tr>
+                        <td>1.</td>
+                        <td>Shallots</td>
+                        <td>7</td>
+                        <td>pieces</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>Garlic</td>
+                        <td>3</td>
+                        <td>clove</td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>Shallots</td>
+                        <td>7</td>
+                        <td>pieces</td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td>Keluak</td>
+                        <td>5</td>
+                        <td>pieces</td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td>Candlenut</td>
+                        <td>5</td>
+                        <td>pieces</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Step -->
+            <h2 class="font-medium text-xl">How to make Rawon</h2>
+            <div class="flex flex-col gap-1">
+                <p>1. Into a large pot, heat oil on medium-high heat.</p>
+                <p>2. Once oil is hot, add in the rawon spice mix, lime leaves, and lemongrass paste. Stir until mixture is fragrant.</p>
+                <p>3. Add in beef shank and toss it in the spice mixture until well-combined. Continue to cook until beef is seared.</p>
+                <p>4. Add in water, salt, pepper, tamarind paste, and granulated sugar. Turn down the heat to low-heat, and let simmer until the soup boils and meat is tender, about 1 hour.</p>
+                <p>5. Turn off the heat, then stir in chopped green onions.</p>
+                <p>6. Serve rawon over steamed rice, then garnish with your desired toppings.</p>
+            </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
