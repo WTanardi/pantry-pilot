@@ -17,8 +17,8 @@ const RecipeCard: FC<RecipeCardProps> = ({ name, ingCount, imgPath }) => {
           <Image
             src={imgPath}
             alt={`${name} recipe`}
-            width={500}
-            height={500}
+            width={150}
+            height={150}
             className="rounded-lg w-32 h-24 bg-red-300"
           ></Image>
         </div>

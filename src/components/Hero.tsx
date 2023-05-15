@@ -110,8 +110,8 @@ const Hero: React.FC = ({}) => {
               <Image
                 src={burger}
                 alt="classic burger"
-                width={500}
-                height={500}
+                width={350}
+                height={350}
                 className="w-full h-28 object-cover"
               />
               <h2 className="text-2xl font-bold mb-4">Classic Burger</h2>

@@ -1,20 +1,17 @@
 import Header from "@/components/Header";
 import Link from "next/link";
+
 const Register = () => {
   return (
     <>
-      <Header></Header>
-      <div className="w-72 flex flex-col my-12 text-center mx-auto font-medium">
+      <Header />
+      <div className="w-5/6 lg:w-1/2 xl:w-1/3 mx-auto my-12 text-center font-medium">
         <h1 className="text-5xl mb-12">Create Account</h1>
-        <form
-          id="formRegister"
-          className="container flex flex-col gap-8 text-left"
-          action="post"
-        >
+        <form id="formRegister" className="container flex flex-col gap-8 text-left items-center" action="post">
           <div className="flex flex-col w-full">
-            {/* <label htmlFor="name" type="name">
-            </label> */}
-            Name<span className="text-rose-600">*</span>
+            <label htmlFor="name">
+              Name<span className="text-rose-600">*</span>
+            </label>
             <input
               name="name"
               id="name"
@@ -24,9 +21,9 @@ const Register = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            {/* <label htmlFor="birth" type="birth">
-            </label> */}
-            Birth<span className="text-rose-600">*</span>
+            <label htmlFor="birth">
+              Birth<span className="text-rose-600">*</span>
+            </label>
             <input
               name="birth"
               id="birth"
@@ -36,21 +33,21 @@ const Register = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            {/* <label htmlFor="address" type="address">
-            </label> */}
-            Address<span className="text-rose-600">*</span>
+            <label htmlFor="address">
+              Address<span className="text-rose-600">*</span>
+            </label>
             <input
-              name="adress"
-              id="adress"
+              name="address"
+              id="address"
               className="border border-black h-10 px-2"
               type="text"
               required
             />
           </div>
           <div className="flex flex-col w-full">
-            {/* <label htmlFor="phone" type="phone">
-            </label> */}
-            Phone Number<span className="text-rose-600">*</span>
+            <label htmlFor="phone">
+              Phone Number<span className="text-rose-600">*</span>
+            </label>
             <input
               name="phone"
               id="phone"
@@ -61,13 +58,9 @@ const Register = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            {/* <label
-              htmlFor="email"
-              type="email"
-              className="text-left font-medium"
-            >
-            </label> */}
-            Email
+            <label htmlFor="email" className="font-medium">
+              Email
+            </label>
             <input
               name="email"
               id="email"
@@ -77,9 +70,9 @@ const Register = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            {/* <label htmlFor="password" type="password" required>
-            </label> */}
-            Password<span className="text-rose-600">*</span>
+            <label htmlFor="password">
+              Password<span className="text-rose-600">*</span>
+            </label>
             <input
               name="password"
               id="password"
@@ -92,18 +85,15 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="h-12 w-full mt-4 bg-rose-600 text-white hover:bg-rose-700"
+            className="w-full h-12 mt-4 bg-rose-600 text-white hover:bg-rose-700"
           >
             Sign up
           </button>
         </form>
-        <p className="font-normal mt-2">
-          Already have account?
+        <p className="mt-2 font-normal">
+          Already have an account?
           <span>
-            <Link
-              href="/login"
-              className="text-blue-700 font-bold hover:text-blue-500"
-            >
+            <Link href="/login" className="text-blue-700 font-bold hover:text-blue-500">
               &nbsp;Sign in
             </Link>
           </span>

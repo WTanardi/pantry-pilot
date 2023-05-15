@@ -29,8 +29,8 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
                     isWoman === true ? "woman" : "man"
                   },face&${id + 1}`}
                   alt="testimonial author"
-                  height={500}
-                  width={500}
+                  height={30}
+                  width={30}
                   className="h-full w-full object-cover"
                 ></Image>
               </div>

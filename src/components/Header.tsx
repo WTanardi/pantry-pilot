@@ -30,8 +30,8 @@ const Header: React.FC<Props> = ({}) => {
             <Image
               src={logo}
               alt="Pantry pilot logo"
-              width={500}
-              height={500}
+              width={50}
+              height={50}
               className="w-28"
             ></Image>
           </Link>

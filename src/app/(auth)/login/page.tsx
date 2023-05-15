@@ -1,16 +1,15 @@
 import Header from "@/components/Header";
 import Link from "next/link";
+
 const Login = () => {
   return (
     <>
-      <Header></Header>
-      <div className="w-72 flex flex-col items-center font-medium mx-auto my-12">
+      <Header />
+      <div className="w-5/6 lg:w-1/2 xl:w-1/3 mx-auto my-12 flex flex-col items-center font-medium">
         <p className="text-5xl mb-12">Login</p>
-        <form className="container flex flex-col gap-8 text-left" action="post">
-          <div className="flex flex-col w-full">
-            Email
-            {/* <label for="email" type="email">
-            </label> */}
+        <form className="container flex flex-col gap-8" action="post">
+          <div className="flex flex-col">
+            <label htmlFor="email">Email</label>
             <input
               name="email"
               id="email"
@@ -19,10 +18,8 @@ const Login = () => {
               required
             />
           </div>
-          <div className="flex flex-col w-full">
-            Password
-            {/* <label for="password" type="password" required>
-            </label> */}
+          <div className="flex flex-col">
+            <label htmlFor="password">Password</label>
             <input
               name="password"
               id="password"
@@ -34,12 +31,12 @@ const Login = () => {
 
           <button
             type="submit"
-            className="h-12 mt-4 w-full bg-rose-600 text-white hover:bg-rose-700"
+            className="w-full h-12 mt-4 bg-rose-600 text-white hover:bg-rose-700"
           >
             Login
           </button>
         </form>
-        <p className="font-normal mt-2">
+        <p className="mt-2 font-normal">
           Not Registered?
           <span>
             <Link

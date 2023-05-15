@@ -6,19 +6,19 @@ interface ProductsServicesProps {}
 const ProductsServices: FC<ProductsServicesProps> = ({}) => {
   const products = [
     {
-      path: "/img/rendang.png",
+      path: "/img/productImg/rendang.png",
       title: "Local Recipes",
       content:
         "Experience the unique and delicious flavors of your with our collection of local recipes! Discover easy-to-follow recipes that will make mealtime a memorable experience for you and your loved ones.",
     },
     {
-      path: "/img/spaghetti.png",
+      path: "/img/productImg/spaghetti.png",
       title: "International Recipes",
       content:
         "Explore the world through your taste buds with our collection of international recipes! From classNameic French cuisine to spicy Indian curries, discover new and exciting flavors that will take your taste buds on a culinary journey.",
     },
     {
-      path: "/img/foodbox.png",
+      path: "/img/productImg/foodbox.png",
       title: "Food Order",
       content:
         "Try out new flavors from your favorite restaurants before cooking! Order from nearby restaurants and get delicious meals delivered straight to your door. Explore new cuisines with ease.",
@@ -39,9 +39,10 @@ const ProductsServices: FC<ProductsServicesProps> = ({}) => {
                   <Image
                     src={product.path}
                     alt={`Image ${index + 1}`}
-                    width={500}
-                    height={500}
+                    width={150}
+                    height={150}
                     className="w-64"
+                    loading="lazy"
                   ></Image>
                 </div>
                 <div className="text-center px-4 py-4">

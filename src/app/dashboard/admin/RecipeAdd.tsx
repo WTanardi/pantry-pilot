@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+"use client";
+import Link from "next/link";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -6,16 +8,71 @@ import {
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
 
-interface RecipeAddProps {}
+interface Ingredient {
+  name: string;
+  amount: string;
+  measurement: string;
+}
 
-const RecipeAdd: FC<RecipeAddProps> = ({}) => {
+interface Recipe {
+  foodName: string;
+  foodImage: File | null;
+  description: string;
+  ingredients: Ingredient[];
+  steps: string;
+}
+
+const RecipeAdd: React.FC = () => {
+  const [recipe, setRecipe] = useState<Recipe>({
+    foodName: "",
+    foodImage: null,
+    description: "",
+    ingredients: [{ name: "", amount: "", measurement: "" }],
+    steps: "",
+  });
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    index?: number
+  ) => {
+    const { name, value } = e.target;
+    if (name === "foodImage") {
+      const file = (e.target as HTMLInputElement).files?.[0] || null;
+      setRecipe({ ...recipe, [name]: file });
+    } else if (index !== undefined) {
+      const ingredients = [...recipe.ingredients];
+      ingredients[index][name as keyof Ingredient] = value;
+      setRecipe({ ...recipe, ingredients });
+    } else {
+      setRecipe({ ...recipe, [name]: value });
+    }
+  };
+
+  const handleAddIngredient = () => {
+    setRecipe({
+      ...recipe,
+      ingredients: [
+        ...recipe.ingredients,
+        { name: "", amount: "", measurement: "" },
+      ],
+    });
+  };
+
+  const handleRemoveIngredient = (index: number) => {
+    const ingredients = [...recipe.ingredients];
+    ingredients.splice(index, 1);
+    setRecipe({ ...recipe, ingredients });
+  };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    alert(JSON.stringify(recipe, null, 2));
+  };
+
   return (
     <>
       <div className="py-6 px-8 w-full">
         <div className="flex gap-4 items-center">
-          <a href="./recipe.html" className="mt-1 w-5 hover:text-neutral-400">
-            <FontAwesomeIcon icon={faAngleLeft} size="xl" />
-          </a>
           <h1 className="text-4xl font-semibold lead">Recipe | Add</h1>
         </div>
         <form
@@ -24,170 +81,119 @@ const RecipeAdd: FC<RecipeAddProps> = ({}) => {
           className="grid grid-cols-5 gap-x-4 gap-y-5 mt-8"
         >
           {/* <!-- Name --> */}
-          <div className="flex flex-col gap-1.5 col-span-2">
-            <label htmlFor="fname">Food Name</label>
+          <div className="flex flex-col gap-1.5 col-span-3">
+            <label htmlFor="foodName" className="font-bold mb-2">
+              Food Name:
+            </label>
             <input
               type="text"
-              name="fname"
-              className="border border-black px-2 py-1"
-              required
+              id="foodName"
+              name="foodName"
+              value={recipe.foodName}
+              onChange={handleChange}
+              className="border border-gray-300 rounded px-3 py-2 w-full"
             />
-          </div>
-          {/* <!-- Category --> */}
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="fcategory">Category</label>
-            <select
-              id="fcategory"
-              className="border border-black h-full"
-              required
-            >
-              <option></option>
-              <option value="appetizer">Appetizer</option>
-              <option value="mainCourse">Main Course</option>
-              <option value="dessert">Dessert</option>
-            </select>
           </div>
           {/* <!-- Food Image --> */}
           <div className="flex flex-col gap-1.5 col-span-2">
-            <label htmlFor="fimg">Food Image</label>
+            <label htmlFor="foodImage" className="font-bold mb-2">
+              Food Image:
+            </label>
             <input
-              name="fimg"
-              className="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer"
               type="file"
-            ></input>
+              id="foodImage"
+              name="foodImage"
+              onChange={handleChange}
+              className="border border-gray-300 rounded px-3 py-2 w-full"
+            />
           </div>
           {/* <!-- Desc --> */}
           <div className="flex flex-col gap-1.5 col-span-5">
-            <label htmlFor="fdesc">Description</label>
+            <label htmlFor="description" className="font-bold mb-2">
+              Description:
+            </label>
             <textarea
-              name="fdesc"
-              className="border border-black px-2 py-1"
+              id="description"
+              name="description"
+              value={recipe.description}
+              onChange={handleChange}
+              className="border border-gray-300 rounded px-3 py-2 w-full"
             ></textarea>
           </div>
-          {/* <!-- Ingridients Input --> */}
-          <div className="grid col-span-full gap-y-4" id="ingredient-wrapper">
-            <div className="grid grid-cols-6 gap-4">
+          {/* <!-- Ingredients Input --> */}
+          <div className="grid col-span-full">
+            <div className="gap-4">
               {/* <!-- Labels --> */}
-              <label htmlFor="fingredient" className="col-span-3">
-                Ingredient
-              </label>
-              <label htmlFor="famount">Amount</label>
-              <label htmlFor="fcategory">Measurement</label>
-
-              {/* <!-- Ingredient --> */}
-              <div className="flex flex-col col-span-3">
-                <select
-                  id="fingredient"
-                  className="border border-black h-full"
-                  required
-                >
-                  <option></option>
-                  <option value="beef">Beef</option>
-                  <option value="chicken">Chicken</option>
-                  <option value="flour">Flour</option>
-                  <option value="galangal">Galangal</option>
-                  <option value="lemon">Lemon</option>
-                  <option value="lemongrass">Lemon Grass</option>
-                </select>
-              </div>
-              {/* <!-- Amount --> */}
-              <div className="flex flex-col">
-                <input
-                  type="number"
-                  name="famount"
-                  className="border border-black px-2 py-1"
-                  required
-                />
-              </div>
-              {/* <!-- Measurement --> */}
-              <div className="flex flex-col">
-                <select
-                  id="fcategory"
-                  className="border border-black h-full"
-                  required
-                >
-                  <option></option>
-                  <option value="tsp">tsp</option>
-                  <option value="tbsp">tbsp</option>
-                  <option value="cup">cup</option>
-                  <option value="oz">Oz</option>
-                  <option value="pound">Pound</option>
-                  <option value="g">gram</option>
-                  <option value="mg">miligram</option>
-                </select>
-              </div>
-            </div>
-            <div className="grid grid-cols-6 gap-4 col-span-5">
-              {/* <!-- Ingridient --> */}
-              <div className="flex flex-col col-span-3">
-                <select
-                  id="fingredient"
-                  className="border border-black h-full"
-                  required
-                >
-                  <option></option>
-                  <option value="beef">Beef</option>
-                  <option value="chicken">Chicken</option>
-                  <option value="flour">Flour</option>
-                  <option value="galangal">Galangal</option>
-                  <option value="lemon">Lemon</option>
-                  <option value="lemongrass">Lemon Grass</option>
-                </select>
-              </div>
-              {/* <!-- Amount --> */}
-              <div className="flex flex-col">
-                <input
-                  type="number"
-                  name="famount"
-                  className="border border-black px-2 py-1"
-                  required
-                />
-              </div>
-              {/* <!-- Measurement --> */}
-              <div className="flex flex-col">
-                <select
-                  id="fcategory"
-                  className="border border-black h-full"
-                  required
-                >
-                  <option></option>
-                  <option value="tsp">tsp</option>
-                  <option value="tbsp">tbsp</option>
-                  <option value="cup">cup</option>
-                  <option value="oz">Oz</option>
-                  <option value="pound">Pound</option>
-                  <option value="g">gram</option>
-                  <option value="mg">miligram</option>
-                </select>
-              </div>
-              {/* <!-- Remove Ingredient --> */}
+              <label className="font-bold mb-2">Ingredients:</label>
+              {recipe.ingredients.map((ingredient, index) => (
+                <div key={index} className="grid grid-cols-5 my-2">
+                  <input
+                    type="text"
+                    placeholder="Ingredient Name"
+                    name="name"
+                    value={ingredient.name}
+                    onChange={(e) => handleChange(e, index)}
+                    className="border gray-300 rounded px-3 py-2 mr-2 col-span-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Amount"
+                    name="amount"
+                    value={ingredient.amount}
+                    onChange={(e) => handleChange(e, index)}
+                    className="border border-gray-300 rounded px-3 py-2 mr-2"
+                  />
+                  <select
+                    name="measurement"
+                    value={ingredient.measurement}
+                    onChange={(e) => handleChange(e, index)}
+                    className="border border-gray-300 rounded px-3 py-2 "
+                  >
+                    <option value="">Measurement</option>
+                    <option value="cup">Cup</option>
+                    <option value="tbsp">Tablespoon</option>
+                    <option value="tsp">Teaspoon</option>
+                    <option value="g">Grams</option>
+                    <option value="oz">Ounces</option>
+                  </select>
+                  {index > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveIngredient(index)}
+                      className="ml-2 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              ))}
               <button
                 type="button"
-                className="justify-self-start text-red-700 hover:text-red-500 flex items-center gap-3"
+                onClick={handleAddIngredient}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded"
               >
-                <FontAwesomeIcon icon={faSquareMinus} size="2xl" />
-                Remove
+                Add Ingredient
               </button>
             </div>
           </div>
-          {/* <!-- Add Ingredient --> */}
-          <button
-            type="button"
-            className="justify-self-start text-indigo-700 hover:text-indigo-500 flex items-center gap-3"
-          >
-            <FontAwesomeIcon icon={faSquarePlus} size="2xl" />
-            Add Ingredient
-          </button>
-
           {/* <!-- Step --> */}
           <div className="flex flex-col gap-1.5 col-span-5">
-            <label htmlFor="fstep">Steps</label>
+            <label htmlFor="steps" className="font-bold mb-2">
+              Steps:
+            </label>
             <textarea
-              name="fstep"
-              className="border border-black px-2 py-1"
+              id="steps"
+              name="steps"
+              value={recipe.steps}
+              onChange={handleChange}
+              className="border border-gray-300 rounded px-3 py-2 w-full"
             ></textarea>
           </div>
-          <button className="h-12 mt-4 w-full bg-sky-500 text-white hover:bg-sky-700 font-semibold">
+          <button
+            type="submit"
+            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </form>
