@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { useState, ChangeEvent, FormEvent, FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -8,196 +8,216 @@ import {
 
 interface RestoAddProps {}
 
-const RestoAdd: FC<RestoAddProps> = ({}) => {
+interface MenuItem {
+  foodName: string;
+  recipe: string;
+  price: number | string;
+  image: File | null;
+  description: string;
+}
+
+interface Restaurant {
+  name: string;
+  image: File | null;
+  description: string;
+  location: string;
+  menu: MenuItem[];
+}
+
+const RestoAdd: FC<RestoAddProps> = () => {
+  const [restaurant, setRestaurant] = useState<Restaurant>({
+    name: "",
+    image: null,
+    description: "",
+    location: "",
+    menu: [
+      { foodName: "", recipe: "", price: "", image: null, description: "" },
+    ],
+  });
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    index?: number
+  ) => {
+    const { name, value } = e.target;
+    if (name === "image" || name === "menuImage") {
+      const file = (e.target as HTMLInputElement).files?.[0] || null;
+      setRestaurant({ ...restaurant, [name]: file });
+    } else if (index !== undefined) {
+      const menu = [...restaurant.menu];
+      menu[index] = {
+        ...menu[index],
+        [name as keyof MenuItem]: value,
+      };
+      setRestaurant({ ...restaurant, menu });
+    } else {
+      setRestaurant({ ...restaurant, [name]: value });
+    }
+  };
+
+  const handleAddMenuItem = () => {
+    setRestaurant({
+      ...restaurant,
+      menu: [
+        ...restaurant.menu,
+        { foodName: "", recipe: "", price: 0, image: null, description: "" },
+      ],
+    });
+  };
+
+  const handleRemoveMenuItem = (index: number) => {
+    const menu = [...restaurant.menu];
+    menu.splice(index, 1);
+    setRestaurant({ ...restaurant, menu });
+  };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    alert(JSON.stringify(restaurant, null, 2));
+  };
+
+  const recipes = ["Recipe 1", "Recipe 2", "Recipe 3"];
+
   return (
-    <>
-      <div className="py-6 px-8 w-full">
-        <div className="flex gap-4 items-center">
-          {/* Back */}
-          <a href="./resto.html" className="mt-1 w-5 hover:text-neutral-400">
-            <FontAwesomeIcon icon={faAngleLeft} size="xl" />
-          </a>
-          <h1 className="text-4xl font-semibold lead">Restaurant | Add</h1>
-        </div>
-        <form
-          action=""
-          method="post"
-          className="grid grid-cols-5 gap-x-4 gap-y-5 mt-8"
-        >
-          {/* Name */}
-          <div className="flex flex-col gap-1.5 col-span-3">
-            <label htmlFor="rname">Restaurant Name</label>
-            <input
-              type="text"
-              name="rname"
-              className="border border-black px-2 py-1"
-              required
-            />
-          </div>
-          {/* Resto Image */}
-          <div className="flex flex-col gap-1.5 col-span-2">
-            <label htmlFor="fimg">Restaurant Image</label>
-            <input
-              name="fimg"
-              className="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer"
-              placeholder=""
-              type="file"
-            />
-          </div>
-          {/* Desc */}
-          <div className="flex flex-col gap-1.5 col-span-3">
-            <label htmlFor="fdesc">Description</label>
-            <textarea
-              name="fdesc"
-              className="border border-black px-2 py-1"
-            ></textarea>
-          </div>
-          {/* Location */}
-          <div className="flex flex-col gap-1.5 col-span-2">
-            <label htmlFor="rname">Location</label>
-            <textarea
-              name="rname"
-              className="border border-black px-2 py-1"
-            ></textarea>
-          </div>
-
-          {/* Menu Input */}
-          <h5 className="text-2xl col-span-full">Menu</h5>
-          <div className="col-span-full grid grid-cols-8 gap-4">
-            {/* Food name */}
-            <div className="flex flex-col gap-1.5 col-span-3">
-              <label htmlFor="">Food Name</label>
-              <input
-                type="text"
-                name=""
-                className="border border-black px-2 py-1"
-                required
-              />
-            </div>
-            {/* Recipe */}
-            <div className="flex flex-col gap-1.5 col-span-2">
-              <label htmlFor="">Recipe</label>
-              <select className="border border-black h-full" required>
-                <option></option>
-                <option value="rawon">Rawon</option>
-                <option value="soto">Soto</option>
-                <option value="steak">Steak</option>
-                <option value="sashimi">Sashimi</option>
-              </select>
-            </div>
-            {/* Food Image */}
-            <div className="flex flex-col gap-1.5 col-span-2">
-              <label htmlFor="">Food Image</label>
-              <input
-                name=""
-                className="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer"
-                placeholder=""
-                type="file"
-              />
-            </div>
-            {/* Price */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="">Food Price</label>
-              <input
-                type="number"
-                name=""
-                className="border border-black px-2 py-1"
-                required
-              />
-            </div>
-            {/* Food desc */}
-            <div className="flex flex-col gap-1.5 col-span-full">
-              <label htmlFor="">Food Description</label>
-              <textarea
-                name=""
-                className="border border-black px-2 py-1"
-              ></textarea>
-            </div>
-            {/* <!-- Remove --> */}
-            <button
-              type="button"
-              className="col-end-9 justify-self-start text-red-700 hover:text-red-500 flex items-center gap-3"
-            >
-              <FontAwesomeIcon icon={faSquareMinus} size="2xl" />
-              Remove
-            </button>
-          </div>
-          <div className="col-span-full grid grid-cols-8 gap-4">
-            <hr className="col-span-full h-px rounded-full bg-slate-300 border-0" />
-
-            {/* <!-- Food Name --> */}
-            <div className="flex flex-col gap-1.5 col-span-3">
-              <label htmlFor="">Food Name</label>
-              <input
-                type="text"
-                name=""
-                className="border border-black px-2 py-1"
-                required
-              />
-            </div>
-            {/* <!-- Recipe --> */}
-            <div className="flex flex-col gap-1.5 col-span-2">
-              <label htmlFor="">Recipe</label>
-              <select className="border border-black h-full" required>
-                <option></option>
-                <option value="rawon">Rawon</option>
-                <option value="soto">Soto</option>
-                <option value="steak">Steak</option>
-                <option value="sashimi">Sashimi</option>
-              </select>
-            </div>
-            {/* <!-- Food Image --> */}
-            <div className="flex flex-col gap-1.5 col-span-2">
-              <label htmlFor="">Food Image</label>
-              <input
-                name=""
-                className="border border-black h-full cursor-pointer file:text-black file:bg-neutral-300 file:border-none file:h-full hover:file:bg-stone-600 hover:file:text-white file:cursor-pointer"
-                placeholder=""
-                type="file"
-              />
-            </div>
-            {/* <!-- Price --> */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="">Food Price</label>
-              <input
-                type="number"
-                name=""
-                className="border border-black px-2 py-1"
-                required
-              />
-            </div>
-            {/* <!-- Food Desc --> */}
-            <div className="flex flex-col gap-1.5 col-span-full">
-              <label htmlFor="">Food Description</label>
-              <textarea
-                name=""
-                className="border border-black px-2 py-1"
-              ></textarea>
-            </div>
-            {/* <!-- Add Menu --> */}
-            <button
-              type="button"
-              className="col-end-8 justify-self-center text-indigo-700 hover:text-indigo-500 flex items-center gap-3"
-            >
-              <FontAwesomeIcon icon={faSquarePlus} size="2xl" />
-              Add
-            </button>
-            {/* Remove */}
-            <button
-              type="button"
-              className="col-end-9 justify-self-start text-red-700 hover:text-red-500 flex items-center gap-3"
-            >
-              <FontAwesomeIcon icon={faSquareMinus} size="2xl" />
-              Remove
-            </button>
-          </div>
-
-          <button className="h-12 mt-4 w-full bg-sky-500 text-white hover:bg-sky-700 font-semibold">
-            Submit
-          </button>
-        </form>
+    <div className="py-6 px-8 w-full">
+      <div className="flex gap-4 items-center">
+        <h1 className="text-4xl font-semibold lead">Restaurant | Add</h1>
       </div>
-    </>
+      <form
+        action=""
+        method="post"
+        className="grid grid-cols-5 gap-x-4 gap-y-5 mt-8"
+      >
+        <div className="col-span-3 flex flex-col gap-1.5">
+          <label htmlFor="name" className="font-bold mb-2">
+            Restaurant Name:
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={restaurant.name}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-3 py-2 w-full"
+          />
+        </div>
+        <div className="col-span-2 flex flex-col gap-1.5">
+          <label htmlFor="image" className="font-bold mb-2">
+            Restaurant Image:
+          </label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-3 py-2 w-full"
+          />
+        </div>
+        <div className="col-span-3 flex flex-col gap-1.5">
+          <label htmlFor="description" className="font-bold mb-2">
+            Description:
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={restaurant.description}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-3 py-2 w-full"
+          ></textarea>
+        </div>
+        <div className="col-span-2 flex flex-col gap-1.5">
+          <label htmlFor="location" className="font-bold mb-2">
+            Location:
+          </label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            value={restaurant.location}
+            onChange={handleChange}
+            className="border border-gray-300 rounded px-3 py-2 w-full"
+          />
+        </div>
+
+        <label className="font-bold">Menu:</label>
+        <div className="flex flex-col col-span-full gap-4 w-full">
+          {restaurant.menu.map((menuItem, index) => (
+            <div key={index} className="grid col-span-full mb-4">
+              <div className="grid grid-cols-5 mb-2 gap-2">
+                <input
+                  type="text"
+                  placeholder="Food Name"
+                  name="foodName"
+                  value={menuItem.foodName}
+                  onChange={(e) => handleChange(e, index)}
+                  className="border border-gray-300 rounded px-3 py-2 col-span-2"
+                />
+                <select
+                  name="recipe"
+                  value={menuItem.recipe}
+                  onChange={(e) => handleChange(e, index)}
+                  className="border border-gray-300 rounded px-3 py-2 col-span-1"
+                >
+                  <option value="">Recipe</option>
+                  {recipes.map((recipe, index) => (
+                    <option key={index} value={recipe}>
+                      {recipe}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="file"
+                  placeholder="Menu Image"
+                  name="menuImage"
+                  onChange={(e) => handleChange(e, index)}
+                  className="border border-gray-300 rounded px-3 py-2 col-span-1"
+                />
+                <input
+                  type="text"
+                  placeholder="Price"
+                  name="price"
+                  value={menuItem.price}
+                  onChange={(e) => handleChange(e, index)}
+                  className="border border-gray-300 rounded px-3 py-2 col-span-1"
+                />
+              </div>
+              <div className="grid grid-cols-5 mb-2">
+                <textarea
+                  placeholder="Description"
+                  name="description"
+                  value={menuItem.description}
+                  onChange={(e) => handleChange(e, index)}
+                  className="border border-gray-300 rounded px-3 py-2 col-span-4"
+                ></textarea>
+                {index > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveMenuItem(index)}
+                    className="ml-2 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded col-span-1"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={handleAddMenuItem}
+            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded"
+          >
+            Add Menu Item
+          </button>
+        </div>
+        <button
+          type="submit"
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

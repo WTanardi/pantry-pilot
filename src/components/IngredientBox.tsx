@@ -13,9 +13,9 @@ const IngredientBox: FC<IngredientBoxProps> = ({ src, alt }) => {
         <Image
           src={src}
           alt={alt}
-          width={200}
-          height={200}
-          className=""
+          width={150}
+          height={150}
+          loading="lazy"
         ></Image>
       </div>
     </>
