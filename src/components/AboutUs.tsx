@@ -16,8 +16,8 @@ const AboutUs: FC<AboutUsProps> = ({}) => {
             <Image
               src={team}
               alt="team picture"
-              height={200}
-              width={200}
+              height={400}
+              width={400}
               className="w-full"
             ></Image>
           </div>
