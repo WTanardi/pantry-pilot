@@ -1,13 +1,33 @@
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import Link from "next/link";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Perform authentication logic here
+    if (email === "example@example.com" && password === "password") {
+      // Authentication successful
+      router.push("/dashboard/user"); // Redirect to the dashboard or desired page
+    } else {
+      // Authentication failed
+      alert("Invalid credentials");
+    }
+  };
+
   return (
     <>
       <Header />
       <div className="w-5/6 lg:w-1/2 xl:w-1/3 mx-auto my-12 flex flex-col items-center font-medium">
         <p className="text-5xl mb-12">Login</p>
-        <form className="container flex flex-col gap-8" action="post">
+        <form className="container flex flex-col gap-8" onSubmit={handleLogin}>
           <div className="flex flex-col">
             <label htmlFor="email">Email</label>
             <input
@@ -16,6 +36,8 @@ const Login = () => {
               className="border border-black h-10 px-2"
               type="email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
@@ -26,6 +48,8 @@ const Login = () => {
               className="border border-black h-10 px-2"
               type="password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -41,9 +65,10 @@ const Login = () => {
           <span>
             <Link
               href="/register"
+              passHref
               className="text-blue-700 font-bold hover:text-blue-500"
             >
-              &nbsp;Sign up
+              &nbsp; Sign up
             </Link>
           </span>
         </p>
