@@ -65,16 +65,11 @@ model Menu {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
   name     String
-  birth    DateTime
-  address  String
-  phone    String
-  img      String?
-  email    String   @unique
+  email    String  @unique
   password String
-  isAdmin  Boolean
-  orders   Order[]
+  Order    Order[]
 }
 
 model Order {

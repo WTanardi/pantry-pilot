@@ -1,4 +1,5 @@
 "use client";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/img/logo.svg";
@@ -94,7 +95,9 @@ const Header: React.FC<Props> = ({}) => {
               <Link href="/dashboard/admin">Contact</Link>
             </li>
             <li>
-              <Link href="/login">Login</Link>
+              <button style={{ marginRight: 10 }} onClick={() => signIn()}>
+                Sign in
+              </button>
             </li>
             <li>
               <Link href="/dashboard/user">
