@@ -8,6 +8,7 @@ export async function POST(req: Request) {
       name: string;
       email: string;
       password: string;
+      isAdmin: boolean;
     };
     const hashed_password = await hash(password, 12);
 
@@ -16,13 +17,15 @@ export async function POST(req: Request) {
         name,
         email: email.toLowerCase(),
         password: hashed_password,
+        isAdmin: false,
       },
     });
-
+      
     return NextResponse.json({
       user: {
         name: user.name,
         email: user.email,
+        isAdmin: user.isAdmin,
       },
     });
   } catch (error: any) {

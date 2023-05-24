@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { compare } from "bcrypt";
-import type { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
@@ -17,29 +17,30 @@ export const authOptions: NextAuthOptions = {
           placeholder: "example@example.com",
         },
         password: { label: "Password", type: "password" },
+
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         if (!credentials?.email || !credentials.password) {
           return null;
         }
-
+      
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email,
           },
         });
-
+      
         if (!user || !(await compare(credentials.password, user.password))) {
           return null;
         }
-
+      
         return {
           id: user.id,
           email: user.email,
           name: user.name,
           randomKey: "Hey cool",
-        };
-      },
+        } as unknown as User; // Cast the return value to the User type
+      }
     }),
   ],
   callbacks: {
@@ -67,4 +68,8 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
   },
+  pages: {
+    signIn: "/login",
+    signOut: "/register",
+  }
 };
