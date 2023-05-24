@@ -17,7 +17,51 @@ import {
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../../../../fontawesome";
 
-const UserDashboard = () => {
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+const getIngredients = async () => {
+  const res = await prisma.ingredient.findMany({
+    select: {
+      id: true,
+      name: true,
+      category: true,
+    },
+  });
+  return res;
+};
+
+const getCategories = async () => {
+  const res = await prisma.category.findMany({
+    select: {
+      id: true,
+      name: true,
+      img: true,
+      ingredients: true,
+    },
+  });
+  return res;
+};
+
+const getRecipes = async () => {
+  const res = await prisma.recipe.findMany({
+    select: {
+      id: true,
+      name: true,
+      img: true,
+      ingredients: true,
+    },
+  });
+  return res;
+};
+
+const UserDashboard = async () => {
+  const [ingredients, categories, recipes] = await Promise.all([
+    getIngredients(),
+    getCategories(),
+    getRecipes(),
+  ]);
+
   return (
     <div className="text-slate-800 scroll-smooth bg-[#fffdfa]">
       <main className="flex mx-auto">
@@ -49,14 +93,16 @@ const UserDashboard = () => {
           {/* <!-- Pantry Content --> */}
           <div className="flex flex-col md:flex-row md:flex-wrap md:gap-8 md:justify-center overflow-y-scroll items-center scrollbar-hide max-lg:pb-8">
             {/* IngredientCard */}
-            {ingredientData.ingredients.map((e, i) => (
+            {categories.map((e, i) => (
               <IngredientCard
                 key={i}
-                title={e.title}
-                ingCount={e.ingCount}
-                ingredients={e.ingredients}
-                maxIngCount={e.maxIngCount}
-                imgPath={e.imgPath}
+                title={e.name}
+                ingCount={e.ingredients.length}
+                ingredients={e.ingredients.map((ingredient) =>
+                  ingredient.name.toString()
+                )}
+                maxIngCount={e.ingredients.length}
+                imgPath={e.img ?? ""}
               ></IngredientCard>
             ))}
           </div>
@@ -101,12 +147,12 @@ const UserDashboard = () => {
           {/* <!-- Recipes --> */}
           <div className="p-4 flex flex-wrap gap-y-4 justify-evenly overflow-y-scroll scrollbar-hide">
             {/* Recipe Card */}
-            {recipeData.recipe.map((e, i) => (
+            {recipes.map((e, i) => (
               <RecipeCard
-                key={i}
+                key={e.id}
                 name={e.name}
-                ingCount={e.ingCount}
-                imgPath={e.imgPath}
+                ingCount={e.ingredients.length}
+                imgPath={e?.img ?? ""}
               ></RecipeCard>
             ))}
           </div>

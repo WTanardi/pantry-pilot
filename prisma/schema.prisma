@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          Int          @id @default(autoincrement())
+  name        String
+  img         String?
+  ingredients Ingredient[]
+}
+
+model Ingredient {
+  id         Int                    @id @default(autoincrement())
+  name       String
+  category   Category               @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  recipes    IngredientsOnRecipes[]
+}
+
+model Recipe {
+  id          Int                    @id @default(autoincrement())
+  name        String
+  img         String?
+  desc        String?
+  step        String?
+  ingredients IngredientsOnRecipes[]
+  menus       Menu[]
+}
+
+model IngredientsOnRecipes {
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId Int
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  recipeId     Int
+  amount       Float
+  measurement  String
+
+  @@id([ingredientId, recipeId])
+}
+
+model Restaurant {
+  id       Int     @id @default(autoincrement())
+  name     String
+  desc     String
+  img      String?
+  location String
+  menus    Menu[]
+}
+
+model Menu {
+  id          Int          @id @default(autoincrement())
+  name        String
+  img         String?
+  price       Float
+  desc        String
+  recipe      Recipe?      @relation(fields: [recipeId], references: [id])
+  recipeId    Int?
+  restaurants Restaurant[]
+  Order       Order[]
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  birth    DateTime
+  address  String
+  phone    String
+  img      String?
+  email    String   @unique
+  password String
+  isAdmin  Boolean
+  orders   Order[]
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     Int?
+  totalPrice Float
+  payment    Payment?
+  food       Menu     @relation(fields: [foodId], references: [id])
+  foodId     Int
+}
+
+model Payment {
+  id      Int     @id @default(autoincrement())
+  order   Order   @relation(fields: [orderId], references: [id])
+  orderId Int     @unique
+  isPaid  Boolean @default(false)
+}
