@@ -16,6 +16,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../../../../fontawesome";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
 
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
@@ -55,7 +64,13 @@ const getRecipes = async () => {
   return res;
 };
 
-const UserDashboard = async () => {
+export default async function UserDashboard() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   const [ingredients, categories, recipes] = await Promise.all([
     getIngredients(),
     getCategories(),
@@ -212,6 +227,4 @@ const UserDashboard = async () => {
       </main>
     </div>
   );
-};
-
-export default UserDashboard;
+}
