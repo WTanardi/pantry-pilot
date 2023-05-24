@@ -3,26 +3,23 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Category {
   id          Int          @id @default(autoincrement())
   name        String
-  img         String
+  img         String?
   ingredients Ingredient[]
 }
 
 model Ingredient {
   id         Int                    @id @default(autoincrement())
   name       String
-  categoryId Int
   category   Category               @relation(fields: [categoryId], references: [id])
+  categoryId Int
   recipes    IngredientsOnRecipes[]
-
-  @@index([categoryId])
 }
 
 model Recipe {
@@ -36,16 +33,14 @@ model Recipe {
 }
 
 model IngredientsOnRecipes {
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
   ingredientId Int
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
   recipeId     Int
   amount       Float
   measurement  String
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
-  recipe       Recipe     @relation(fields: [recipeId], references: [id])
 
   @@id([ingredientId, recipeId])
-  @@index([ingredientId])
-  @@index([recipeId])
 }
 
 model Restaurant {
@@ -63,18 +58,16 @@ model Menu {
   img         String?
   price       Float
   desc        String
-  recipeId    Int?
   recipe      Recipe?      @relation(fields: [recipeId], references: [id])
+  recipeId    Int?
   restaurants Restaurant[]
   Order       Order[]
-
-  @@index([recipeId])
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
+  id       Int      @id @default(autoincrement())
   name     String
-  email    String  @unique
+  email    String   @unique
   password String
   isAdmin  Boolean
   orders   Order[]
@@ -82,29 +75,17 @@ model User {
 
 model Order {
   id         Int      @id @default(autoincrement())
+  user       User?    @relation(fields: [userId], references: [id])
   userId     Int?
   totalPrice Float
-  foodId     Int
-  user       User?    @relation(fields: [userId], references: [id])
   payment    Payment?
   food       Menu     @relation(fields: [foodId], references: [id])
-
-  @@index([userId])
-  @@index([foodId])
+  foodId     Int
 }
 
 model Payment {
   id      Int     @id @default(autoincrement())
+  order   Order   @relation(fields: [orderId], references: [id])
   orderId Int     @unique
   isPaid  Boolean @default(false)
-  order   Order   @relation(fields: [orderId], references: [id])
-}
-
-model MenuToRestaurant {
-  A Int
-  B Int
-
-  @@unique([A, B], map: "_MenuToRestaurant_AB_unique")
-  @@index([B], map: "_MenuToRestaurant_B_index")
-  @@map("_MenuToRestaurant")
 }
