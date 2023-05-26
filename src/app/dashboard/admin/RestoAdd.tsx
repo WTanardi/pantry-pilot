@@ -1,11 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, FC } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faSquareMinus,
-  faSquarePlus,
-} from "@fortawesome/free-solid-svg-icons";
-
+import React, { useState, ChangeEvent, FC } from "react";
 interface RestoAddProps {}
 
 interface MenuItem {

@@ -1,20 +1,32 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
-  const email = useRef("");
-  const pass = useRef("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const session = useSession();
 
-  const onSubmit = async () => {
+  const handleLogin = async () => {
     const result = await signIn("credentials", {
-      email: email.current,
-      password: pass.current,
-      redirect: true,
-      callbackUrl: "/dashboard/user",
+      email,
+      password,
+      redirect: false, // Disable automatic redirect
     });
+
+    if (!result?.error) {
+      // You can access the user object from the session
+      if (session.data?.user?.isAdmin === true) {
+        window.location.href = "/dashboard/admin"; // Redirect to admin dashboard
+      }
+      if (session.data?.user?.isAdmin === false) {
+        window.location.href = "/dashboard/user"; // Redirect to user dashboard
+      }
+    } else {
+      console.log(result.error); // Handle login error
+    }
   };
 
   return (
@@ -31,25 +43,34 @@ const Login = () => {
               className="border border-black h-10 px-2"
               type="email"
               required
-              onChange={(e) => (email.current = e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
             <label htmlFor="password">Password</label>
-            <input
-              name="password"
-              id="password"
-              className="border border-black h-10 px-2"
-              type="password"
-              required
-              onChange={(e) => (pass.current = e.target.value)}
-            />
+            <div className="flex justify-between">
+              <input
+                name="password"
+                id="password"
+                className="border border-black h-10 px-2 flex-grow"
+                // type={showPassword ? "text" : "password"}
+                type="password"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {/* <button
+                onClick={togglePasswordVisibility}
+                className="text-gray-500 focus:outline-none flex-grow-0 mx-4 w-11"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button> */}
+            </div>
           </div>
 
           <button
             type="submit"
             className="w-full h-12 mt-4 bg-rose-600 text-white hover:bg-rose-700"
-            onClick={onSubmit}
+            onClick={handleLogin}
           >
             Login
           </button>

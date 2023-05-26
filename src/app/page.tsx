@@ -5,11 +5,11 @@ import Footer from "@/components/Footer";
 const Home = () => {
   return (
     <>
-      <body className="text-slate-800 scroll-smooth bg-[#fffdfa]">
+      <div className="text-slate-800 scroll-smooth bg-[#fffdfa]">
         <Header></Header>
         <Main></Main>
         <Footer></Footer>
-      </body>
+      </div>
     </>
   );
 };

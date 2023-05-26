@@ -27,133 +27,106 @@ const OrderAdd: FC<OrderAddProps> = ({}) => {
         </div>
         {/* <!-- Cards --> */}
         <ul className="grid grid-cols-2 gap-4">
-          <a href="">
-            <div className="h-3 bg-green-300 border"></div>
-            <li className="border-2 shadow-md sha">
-              <div className="m-4">
-                <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
-                <p>Beef Steak</p>
-                <div className="flex justify-end gap-3 mt-2">
-                  <button>
-                    <i className="fa-solid fa-check fa-xl text-green-400"></i>
-                  </button>
-                </div>
+          <div className="h-3 bg-green-300 border"></div>
+          <li className="border-2 shadow-md sha">
+            <div className="m-4">
+              <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
+              <p>Beef Steak</p>
+              <div className="flex justify-end gap-3 mt-2">
+                <button>
+                  <i className="fa-solid fa-check fa-xl text-green-400"></i>
+                </button>
               </div>
-            </li>
-          </a>
-          <a href="">
-            <div className="h-3 bg-red-300 border"></div>
-            <li className="border-2 shadow-md">
-              <div className="m-4">
-                <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
-                <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
-                <div className="flex justify-end gap-3 mt-2">
-                  <button>
-                    <i className="fa-solid fa-xmark fa-xl text-red-400"></i>
-                  </button>
-                </div>
+            </div>
+          </li>
+          <div className="h-3 bg-red-300 border"></div>
+          <li className="border-2 shadow-md">
+            <div className="m-4">
+              <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
+              <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
+              <div className="flex justify-end gap-3 mt-2">
+                <button>
+                  <i className="fa-solid fa-xmark fa-xl text-red-400"></i>
+                </button>
               </div>
-            </li>
-          </a>
-          <a href="">
-            <div className="h-3 bg-amber-300 border"></div>
-            <li className="border-2 shadow-md">
-              <div className="m-4">
-                <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
-                <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
-                <div className="flex justify-end gap-3 mt-2">
-                  <button>
-                    <i className="fa-solid fa-clock fa-lg text-amber-400"></i>
-                  </button>
-                </div>
+            </div>
+          </li>
+          <div className="h-3 bg-amber-300 border"></div>
+          <li className="border-2 shadow-md">
+            <div className="m-4">
+              <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
+              <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
+              <div className="flex justify-end gap-3 mt-2">
+                <button>
+                  <i className="fa-solid fa-clock fa-lg text-amber-400"></i>
+                </button>
               </div>
-            </li>
-          </a>
-          <a href="">
-            <div className="h-3 bg-green-300 border"></div>
-            <li className="border-2 shadow-md sha">
-              <div className="m-4">
-                <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
-                <p>Beef Steak</p>
-                <div className="flex justify-end gap-3 mt-2">
-                  <button>
-                    <i className="fa-solid fa-check fa-xl text-green-400"></i>
-                  </button>
-                </div>
+            </div>
+          </li>
+          <div className="h-3 bg-green-300 border"></div>
+          <li className="border-2 shadow-md sha">
+            <div className="m-4">
+              <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
+              <p>Beef Steak</p>
+              <div className="flex justify-end gap-3 mt-2">
+                <button>
+                  <i className="fa-solid fa-check fa-xl text-green-400"></i>
+                </button>
               </div>
-            </li>
-          </a>
-          <a href="">
-            <div className="h-3 bg-red-300 border"></div>
-            <li className="border-2 shadow-md">
-              <div className="m-4">
-                <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
-                <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
-                <div className="flex justify-end gap-3 mt-2">
-                  <button>
-                    <i className="fa-solid fa-xmark fa-xl text-red-400"></i>
-                  </button>
-                </div>
+            </div>
+          </li>
+          <div className="h-3 bg-red-300 border"></div>
+          <li className="border-2 shadow-md">
+            <div className="m-4">
+              <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
+              <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
+              <div className="flex justify-end gap-3 mt-2">
+                <button>
+                  <i className="fa-solid fa-xmark fa-xl text-red-400"></i>
+                </button>
               </div>
-            </li>
-          </a>
-          <a href="">
-            <div className="h-3 bg-amber-300 border"></div>
-            <li className="border-2 shadow-md">
-              <div className="m-4">
-                <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
-                <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
-                <div className="flex justify-end gap-3 mt-2">
-                  <button>
-                    <i className="fa-solid fa-clock fa-lg text-amber-400"></i>
-                  </button>
-                </div>
+            </div>
+          </li>
+          <div className="h-3 bg-amber-300 border"></div>
+          <li className="border-2 shadow-md">
+            <div className="m-4">
+              <h2 className="text-lg font-medium">Rizfi Ferdiansyah</h2>
+              <p>beef, leek, lemongrass, tamarind, lime leaves...</p>
+              <div className="flex justify-end gap-3 mt-2">
+                <button>
+                  <i className="fa-solid fa-clock fa-lg text-amber-400"></i>
+                </button>
               </div>
-            </li>
-          </a>
+            </div>
+          </li>
         </ul>
         {/* <!-- Pagination --> */}
         <nav className="flex justify-center gap-1 text-xs font-medium">
           <ul className="flex gap-2">
             <li>
-              <a
-                href=""
-                className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white"
-              >
+              <p className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white">
                 &lt;
-              </a>
+              </p>
             </li>
             <li>
-              <a
-                href=""
-                className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white text-white bg-blue-400"
-              >
+              <p className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white text-white bg-blue-400">
                 1
-              </a>
+              </p>
             </li>
             <li>
-              <a
-                href=""
-                className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white"
-              >
+              <p className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white">
                 2
-              </a>
+              </p>
             </li>
             <li>
-              <a
-                href=""
-                className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white"
-              >
+              <p className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white">
                 3
-              </a>
+              </p>
             </li>
             <li>
-              <a
-                href=""
-                className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white"
-              >
+              <p className="text-base block h-9 w-9 rounded-full border border-gray-100 text-center leading-8 hover:bg-blue-400 hover:text-white">
                 &gt;
-              </a>
+              </p>
             </li>
           </ul>
         </nav>

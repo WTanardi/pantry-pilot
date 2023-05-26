@@ -5,6 +5,12 @@ import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
 
 export default function RegisterPage() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   let [loading, setLoading] = useState(false);
   let [formValues, setFormValues] = useState({
     name: "",
@@ -84,16 +90,24 @@ export default function RegisterPage() {
             <label htmlFor="password">
               Password<span className="text-rose-600">*</span>
             </label>
-            <input
-              name="password"
-              id="password"
-              className="border border-black h-10 px-2"
-              type="password"
-              minLength={8}
-              required
-              value={formValues.password}
-              onChange={handleChange}
-            />
+            <div className="flex justify-between">
+              <input
+                name="password"
+                id="password"
+                className="border border-black h-10 px-2 flex-grow"
+                type={showPassword ? "text" : "password"}
+                minLength={8}
+                required
+                value={formValues.password}
+                onChange={handleChange}
+              />
+              <button
+                onClick={togglePasswordVisibility}
+                className="text-gray-500 focus:outline-none flex-grow-0 mx-4 w-11"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
           </div>
           <button
             type="submit"
@@ -111,7 +125,7 @@ export default function RegisterPage() {
               passHref
               className="text-blue-700 font-bold hover:text-blue-500"
             >
-              Sign in
+              &nbsp; Sign in
             </Link>
           </span>
         </p>

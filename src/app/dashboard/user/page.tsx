@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import home from "../../../../public/img/navIcon/home.svg";
 import pantry from "../../../../public/img/navIcon/cupboard.svg";
@@ -6,27 +5,18 @@ import recipe from "../../../../public/img/navIcon/recipe.svg";
 import profile from "../../../../public/img/navIcon/profile.svg";
 import IngredientCard from "@/components/IngredientCard";
 import RecipeCard from "@/components/RecipeCard";
-import recipeData from "../../../data/RecipeData.json";
-import ingredientData from "../../../data/IngredientData.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHouse,
-  faCircleUser,
   faMagnifyingGlass,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../../../../fontawesome";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-
-type User = {
-  id: number;
-  name: string;
-  email: string;
-};
-
 import { PrismaClient } from "@prisma/client";
+import { LogoutButton } from "@/components/Buttons";
 const prisma = new PrismaClient();
 
 const getIngredients = async () => {
@@ -64,7 +54,7 @@ const getRecipes = async () => {
   return res;
 };
 
-export default async function UserDashboard() {
+const UserDashboard = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -76,7 +66,6 @@ export default async function UserDashboard() {
     getCategories(),
     getRecipes(),
   ]);
-
   return (
     <div className="text-slate-800 scroll-smooth bg-[#fffdfa]">
       <main className="flex mx-auto">
@@ -133,17 +122,10 @@ export default async function UserDashboard() {
               <div className="text-3xl font-semibold">
                 You can make 420 Recipes
               </div>
-              <nav className="flex items-center gap-4 max-lg:hidden">
-                <Link href="/" className="flex font-semibold items-center">
-                  <FontAwesomeIcon icon={faHouse} size="2xl" />
-                </Link>
-                <Link
-                  href="/profile/user"
-                  className="flex font-semibold items-center"
-                >
-                  <FontAwesomeIcon icon={faCircleUser} size="2xl" />
-                </Link>
-              </nav>
+              <div className="flex items-center gap-4 max-lg:hidden">
+                <LogoutButton></LogoutButton>
+                <FontAwesomeIcon icon={faRightFromBracket} size="2xl" />
+              </div>
             </div>
             <div className="relative mt-4">
               <input
@@ -175,18 +157,18 @@ export default async function UserDashboard() {
         {/* <!-- Mobile navigation --> */}
         <nav className="h-16 fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 bg-white shadow lg:hidden">
           <a
-            href="../index.html"
+            href="/"
             className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
           >
-            <Image
-              src={home}
-              className="w-7"
-              alt="home button"
-              width={500}
-              height={500}
-            ></Image>
             <span className="text-xs mt-1">Home</span>
           </a>
+          <Image
+            src={home}
+            className="w-7"
+            alt="home button"
+            width={500}
+            height={500}
+          ></Image>
           <button
             id="pantryBtn"
             className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
@@ -227,4 +209,6 @@ export default async function UserDashboard() {
       </main>
     </div>
   );
-}
+};
+
+export default UserDashboard;
