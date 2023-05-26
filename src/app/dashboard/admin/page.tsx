@@ -12,13 +12,21 @@ import RecipeAdd from "./RecipeAdd";
 import OrderAdd from "./OrderAdd";
 import IngredientAdd from "./IngredientAdd";
 import { LogoutButton } from "@/components/Buttons";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-const AdminDashboard = () => {
+const AdminDashboard = async () => {
   const [activeTab, setActiveTab] = useState<string>("tab1");
 
   const handleTabChange = (tabName: string) => {
     setActiveTab(tabName);
   };
+
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/login");
+  }
 
   return (
     <>

@@ -13,7 +13,6 @@ import {
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../../../../fontawesome";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
 import { LogoutButton } from "@/components/Buttons";
@@ -55,10 +54,10 @@ const getRecipes = async () => {
 };
 
 const UserDashboard = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession();
 
   if (!session) {
-    redirect("/api/auth/signin");
+    redirect("/login");
   }
 
   const [ingredients, categories, recipes] = await Promise.all([
