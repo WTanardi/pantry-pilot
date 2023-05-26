@@ -95,12 +95,7 @@ const Header: React.FC<Props> = ({}) => {
               <Link href="/dashboard/admin">Contact</Link>
             </li>
             <li>
-              <button style={{ marginRight: 10 }} onClick={() => signIn()}>
-                Sign in
-              </button>
-            </li>
-            <li>
-              <Link href="/dashboard/user">
+              <Link href="/login">
                 <button className="px-4 py-2 text-white border-2 rounded-lg border-rose-600 bg-rose-600">
                   Start Cooking
                 </button>

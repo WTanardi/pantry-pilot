@@ -93,10 +93,7 @@ const IngredientsPage: React.FC = () => {
       <div className="flex gap-4 items-center">
         <h1 className="text-4xl font-semibold lead">Ingredient | Add</h1>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-3 gap-4 mt-8"
-      >
+      <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-4 mt-8">
         <div className="flex flex-col mb-4 col-span-2">
           <label htmlFor="ingredientName" className="font-bold mb-2">
             Ingredient Name:

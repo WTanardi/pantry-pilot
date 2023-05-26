@@ -1,12 +1,5 @@
 "use client";
-import Link from "next/link";
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faSquareMinus,
-  faSquarePlus,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useState, ChangeEvent } from "react";
 
 interface Ingredient {
   name: string;

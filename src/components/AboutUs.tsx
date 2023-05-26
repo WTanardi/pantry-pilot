@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import team from "../../public/img/team.png";
 import React, { FC } from "react";
 
@@ -37,11 +38,11 @@ const AboutUs: FC<AboutUsProps> = ({}) => {
               Our mission is to make home cooking more accessible and enjoyable
               for everyone, regardless of their cooking skills or experience.
             </p>
-            <a href="./login.html">
+            <Link href="/login">
               <button className="px-4 py-2 font-semibold text-white border-2 rounded-lg border-rose-600 bg-rose-600">
                 Join Us Now
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

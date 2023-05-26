@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState, FC } from "react";
 import burger from "../../public/img/heroImg/burger.jpg";
 import Image from "next/image";
@@ -65,11 +66,11 @@ const Hero: React.FC = ({}) => {
         </p>
         {/* Call to Action */}
         <div>
-          <a href="./user/dashboard.html">
+          <Link href="/login">
             <button className="px-4 py-2 font-semibold text-white border-2 rounded-lg border-rose-600 bg-rose-600">
               Start Cooking
             </button>
-          </a>
+          </Link>
         </div>
       </div>
 

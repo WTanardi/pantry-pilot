@@ -7,11 +7,11 @@ import {
   faReceipt,
   faCarrot,
 } from "@fortawesome/free-solid-svg-icons";
-import Header from "@/components/Header";
 import RestoAdd from "./RestoAdd";
 import RecipeAdd from "./RecipeAdd";
 import OrderAdd from "./OrderAdd";
 import IngredientAdd from "./IngredientAdd";
+import { LogoutButton } from "@/components/Buttons";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("tab1");
@@ -22,7 +22,6 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <Header />
       <div className="flex mx-auto border-black border-t-2">
         {/* <!-- Side Bar --> */}
         <div className="flex w-72 h-screen bg-rose-600 text-rose-300">
@@ -62,6 +61,9 @@ const AdminDashboard = () => {
             >
               <FontAwesomeIcon icon={faReceipt} className="w-9" />
               <p>Order</p>
+            </div>
+            <div>
+              <LogoutButton></LogoutButton>
             </div>
           </div>
         </div>

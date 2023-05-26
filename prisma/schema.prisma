@@ -5,9 +5,9 @@ generator client {
 
 datasource db {
   provider          = "postgresql"
-  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Category {
@@ -20,8 +20,8 @@ model Category {
 model Ingredient {
   id         Int                    @id @default(autoincrement())
   name       String
-  category   Category               @relation(fields: [categoryId], references: [id])
   categoryId Int
+  category   Category               @relation(fields: [categoryId], references: [id])
   recipes    IngredientsOnRecipes[]
 }
 
@@ -36,12 +36,12 @@ model Recipe {
 }
 
 model IngredientsOnRecipes {
-  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
   ingredientId Int
-  recipe       Recipe     @relation(fields: [recipeId], references: [id])
   recipeId     Int
   amount       Float
   measurement  String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
 
   @@id([ingredientId, recipeId])
 }
@@ -52,7 +52,7 @@ model Restaurant {
   desc     String
   img      String?
   location String
-  menus    Menu[]
+  menus    Menu[]  @relation("MenuToRestaurant")
 }
 
 model Menu {
@@ -61,34 +61,34 @@ model Menu {
   img         String?
   price       Float
   desc        String
-  recipe      Recipe?      @relation(fields: [recipeId], references: [id])
   recipeId    Int?
-  restaurants Restaurant[]
+  recipe      Recipe?      @relation(fields: [recipeId], references: [id])
   Order       Order[]
+  restaurants Restaurant[] @relation("MenuToRestaurant")
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
   name     String
   email    String  @unique
-  password String
   isAdmin  Boolean
+  password String
+  id       Int     @id @default(autoincrement())
   orders   Order[]
 }
 
 model Order {
   id         Int      @id @default(autoincrement())
-  user       User?    @relation(fields: [userId], references: [id])
   userId     Int?
   totalPrice Float
-  payment    Payment?
-  food       Menu     @relation(fields: [foodId], references: [id])
   foodId     Int
+  food       Menu     @relation(fields: [foodId], references: [id])
+  user       User?    @relation(fields: [userId], references: [id])
+  payment    Payment?
 }
 
 model Payment {
   id      Int     @id @default(autoincrement())
-  order   Order   @relation(fields: [orderId], references: [id])
   orderId Int     @unique
   isPaid  Boolean @default(false)
+  order   Order   @relation(fields: [orderId], references: [id])
 }
