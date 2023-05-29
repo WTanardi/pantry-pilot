@@ -1,13 +1,22 @@
 "use client";
 import Link from "next/link";
 import { useState, FC } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import IngredientCard from "./IngredientCard";
 import burger from "@/public/hero/burger.webp";
+import bun from "@/public/hero/bun.webp";
+import beef from "@/public/hero/beef.webp";
+import lettuce from "@/public/hero/lettuce.webp";
+import tomato from "@/public/hero/tomato.webp";
+import onion from "@/public/hero/onion.webp";
+import cheese from "@/public/hero/cheese.webp";
+import egg from "@/public/hero/egg.webp";
+import oliveOil from "@/public/hero/olive_oil.webp";
+import ketchup from "@/public/hero/ketchup.webp";
 
 declare namespace HeroTypes {
   interface IngredientBoxProps {
-    src: string;
+    src: StaticImageData;
     alt: string;
   }
 
@@ -112,15 +121,15 @@ const ingData = {
 
 const Hero = () => {
   const ingredientImgPath = [
-    "/../public/hero/bun.webp",
-    "/../public/hero/beef.webp",
-    "/../public/hero/lettuce.webp",
-    "/../public/hero/tomato.webp",
-    "/../public/hero/onion.webp",
-    "/../public/hero/cheese.webp",
-    "/../public/hero/egg.webp",
-    "/../public/hero/olive_oil.webp",
-    "/../public/hero/ketchup.webp",
+    bun,
+    beef,
+    lettuce,
+    tomato,
+    onion,
+    cheese,
+    egg,
+    oliveOil,
+    ketchup,
   ];
 
   const buttons = [
