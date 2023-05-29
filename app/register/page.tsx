@@ -33,6 +33,7 @@ export default function Login() {
 
   const registerUser: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post("/api/auth/register", data)
       .then(
@@ -50,13 +51,13 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
+    <div className="flex h-screen w-screen items-center justify-center bg-gray-50 font-medium">
       <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center sm:px-16">
           <Link href="/">
             <Image src={logo} priority alt="Logo" width={100} height={100} />
           </Link>
-          <h3 className="text-xl font-semibold">Sign Up</h3>
+          <h3 className="text-4xl font-bold">Create Account</h3>
           <p className="text-sm text-gray-500">
             Create an account with your email and password
           </p>
@@ -66,10 +67,7 @@ export default function Login() {
           onSubmit={registerUser}
         >
           <div>
-            <label
-              htmlFor="name"
-              className="block text-xs text-gray-600 uppercase"
-            >
+            <label htmlFor="name" className="block text-xs uppercase">
               Name
             </label>
             <input
@@ -85,10 +83,7 @@ export default function Login() {
             />
           </div>
           <div>
-            <label
-              htmlFor="email"
-              className="block text-xs text-gray-600 uppercase"
-            >
+            <label htmlFor="email" className="block text-xs uppercase">
               Email Address
             </label>
             <input
@@ -104,10 +99,7 @@ export default function Login() {
             />
           </div>
           <div>
-            <label
-              htmlFor="password"
-              className="block text-xs text-gray-600 uppercase"
-            >
+            <label htmlFor="password" className="block text-xs uppercase">
               Password
             </label>
             <div className="relative">
@@ -133,15 +125,18 @@ export default function Login() {
             className={`${
               loading
                 ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                : "border-black bg-black text-white hover:bg-white hover:text-black"
+                : "border-rose-600 bg-rose-600 text-white hover:bg-white hover:text-rose-600"
             } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
           >
-            {loading ? <LoadingDots color="#808080" /> : <p>Sign up</p>}
+            {loading ? <LoadingDots color="#e11d48" /> : <p>Register</p>}
           </button>
           <p className="text-center text-sm text-gray-600">
             Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-gray-800">
-              Sign in
+            <Link
+              href="/login"
+              className="font-semibold text-blue-600 hover:text-blue-400"
+            >
+              Login
             </Link>{" "}
             instead.
           </p>

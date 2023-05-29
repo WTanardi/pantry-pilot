@@ -32,6 +32,7 @@ export default function Login() {
 
   const loginUser: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    setLoading(true);
     signIn("credentials", { ...data, redirect: false }).then((callback) => {
       if (callback?.error) {
         toast.error(callback.error);
@@ -48,13 +49,13 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
+    <div className="flex h-screen w-screen items-center justify-center bg-gray-50 font-medium">
       <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center sm:px-16">
           <Link href="/">
             <Image src={logo} priority alt="Logo" width={100} height={100} />
           </Link>
-          <h3 className="text-xl font-semibold">Sign In</h3>
+          <p className="text-4xl font-bold">Login</p>
           <p className="text-sm text-gray-500">
             Use your email and password to sign in
           </p>
@@ -64,10 +65,7 @@ export default function Login() {
           onSubmit={loginUser}
         >
           <div>
-            <label
-              htmlFor="email"
-              className="block text-xs text-gray-600 uppercase"
-            >
+            <label htmlFor="email" className="block text-xs uppercase">
               Email Address
             </label>
             <input
@@ -111,16 +109,19 @@ export default function Login() {
             disabled={loading}
             className={`${
               loading
-                ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                : "border-black bg-black text-white hover:bg-white hover:text-black"
+                ? "cursor-not-allowed border-rose-200 bg-rose-100"
+                : "border-rose-600 bg-rose-600 text-white hover:bg-white hover:text-rose-600"
             } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
           >
-            {loading ? <LoadingDots color="#808080" /> : <p>Sign in</p>}
+            {loading ? <LoadingDots color="#e11d48" /> : <p>Login</p>}
           </button>
           <p className="text-center text-sm text-gray-600">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="font-semibold text-gray-800">
-              Sign up
+            <Link
+              href="/register"
+              className="font-semibold text-blue-600 hover:text-blue-400"
+            >
+              Register
             </Link>{" "}
             for free.
           </p>

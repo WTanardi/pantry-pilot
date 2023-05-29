@@ -1,16 +1,13 @@
 // These styles apply to every route in the application
 import "@/styles/globals.css";
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import AuthStatus from "@/components/auth-status";
 import { Suspense } from "react";
 import { NextAuthProvider } from "./providers";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+const rubik = Rubik({ subsets: ["latin"] });
 
 const title = "Pantry Pilot 2";
 const description = "Web kelompok 5";
@@ -34,7 +31,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
+      <body className={rubik.className}>
         <Toaster />
         <Suspense fallback="Loading...">
           {/* @ts-expect-error Async Server Component */}
