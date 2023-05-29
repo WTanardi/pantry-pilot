@@ -1,21 +1,24 @@
 import Image from "next/image";
+import rendang from "@/public/product/rendang.webp";
+import spaghetti from "@/public/product/spaghetti.webp";
+import foodBox from "@/public/product/foodbox.webp";
 
 const ProductsServices = () => {
   const products = [
     {
-      path: "/../public/product/rendang.webp",
+      path: rendang,
       title: "Local Recipes",
       content:
         "Experience the unique and delicious flavors of your with our collection of local recipes! Discover easy-to-follow recipes that will make mealtime a memorable experience for you and your loved ones.",
     },
     {
-      path: "/../public/product/spaghetti.webp",
+      path: spaghetti,
       title: "International Recipes",
       content:
         "Explore the world through your taste buds with our collection of international recipes! From classNameic French cuisine to spicy Indian curries, discover new and exciting flavors that will take your taste buds on a culinary journey.",
     },
     {
-      path: "/../public/product/foodbox.webp",
+      path: foodBox,
       title: "Food Order",
       content:
         "Try out new flavors from your favorite restaurants before cooking! Order from nearby restaurants and get delicious meals delivered straight to your door. Explore new cuisines with ease.",

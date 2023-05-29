@@ -1,6 +1,6 @@
 "use client";
 import React, { FC, useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface IngredientProps {
   name: string;
