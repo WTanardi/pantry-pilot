@@ -1,11 +1,12 @@
 "use client";
 import IngredientCard from "@/components/IngredientCard";
 import RecipeCard from "@/components/RecipeCard";
-import { Book, Refrigerator, Search } from "lucide-react";
+import { Book, LogOut, Refrigerator, Search } from "lucide-react";
 import SignOut from "@/components/sign-out";
 import { Prisma } from "@prisma/client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { signOut } from "next-auth/react";
 
 type Ingredient = Prisma.IngredientGetPayload<{
   select: {
@@ -33,10 +34,19 @@ type Recipe = Prisma.RecipeGetPayload<{
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-const UserDashboard = async () => {
+export default function UserDashboard() {
   const [ingredients, setIngredients] = useState<Ingredient[] | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+  const [showPantry, setShowPantry] = useState(true);
+
+  const handlePantryClick = () => {
+    setShowPantry(true);
+  };
+
+  const handleRecipeClick = () => {
+    setShowPantry(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +67,10 @@ const UserDashboard = async () => {
 
     fetchData();
   }, []);
-  // console.log(ingredients, categories, recipes);
+  // Check if data is fetched
+  // console.log("Ingredients: ", ingredients);
+  // console.log("Categories: ", categories);
+  // console.log("Recipes: ", recipes);
 
   if (!ingredients || !categories || !recipes) {
     // Handle loading state
@@ -69,8 +82,9 @@ const UserDashboard = async () => {
       <main className="flex mx-auto">
         {/* <!-- Pantry --> */}
         <div
-          id="pantry"
-          className="w-full lg:w-1/4 flex flex-col h-screen bg-rose-600 text-white items-center max-lg:pb-16"
+          className={`w-full lg:w-1/4 flex flex-col h-screen bg-rose-600 text-white items-center max-lg:pb-16 ${
+            showPantry ? "" : "hidden"
+          }`}
         >
           {/* <!-- Pantry title --> */}
           <div className="text-center w-full flex flex-col p-8 justify-between">
@@ -103,15 +117,16 @@ const UserDashboard = async () => {
                   ingredient.name.toString()
                 )}
                 maxIngCount={e.ingredients.length}
-                imgPath={e.img ?? ""}
+                imgPath={e.img ?? "/category/fish.webp"}
               ></IngredientCard>
             ))}
           </div>
         </div>
         {/* <!-- Recipe --> */}
         <div
-          id="recipe"
-          className="w-full lg:w-3/4 lg:flex flex-col h-screen max-lg:hidden"
+          className={`w-full lg:w-3/4 lg:flex flex-col h-screen ${
+            showPantry ? "hidden" : "flex"
+          }`}
         >
           {/* <!-- Recipe Header --> */}
           <div className="w-full p-8 text-white flex flex-col bg-emerald-500 justify-between">
@@ -142,31 +157,36 @@ const UserDashboard = async () => {
                 key={e.id}
                 name={e.name}
                 ingCount={e.ingredients.length}
-                imgPath={e?.img ?? ""}
+                imgPath={e?.img || "/category/fish.webp"}
               ></RecipeCard>
             ))}
           </div>
         </div>
         {/* <!-- Mobile navigation --> */}
-        <nav className="h-16 fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 bg-white shadow lg:hidden">
+        <nav className="h-20 fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 bg-white shadow lg:hidden">
           <button
-            id="pantryBtn"
             className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+            onClick={handlePantryClick}
           >
             <Refrigerator />
             <span className="text-xs mt-1">Pantry</span>
           </button>
           <button
-            id="recipeBtn"
             className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+            onClick={handleRecipeClick}
           >
             <Book />
             <span className="text-xs mt-1">Recipe</span>
+          </button>
+          <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+          >
+            <LogOut />
+            <span className="text-xs mt-1">Sign out</span>
           </button>
         </nav>
       </main>
     </div>
   );
-};
-
-export default UserDashboard;
+}
