@@ -1,50 +1,68 @@
+"use client";
 import IngredientCard from "@/components/IngredientCard";
 import RecipeCard from "@/components/RecipeCard";
-import { Book, Home, Refrigerator, Search, User } from "lucide-react";
+import { Book, Refrigerator, Search } from "lucide-react";
 import SignOut from "@/components/sign-out";
-import prisma from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const getIngredients = async () => {
-  const res = await prisma.ingredient.findMany({
-    select: {
-      id: true,
-      name: true,
-      category: true,
-    },
-  });
-  return res;
-};
+type Ingredient = Prisma.IngredientGetPayload<{
+  select: {
+    id: true;
+    name: true;
+    category: true;
+  };
+}>;
+type Category = Prisma.CategoryGetPayload<{
+  select: {
+    id: true;
+    name: true;
+    img?: true;
+    ingredients: true;
+  };
+}>;
+type Recipe = Prisma.RecipeGetPayload<{
+  select: {
+    id: true;
+    name: true;
+    img: true;
+    ingredients: true;
+  };
+}>;
 
-const getCategories = async () => {
-  const res = await prisma.category.findMany({
-    select: {
-      id: true,
-      name: true,
-      img: true,
-      ingredients: true,
-    },
-  });
-  return res;
-};
-
-const getRecipes = async () => {
-  const res = await prisma.recipe.findMany({
-    select: {
-      id: true,
-      name: true,
-      img: true,
-      ingredients: true,
-    },
-  });
-  return res;
-};
+const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 const UserDashboard = async () => {
-  const [ingredients, categories, recipes] = await Promise.all([
-    getIngredients(),
-    getCategories(),
-    getRecipes(),
-  ]);
+  const [ingredients, setIngredients] = useState<Ingredient[] | null>(null);
+  const [categories, setCategories] = useState<Category[] | null>(null);
+  const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [ingredientResponse, categoryResponse, recipeResponse] =
+          await Promise.all([
+            fetcher("/api/ingredient"),
+            fetcher("/api/category"),
+            fetcher("/api/recipe"),
+          ]);
+        setIngredients(ingredientResponse);
+        setCategories(categoryResponse);
+        setRecipes(recipeResponse);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  // console.log(ingredients, categories, recipes);
+
+  if (!ingredients || !categories || !recipes) {
+    // Handle loading state
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="text-slate-800 scroll-smooth bg-[#fffdfa]">
@@ -99,7 +117,7 @@ const UserDashboard = async () => {
           <div className="w-full p-8 text-white flex flex-col bg-emerald-500 justify-between">
             <div className="flex justify-between text-center max-lg:justify-center items-center h-16">
               <div className="text-3xl font-semibold">
-                You can make {recipes.length} Recipes
+                You can make {recipes?.length} Recipes
               </div>
               <div className="flex items-center gap-4 max-lg:hidden">
                 <SignOut />
@@ -119,7 +137,7 @@ const UserDashboard = async () => {
           {/* <!-- Recipes --> */}
           <div className="p-4 flex flex-wrap gap-y-4 justify-evenly overflow-y-scroll scrollbar-hide">
             {/* Recipe Card */}
-            {recipes.map((e, i) => (
+            {recipes?.map((e, i) => (
               <RecipeCard
                 key={e.id}
                 name={e.name}
