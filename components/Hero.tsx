@@ -77,7 +77,7 @@ const ingData = {
         "flour",
         "olive oil",
       ],
-      imgPath: "/../public/category/pantryEssentials.webp",
+      imgPath: "/category/pantryEssentials.webp",
     },
     {
       title: "Vegetables & Greens",
@@ -89,7 +89,7 @@ const ingData = {
         "scallion",
         "tomato",
       ],
-      imgPath: "/../public/category/vegetablesGreens.webp",
+      imgPath: "/category/vegetablesGreens.webp",
     },
     {
       title: "Meats",
@@ -101,7 +101,7 @@ const ingData = {
         "pork loin",
         "sausage",
       ],
-      imgPath: "/../public/category/meats.webp",
+      imgPath: "/category/meats.webp",
     },
     {
       title: "Fruits",
@@ -114,7 +114,7 @@ const ingData = {
         "raisins",
         "pineapple",
       ],
-      imgPath: "/../public/category/fruits.webp",
+      imgPath: "/category/fruits.webp",
     },
   ],
 };
