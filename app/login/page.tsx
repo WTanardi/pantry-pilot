@@ -36,6 +36,7 @@ export default function Login() {
     signIn("credentials", { ...data, redirect: false }).then((callback) => {
       if (callback?.error) {
         toast.error(callback.error);
+        router.push("/register")
       }
 
       if (callback?.ok && !callback?.error) {
@@ -111,7 +112,7 @@ export default function Login() {
               loading
                 ? "cursor-not-allowed border-rose-200 bg-rose-100"
                 : "border-rose-600 bg-rose-600 text-white hover:bg-white hover:text-rose-600"
-            } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
+            } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none select-none`}
           >
             {loading ? <LoadingDots color="#e11d48" /> : <p>Login</p>}
           </button>

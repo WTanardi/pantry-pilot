@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["jsonProtocol"]
@@ -8,9 +5,9 @@ generator client {
 
 datasource db {
   provider          = "postgresql"
-  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model User {
@@ -42,9 +39,10 @@ model Recipe {
   name        String
   img         String?
   desc        String?
-  step        String?
+  price       Float
+  step        String[]
   ingredients IngredientsOnRecipes[]
-  menus       Menu[]
+  Order       Order[]
 }
 
 model IngredientsOnRecipes {
@@ -58,33 +56,12 @@ model IngredientsOnRecipes {
   @@id([ingredientId, recipeId])
 }
 
-model Restaurant {
-  id       Int     @id @default(autoincrement())
-  name     String
-  desc     String
-  img      String?
-  location String
-  menus    Menu[]  @relation("MenuToRestaurant")
-}
-
-model Menu {
-  id          Int          @id @default(autoincrement())
-  name        String
-  img         String?
-  price       Float
-  desc        String
-  recipeId    Int?
-  recipe      Recipe?      @relation(fields: [recipeId], references: [id])
-  Order       Order[]
-  restaurants Restaurant[] @relation("MenuToRestaurant")
-}
-
 model Order {
   id         Int      @id @default(autoincrement())
   userId     Int?
   totalPrice Float
   foodId     Int
-  food       Menu     @relation(fields: [foodId], references: [id])
+  food       Recipe   @relation(fields: [foodId], references: [id])
   user       User?    @relation(fields: [userId], references: [id])
   payment    Payment?
 }
