@@ -41,7 +41,7 @@ export default function Login() {
           toast.success("Account created! Redirecting to login...") &&
           setTimeout(() => {
             router.push("/login");
-          }, 1000)
+          })
       )
       .catch(() => toast.error("Something went wrong!"));
   };
@@ -126,7 +126,7 @@ export default function Login() {
               loading
                 ? "cursor-not-allowed border-gray-200 bg-gray-100"
                 : "border-rose-600 bg-rose-600 text-white hover:bg-white hover:text-rose-600"
-            } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
+            } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none select-none`}
           >
             {loading ? <LoadingDots color="#e11d48" /> : <p>Register</p>}
           </button>

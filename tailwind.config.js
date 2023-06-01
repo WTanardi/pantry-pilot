@@ -76,5 +76,9 @@ module.exports = {
   plugins: [
     require("tailwindcss-animate"),
     require("tw-elements/dist/plugin.cjs"),
+    require("daisyui"),
   ],
+  daisyui: {
+    themes: ["light"],
+  },
 };
