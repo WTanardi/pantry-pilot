@@ -11,19 +11,19 @@ const RecipeCard: FC<RecipeCardProps> = ({ name, ingCount, imgPath }) => {
   return (
     <>
       {/* Recipe Card */}
-      <div className="flex rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center">
+      <div className="flex flex-row rounded-lg drop-shadow-xl w-80 gap-4 bg-[#fafcff] items-center">
         {/* Card Image */}
         <div>
           <Image
             src={imgPath}
             alt={`${name} recipe`}
-            width={150}
-            height={150}
-            className="rounded-lg w-32 h-24 bg-red-300"
+            width={96}
+            height={96}
+            className="rounded-lg w-24 bg-red-300"
           ></Image>
         </div>
         {/* Recipe Details */}
-        <div>
+        <div className="">
           <div className="text-lg">{name}</div>
           <div className="font-light text-sm">
             You have all {ingCount} Ingredients

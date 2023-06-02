@@ -4,8 +4,9 @@ import RecipeCard from "@/components/RecipeCard";
 import { Book, LogOut, Refrigerator, Search } from "lucide-react";
 import SignOut from "@/components/sign-out";
 import { Prisma } from "@prisma/client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import axios from "axios";
+import Image from "next/image";
 import { signOut } from "next-auth/react";
 
 type Ingredient = Prisma.IngredientGetPayload<{
@@ -29,6 +30,7 @@ type Recipe = Prisma.RecipeGetPayload<{
     name: true;
     img: true;
     ingredients: true;
+    step: true;
   };
 }>;
 
@@ -128,7 +130,7 @@ export default function UserDashboard() {
             </div>
           </div>
           {/* <!-- Pantry Content --> */}
-          <div className="flex flex-col md:flex-row md:flex-wrap md:gap-8 md:justify-center items-center max-lg:pb-8 overflow-y-auto">
+          <div className="flex flex-col md:flex-row md:flex-wrap gap-8 md:justify-center items-center p-8 overflow-y-auto">
             {/* IngredientCard */}
             {categories.map((e, i) => (
               <IngredientCard

@@ -40,7 +40,7 @@ const IngredientCard: FC<IngredientCardProps> = ({
   return (
     <>
       {/* Card */}
-      <div className="mx-12 p-4 bg-white flex-col border-2 border-rose-600 flex text-black rounded-2xl w-full">
+      <div className="p-4 shadow-md bg-white flex-col border-2 border-rose-600 flex text-black rounded-2xl w-full">
         {/* Card Top */}
         <div className="flex gap-2 pb-3 mb-3 border-b-2">
           {/* Card logo */}

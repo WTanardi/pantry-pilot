@@ -3,9 +3,7 @@ import React, { FC } from "react";
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
-  return <div>
-    
-  </div>;
+  return <></>;
 };
 
 export default page;
