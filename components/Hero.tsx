@@ -31,7 +31,7 @@ declare namespace HeroTypes {
 const IngredientBox: FC<HeroTypes.IngredientBoxProps> = ({ src, alt }) => {
   return (
     <>
-      <div className="flex items-center w-36 h-36 border-4 border-rose-600 rounded-3xl select-none">
+      <div className="flex items-center w-36 h-36 border-4 border-rose-600 rounded-3xl select-none shadow-md">
         <Image
           src={src}
           alt={alt}
@@ -191,18 +191,18 @@ const Hero = () => {
           {/* Hero style 1 */}
           {activeStyle === "kitchen" && (
             <div className="flex-row flex flex-wrap items-center max-xl:justify-center gap-4">
-              {ingredientImgPath.map((path, index) => (
+              {ingredientImgPath.map((e, i) => (
                 <IngredientBox
-                  key={index}
-                  src={path}
-                  alt={`Image ${index + 1}`}
+                  key={i}
+                  src={e}
+                  alt={`Image ${i + 1}`}
                 ></IngredientBox>
               ))}
             </div>
           )}
           {/* Hero style 2 */}
           {activeStyle === "pantry" && (
-            <div className="flex-row flex flex-wrap items-center justify-center">
+            <div className="flex-row flex flex-wrap items-center justify-center mx-8">
               {/* Ingredient card */}
               {fewIngData.map((e, i) => (
                 <IngredientCard

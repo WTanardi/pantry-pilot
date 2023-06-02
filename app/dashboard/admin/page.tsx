@@ -205,8 +205,39 @@ export default function AdminDashboard() {
   return (
     <>
       <div className="flex mx-auto">
+        {/* Mobile Nav */}
+        <nav className="h-20 fixed bottom-0 left-0 z-10 flex justify-around w-full p-4 bg-white shadow lg:hidden">
+          <button
+            className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+            onClick={() => handleTabChange(1)}
+          >
+            <Carrot />
+            <span className="text-xs mt-1">Ingredient</span>
+          </button>
+          <button
+            className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+            onClick={() => handleTabChange(2)}
+          >
+            <Soup />
+            <span className="text-xs mt-1">Recipe</span>
+          </button>
+          <button
+            className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+            onClick={() => handleTabChange(3)}
+          >
+            <Receipt />
+            <span className="text-xs mt-1">Order</span>
+          </button>
+          <button
+            className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
+            onClick={() => signOut({ callbackUrl: "/login" })}
+          >
+            <LogOut />
+            <span className="text-xs mt-1">Sign out</span>
+          </button>
+        </nav>
         {/* <!-- Side Bar --> */}
-        <div className="flex w-72 h-screen bg-rose-600 text-rose-300">
+        <div className="flex w-72 h-screen bg-rose-600 text-rose-300 max-lg:hidden">
           <div className="flex flex-col p-8 text-2xl gap-6 w-full">
             <div
               onClick={() => handleTabChange(1)}
@@ -243,7 +274,7 @@ export default function AdminDashboard() {
           </div>
         </div>
         {/* <!-- Main Content --> */}
-        <div className="w-full p-8">
+        <div className="w-full p-8 mb-20">
           {activeTab === 1 && (
             <>
               {/* Ingredient Add Modal */}
@@ -314,9 +345,9 @@ export default function AdminDashboard() {
               {/* Ingredient list table */}
               <>
                 <div className="flex justify-between py-8">
-                  <p className="text-6xl font-bold">Ingredients</p>
+                  <p className="text-5xl font-bold">Ingredients</p>
                   <button
-                    className="p-4 border-rose-600 rounded-3xl bg-rose-600"
+                    className="px-3 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
                     onClick={handleIngredientAddModal}
                   >
                     <Plus className="text-white" />
@@ -325,8 +356,8 @@ export default function AdminDashboard() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-24">No</TableHead>
-                      <TableHead>Ingredient Name</TableHead>
+                      <TableHead>No</TableHead>
+                      <TableHead>Name</TableHead>
                       <TableHead>Category</TableHead>
                       <TableHead>Action</TableHead>
                     </TableRow>
@@ -337,7 +368,7 @@ export default function AdminDashboard() {
                         <TableCell className="font-medium">{i + 1}</TableCell>
                         <TableCell>{e.name}</TableCell>
                         <TableCell>{e.category.name}</TableCell>
-                        <TableCell className="flex gap-8">
+                        <TableCell className="flex gap-2 lg:gap-8">
                           <Updateingredient
                             ingredient={e}
                             categories={categories}
@@ -475,9 +506,9 @@ export default function AdminDashboard() {
               {/* Recipe list table */}
               <>
                 <div className="flex justify-between py-8">
-                  <p className="text-6xl font-bold">Recipes</p>
+                  <p className="text-5xl lg:text-6xl font-bold">Recipes</p>
                   <button
-                    className="p-4 border-rose-600 rounded-3xl bg-rose-600"
+                    className="px-3 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
                     onClick={handleRecipeAddModal}
                   >
                     <Plus className="text-white" />
@@ -486,11 +517,13 @@ export default function AdminDashboard() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-24">ID</TableHead>
-                      <TableHead>Recipe Name</TableHead>
-                      <TableHead>Description</TableHead>
+                      <TableHead>No</TableHead>
+                      <TableHead>Name</TableHead>
+                      <TableHead className="max-md:hidden">
+                        Description
+                      </TableHead>
                       <TableHead>Price</TableHead>
-                      <TableHead>Steps</TableHead>
+                      <TableHead className="max-md:hidden">Steps</TableHead>
                       <TableHead>Action</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -499,16 +532,18 @@ export default function AdminDashboard() {
                       <TableRow key={i}>
                         <TableCell className="font-medium">{i + 1}</TableCell>
                         <TableCell>{e.name}</TableCell>
-                        <TableCell>{e.desc}</TableCell>
+                        <TableCell className="max-md:hidden">
+                          {e.desc}
+                        </TableCell>
                         <TableCell>${e.price}</TableCell>
-                        <TableCell>
+                        <TableCell className="max-md:hidden">
                           {e.step.map((e, i) => (
                             <p key={i}>
                               {i + 1}. {e}
                             </p>
                           ))}
                         </TableCell>
-                        <TableCell className="flex gap-8">
+                        <TableCell className="flex gap-2 lg:gap-8">
                           <UpdateRecipe recipes={e} />
                           <DeleteRecipe recipes={e} />
                         </TableCell>
@@ -519,7 +554,13 @@ export default function AdminDashboard() {
               </>
             </>
           )}
-          {activeTab === 3 && <></>}
+          {activeTab === 3 && (
+            <>
+              <div className="flex justify-between py-8">
+                <p className="text-5xl lg:text-6xl font-bold">Orders</p>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
