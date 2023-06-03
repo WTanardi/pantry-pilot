@@ -24,13 +24,20 @@ type Category = Prisma.CategoryGetPayload<{
     ingredients: true;
   };
 }>;
+
 type Recipe = Prisma.RecipeGetPayload<{
   select: {
     id: true;
     name: true;
     img: true;
-    ingredients: true;
     step: true;
+    ingredients: {
+      select: {
+        amount: true;
+        measurement: true;
+        ingredient: { select: { name: true } };
+      };
+    };
   };
 }>;
 
@@ -180,8 +187,9 @@ export default function UserDashboard() {
               <RecipeCard
                 key={e.id}
                 name={e.name}
-                ingCount={e.ingredients.length}
-                imgPath={e?.img || "/category/fish.webp"}
+                ingredients={e.ingredients}
+                img={e.img}
+                step={e.step}
               ></RecipeCard>
             ))}
           </div>
