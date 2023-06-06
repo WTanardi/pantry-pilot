@@ -345,7 +345,7 @@ export default function AdminDashboard() {
               {/* Ingredient list table */}
               <>
                 <div className="flex justify-between py-8">
-                  <p className="text-5xl font-bold">Ingredients</p>
+                  <p className="text-5xl lg:text-6xl font-bold">Ingredients</p>
                   <button
                     className="px-3 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
                     onClick={handleIngredientAddModal}

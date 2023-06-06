@@ -134,7 +134,7 @@ export default function UserDashboard() {
               <button className="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none">
                 <Search />
               </button>
-            </div>
+            </div>  
           </div>
           {/* <!-- Pantry Content --> */}
           <div className="flex flex-col md:flex-row md:flex-wrap gap-8 md:justify-center items-center p-8 overflow-y-auto">

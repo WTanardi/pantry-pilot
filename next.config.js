@@ -5,7 +5,7 @@ const nextConfig = {
   },
   swcMinify: true,
   images: {
-    domains: ["source.unsplash.com"],
+    domains: ["source.unsplash.com", "picsum.photos"],
   },
 };
 
