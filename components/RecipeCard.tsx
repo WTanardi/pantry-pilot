@@ -39,7 +39,7 @@ const RecipeCard: FC<Recipe> = ({ name, img, ingredients, step }) => {
         {/* Card Image */}
         <div>
           <Image
-            src={img ?? ""}
+            src={img ?? "https://picsum.photos/200"}
             alt={`${name} recipe`}
             width={96}
             height={96}
@@ -56,16 +56,16 @@ const RecipeCard: FC<Recipe> = ({ name, img, ingredients, step }) => {
       </div>
       {/* Modal */}
       <div className={isOpen ? "modal modal-open" : "modal"}>
-        <div className="modal-box">
+        <div className="modal-box p-0">
           <Image
-            src={img ?? ""}
+            src={img ?? "https://picsum.photos/200"}
             alt={`${name} image`}
             width={350}
             height={350}
             className="w-full h-36 object-cover"
           />
-          <div className="text-sm">
-            <h2 className="text-2xl font-bold my-4">{name}</h2>
+          <div className="text-sm p-6">
+            <h2 className="text-2xl font-bold mb-4">{name}</h2>
             <h3 className="font-semibold mb-2">Ingredients:</h3>
             <ul className="mb-4">
               {ingredients.map((e, i) => (

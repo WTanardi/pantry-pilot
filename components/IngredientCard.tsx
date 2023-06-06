@@ -1,15 +1,26 @@
 "use client";
-import React, { FC, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import { FC, useState } from "react";
+import Image from "next/image";
 
 interface IngredientProps {
   name: string;
 }
 
 const Ingredient: FC<IngredientProps> = ({ name }) => {
+  const [userHas, setUserHas] = useState(false);
+  const handleClick = () => {
+    setUserHas(!userHas);
+  };
   return (
     <>
-      <div className="text-white text-sm rounded-md border-x-8 border-y-4 bg-emerald-500 border-emerald-500">
+      <div
+        className={`text-white text-sm rounded-md border-x-8 border-y-4 select-none ${
+          userHas
+            ? "bg-emerald-500 border-emerald-500"
+            : "bg-gray-400 border-gray-400"
+        }`}
+        onClick={handleClick}
+      >
         {name}
       </div>
     </>
