@@ -80,5 +80,9 @@
 }
 
 .btn-primary {
-  @apply bg-rose-600 border-rose-600 hover:bg-rose-700 hover:border-rose-700
+  @apply bg-rose-600 border-rose-600 hover:bg-rose-700 hover:border-rose-700;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  @apply hidden;
 }

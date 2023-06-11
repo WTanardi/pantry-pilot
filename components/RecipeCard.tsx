@@ -101,7 +101,7 @@ const RecipeCard: FC<Recipe> = ({
             className="absolute top-0 right-0 m-4 cursor-pointer"
             onClick={handleModal}
           >
-            <X />
+            <X strokeWidth={4} color="gray" />
           </div>
         </div>
       </div>
