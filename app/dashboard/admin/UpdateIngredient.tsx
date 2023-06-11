@@ -12,7 +12,7 @@ type Ingredient = {
   categoryId: number;
 };
 
-const Updateingredient = ({
+const UpdateIngredient = ({
   categories,
   ingredient,
 }: {
@@ -97,4 +97,4 @@ const Updateingredient = ({
   );
 };
 
-export default Updateingredient;
+export default UpdateIngredient;

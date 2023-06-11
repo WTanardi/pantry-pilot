@@ -1,13 +1,16 @@
 import React, { FC, useState } from "react";
 import Image from "next/image";
 import { Prisma } from "@prisma/client";
-import { X } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
+import AddOrder from "@/app/dashboard/user/AddOrder";
 
 type Recipe = Prisma.RecipeGetPayload<{
   select: {
+    id: true;
     name: true;
     img: true;
     step: true;
+    price: true;
     ingredients: {
       select: {
         amount: true;
@@ -22,7 +25,14 @@ type Recipe = Prisma.RecipeGetPayload<{
   };
 }>;
 
-const RecipeCard: FC<Recipe> = ({ name, img, ingredients, step }) => {
+const RecipeCard: FC<Recipe> = ({
+  name,
+  img,
+  ingredients,
+  step,
+  price,
+  id,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
@@ -81,6 +91,11 @@ const RecipeCard: FC<Recipe> = ({ name, img, ingredients, step }) => {
                 <li key={i}>{`${i + 1}. ${e}`}</li>
               ))}
             </ol>
+          </div>
+          <div className="modal-action">
+            <div className="m-4">
+              <AddOrder price={price} name={name} foodId={id} />
+            </div>
           </div>
           <div
             className="absolute top-0 right-0 m-4 cursor-pointer"

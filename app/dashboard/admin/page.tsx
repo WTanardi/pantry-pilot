@@ -344,10 +344,10 @@ export default function AdminDashboard() {
               </div>
               {/* Ingredient list table */}
               <>
-                <div className="flex justify-between py-8">
-                  <p className="text-5xl lg:text-6xl font-bold">Ingredients</p>
+                <div className="flex justify-between py-4">
+                  <p className="text-4xl lg:text-6xl font-bold">Ingredients</p>
                   <button
-                    className="px-3 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
+                    className="px-2 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
                     onClick={handleIngredientAddModal}
                   >
                     <Plus className="text-white" />
