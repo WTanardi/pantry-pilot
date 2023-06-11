@@ -59,18 +59,11 @@ model IngredientsOnRecipes {
 }
 
 model Order {
-  id         Int      @id @default(autoincrement())
-  userId     Int?
-  totalPrice Float
+  id         Int     @id @default(autoincrement())
+  userId     Int
+  user       User    @relation(fields: [userId], references: [id])
   foodId     Int
-  food       Recipe   @relation(fields: [foodId], references: [id])
-  user       User?    @relation(fields: [userId], references: [id])
-  payment    Payment?
-}
-
-model Payment {
-  id      Int     @id @default(autoincrement())
-  orderId Int     @unique
-  isPaid  Boolean @default(false)
-  order   Order   @relation(fields: [orderId], references: [id])
+  food       Recipe  @relation(fields: [foodId], references: [id])
+  totalPrice Float
+  isPaid     Boolean @default(false)
 }

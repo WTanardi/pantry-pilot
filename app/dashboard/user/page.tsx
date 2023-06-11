@@ -4,10 +4,9 @@ import RecipeCard from "@/components/RecipeCard";
 import { Book, LogOut, Refrigerator, Search } from "lucide-react";
 import SignOut from "@/components/sign-out";
 import { Prisma } from "@prisma/client";
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import Image from "next/image";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 type Ingredient = Prisma.IngredientGetPayload<{
   select: {
@@ -31,6 +30,7 @@ type Recipe = Prisma.RecipeGetPayload<{
     name: true;
     img: true;
     step: true;
+    price: true;
     ingredients: {
       select: {
         amount: true;
@@ -41,12 +41,15 @@ type Recipe = Prisma.RecipeGetPayload<{
   };
 }>;
 
+type Order = Prisma.OrderGetPayload<{}>;
+
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 export default function UserDashboard() {
   const [ingredients, setIngredients] = useState<Ingredient[] | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+  const [orders, setOrders] = useState<Order[] | null>(null);
   const [showPantry, setShowPantry] = useState(true);
 
   const handlePantryClick = () => {
@@ -60,15 +63,21 @@ export default function UserDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [ingredientResponse, categoryResponse, recipeResponse] =
-          await Promise.all([
-            fetcher("/api/ingredient"),
-            fetcher("/api/category"),
-            fetcher("/api/recipe"),
-          ]);
+        const [
+          ingredientResponse,
+          categoryResponse,
+          recipeResponse,
+          orderResponse,
+        ] = await Promise.all([
+          fetcher("/api/ingredient"),
+          fetcher("/api/category"),
+          fetcher("/api/recipe"),
+          fetcher("/api/order"),
+        ]);
         setIngredients(ingredientResponse);
         setCategories(categoryResponse);
         setRecipes(recipeResponse);
+        setOrders(orderResponse);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -134,7 +143,7 @@ export default function UserDashboard() {
               <button className="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none">
                 <Search />
               </button>
-            </div>  
+            </div>
           </div>
           {/* <!-- Pantry Content --> */}
           <div className="flex flex-col md:flex-row md:flex-wrap gap-8 md:justify-center items-center p-8 overflow-y-auto">
@@ -190,6 +199,8 @@ export default function UserDashboard() {
                 ingredients={e.ingredients}
                 img={e.img}
                 step={e.step}
+                price={e.price}
+                id={e.id}
               ></RecipeCard>
             ))}
           </div>
