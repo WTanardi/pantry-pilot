@@ -45,7 +45,7 @@ const Header: React.FC<Props> = ({}) => {
             <div className="flex flex-col items-center justify-center h-full">
               <ul className="flex flex-col text-4xl items-center gap-12 text-gray-800 font-bold px-8 py-4">
                 <li>
-                  <Link href="/">Contact</Link>
+                  <Link href="/about">About Us</Link>
                 </li>
                 <li>
                   <Link href="/login">
@@ -63,7 +63,7 @@ const Header: React.FC<Props> = ({}) => {
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center gap-8 font-semibold">
             <li>
-              <Link href="/">Contact</Link>
+              <Link href="/about">About Us</Link>
             </li>
             <li>
               <Link href="/login">

@@ -19,17 +19,6 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   const { totalPrice, foodId, userId, isPaid } = await req.json();
 
-  console.log(
-    "totalPrice: ",
-    totalPrice,
-    "foorID: ",
-    foodId,
-    "userId: ",
-    userId,
-    "isPaid: ",
-    isPaid
-  );
-
   const order = await prisma.order.create({
     data: {
       totalPrice,

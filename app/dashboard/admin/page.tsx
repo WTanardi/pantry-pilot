@@ -28,6 +28,7 @@ type Ingredient = Prisma.IngredientGetPayload<{
     categoryId: true;
   };
 }>;
+
 type Category = Prisma.CategoryGetPayload<{
   select: {
     id: true;
@@ -36,6 +37,7 @@ type Category = Prisma.CategoryGetPayload<{
     ingredients: true;
   };
 }>;
+
 type Recipe = Prisma.RecipeGetPayload<{
   select: {
     id: true;
@@ -48,6 +50,26 @@ type Recipe = Prisma.RecipeGetPayload<{
   };
 }>;
 
+type Order = Prisma.OrderGetPayload<{
+  select: {
+    id: true;
+    foodId: true;
+    food: {
+      select: {
+        name: true;
+      };
+    };
+    userId: true;
+    user: {
+      select: {
+        name: true;
+      };
+    };
+    totalPrice: true;
+    isPaid: true;
+  };
+}>;
+
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 export default function AdminDashboard() {
@@ -57,6 +79,7 @@ export default function AdminDashboard() {
   const [ingredients, setIngredients] = useState<Ingredient[] | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+  const [orders, setOrders] = useState<Order[] | null>(null);
 
   // Navigation hooks
   const [activeTab, setActiveTab] = useState<number>(1);
@@ -91,7 +114,9 @@ export default function AdminDashboard() {
 
   const addIngredient: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
     setIsLoading(true);
+
     await axios
       .post("/api/ingredient", {
         id: newIngredient.id,
@@ -100,13 +125,17 @@ export default function AdminDashboard() {
       })
       .then(() => toast.success("Ingredient Add Success"))
       .catch(() => toast.error("Something went wrong!"));
+
     setIsLoading(false);
+
     setNewIngredient({
       id: 0,
       name: "",
       categoryId: 1,
     });
+
     router.refresh;
+
     setIsIngredientAddOpen(false);
   };
 
@@ -121,7 +150,9 @@ export default function AdminDashboard() {
 
   const addRecipe: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+
     setIsLoading(true);
+
     await axios
       .post("/api/recipe", {
         id: newRecipe.id,
@@ -132,7 +163,9 @@ export default function AdminDashboard() {
       })
       .then(() => toast.success("Recipe Add Success"))
       .catch(() => toast.error("Something went wrong!"));
+
     setIsLoading(false);
+
     setNewRecipe({
       id: 0,
       name: "",
@@ -140,7 +173,9 @@ export default function AdminDashboard() {
       price: 0,
       step: [""],
     });
+
     setIsRecipeAddOpen(false);
+
     router.refresh();
   };
 
@@ -157,15 +192,21 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [ingredientResponse, categoryResponse, recipeResponse] =
-          await Promise.all([
-            fetcher("/api/ingredient"),
-            fetcher("/api/category"),
-            fetcher("/api/recipe"),
-          ]);
+        const [
+          ingredientResponse,
+          categoryResponse,
+          recipeResponse,
+          orderResponse,
+        ] = await Promise.all([
+          fetcher("/api/ingredient"),
+          fetcher("/api/category"),
+          fetcher("/api/recipe"),
+          fetcher("/api/adminOrder"),
+        ]);
         setIngredients(ingredientResponse);
         setCategories(categoryResponse);
         setRecipes(recipeResponse);
+        setOrders(orderResponse);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -175,7 +216,7 @@ export default function AdminDashboard() {
   }, []);
 
   // Loader
-  if (!ingredients || !categories || !recipes) {
+  if (!ingredients || !categories || !recipes || !orders) {
     // Handle loading state
     return (
       <div className="flex justify-center items-center h-screen">
@@ -258,9 +299,9 @@ export default function AdminDashboard() {
               <p>Recipe</p>
             </div>
             <div
-              onClick={() => handleTabChange(4)}
+              onClick={() => handleTabChange(3)}
               className={`flex gap-4 items-center cursor-pointer hover:text-white ${
-                activeTab === 4 ? "text-white" : ""
+                activeTab === 3 ? "text-white" : ""
               }`}
             >
               <Receipt />
@@ -274,7 +315,7 @@ export default function AdminDashboard() {
           </div>
         </div>
         {/* <!-- Main Content --> */}
-        <div className="w-full p-8 mb-20">
+        <div className="w-full p-8 pb-0">
           {activeTab === 1 && (
             <>
               {/* Ingredient Add Modal */}
@@ -343,20 +384,20 @@ export default function AdminDashboard() {
                 </div>
               </div>
               {/* Ingredient list table */}
-              <>
-                <div className="flex justify-between py-4">
-                  <p className="text-4xl lg:text-6xl font-bold">Ingredients</p>
-                  <button
-                    className="px-2 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
-                    onClick={handleIngredientAddModal}
-                  >
-                    <Plus className="text-white" />
-                  </button>
-                </div>
+              <div className="flex justify-between py-8">
+                <p className="text-4xl lg:text-6xl font-bold">Ingredients</p>
+                <button
+                  className="px-2 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
+                  onClick={handleIngredientAddModal}
+                >
+                  <Plus className="text-white" />
+                </button>
+              </div>
+              <div className="max-h-[80vh] w-full overflow-scroll hide-scrollbar pb-20 lg:pb-0">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>No</TableHead>
+                      <TableHead className="px-2">No</TableHead>
                       <TableHead>Name</TableHead>
                       <TableHead>Category</TableHead>
                       <TableHead>Action</TableHead>
@@ -364,8 +405,10 @@ export default function AdminDashboard() {
                   </TableHeader>
                   <TableBody>
                     {ingredients.map((e, i) => (
-                      <TableRow key={i}>
-                        <TableCell className="font-medium">{i + 1}</TableCell>
+                      <TableRow key={i} className="max-lg:text-xs">
+                        <TableCell className="font-medium px-2">
+                          {i + 1}
+                        </TableCell>
                         <TableCell>{e.name}</TableCell>
                         <TableCell>{e.category.name}</TableCell>
                         <TableCell className="flex gap-2 lg:gap-8">
@@ -379,7 +422,7 @@ export default function AdminDashboard() {
                     ))}
                   </TableBody>
                 </Table>
-              </>
+              </div>
             </>
           )}
           {activeTab === 2 && (
@@ -504,20 +547,20 @@ export default function AdminDashboard() {
                 </div>
               </div>
               {/* Recipe list table */}
-              <>
-                <div className="flex justify-between py-8">
-                  <p className="text-5xl lg:text-6xl font-bold">Recipes</p>
-                  <button
-                    className="px-3 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
-                    onClick={handleRecipeAddModal}
-                  >
-                    <Plus className="text-white" />
-                  </button>
-                </div>
+              <div className="flex justify-between py-8">
+                <p className="text-4xl lg:text-6xl font-bold">Recipes</p>
+                <button
+                  className="px-3 lg:p-4 border-rose-600 rounded-xl bg-rose-600"
+                  onClick={handleRecipeAddModal}
+                >
+                  <Plus className="text-white" />
+                </button>
+              </div>
+              <div className="max-h-[80vh] w-full overflow-scroll hide-scrollbar pb-20 lg:pb-0">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>No</TableHead>
+                      <TableHead className="px-2">No</TableHead>
                       <TableHead>Name</TableHead>
                       <TableHead className="max-md:hidden">
                         Description
@@ -529,8 +572,10 @@ export default function AdminDashboard() {
                   </TableHeader>
                   <TableBody>
                     {recipes.map((e, i) => (
-                      <TableRow key={i}>
-                        <TableCell className="font-medium">{i + 1}</TableCell>
+                      <TableRow key={i} className="max-lg:text-xs">
+                        <TableCell className="font-medium px-2">
+                          {i + 1}
+                        </TableCell>
                         <TableCell>{e.name}</TableCell>
                         <TableCell className="max-md:hidden">
                           {e.desc}
@@ -551,13 +596,43 @@ export default function AdminDashboard() {
                     ))}
                   </TableBody>
                 </Table>
-              </>
+              </div>
             </>
           )}
           {activeTab === 3 && (
             <>
-              <div className="flex justify-between py-8">
-                <p className="text-5xl lg:text-6xl font-bold">Orders</p>
+              <div className="py-8">
+                <p className="text-4xl lg:text-6xl font-bold">Orders</p>
+              </div>
+              <div className="max-h-[80vh] w-full overflow-scroll hide-scrollbar pb-20 lg:pb-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="px-2">No</TableHead>
+                      <TableHead>User</TableHead>
+                      <TableHead>Food</TableHead>
+                      <TableHead className="max-md:hidden">Price</TableHead>
+                      <TableHead>Status</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {orders.map((e, i) => (
+                      <TableRow key={i} className="max-lg:text-xs">
+                        <TableCell className="font-medium px-2">
+                          {i + 1}
+                        </TableCell>
+                        <TableCell>{e.user.name}</TableCell>
+                        <TableCell>{e.food.name}</TableCell>
+                        <TableCell className="max-md:hidden">
+                          ${e.totalPrice}
+                        </TableCell>
+                        <TableCell>
+                          {e.isPaid ? "Success" : "Cancelled"}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             </>
           )}

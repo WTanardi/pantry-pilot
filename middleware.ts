@@ -16,7 +16,13 @@ export default async function middleware(req: NextRequest) {
   }
 
   // Prevent authenticated users from accessing the login, register, and landing page
-  if (session && (path ==="/" || path ==="/login" || path ==="/register")) {
+  if (
+    session &&
+    (path === "/" ||
+      path === "/login" ||
+      path === "/register" ||
+      path === "/about")
+  ) {
     if (session.isAdmin) {
       return NextResponse.redirect(new URL("/dashboard/admin", req.url));
     } else {
@@ -31,14 +37,19 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard/user", req.url));
   }
 
-  const origin = req.headers.get("origin")
+  const origin = req.headers.get("origin");
 
-  const res = NextResponse.next()
-  res.headers.set("Access-Control-Allow-Origin", "*")
-  res.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-  res.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-  res.headers.set("Access-Control-Max-Age", "86400")
+  const res = NextResponse.next();
+  res.headers.set("Access-Control-Allow-Origin", "*");
+  res.headers.set(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.headers.set(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
+  res.headers.set("Access-Control-Max-Age", "86400");
 
-  
   return NextResponse.next();
 }
