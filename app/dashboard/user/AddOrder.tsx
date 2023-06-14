@@ -8,7 +8,6 @@ import { useSession } from "next-auth/react";
 import { fetchData } from "next-auth/client/_utils";
 
 type Order = Prisma.OrderGetPayload<{}>;
-type Recipe = Prisma.RecipeGetPayload<{}>;
 
 const AddOrder = ({
   price,

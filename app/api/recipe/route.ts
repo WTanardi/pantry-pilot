@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   const recipes = await prisma.recipe.findMany({
     select: {
       id: true,
@@ -12,6 +12,7 @@ export async function GET(req: Request) {
           amount: true,
           measurement: true,
           ingredient: true,
+          ingredientId: true,
         },
       },
       desc: true,

@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import Image from "next/image";
 import { Prisma } from "@prisma/client";
-import { ShoppingCart, X } from "lucide-react";
+import { X } from "lucide-react";
 import AddOrder from "@/app/dashboard/user/AddOrder";
 
 type Recipe = Prisma.RecipeGetPayload<{
@@ -20,18 +20,37 @@ type Recipe = Prisma.RecipeGetPayload<{
             name: true;
           };
         };
+        ingredientId: true;
       };
     };
   };
 }>;
 
-const RecipeCard: FC<Recipe> = ({
+interface RecipeCardProps {
+  id: number;
+  name: string;
+  img: string | null;
+  ingredients: {
+    amount: number;
+    measurement: string;
+    ingredient: {
+      name: string;
+    };
+    ingredientId: number;
+  }[];
+  step: string[];
+  price: number;
+  userIngArr: number[];
+}
+
+const RecipeCard: FC<RecipeCardProps> = ({
+  id,
   name,
   img,
   ingredients,
   step,
   price,
-  id,
+  userIngArr,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,25 +62,23 @@ const RecipeCard: FC<Recipe> = ({
     <>
       {/* Recipe Card */}
       <div
-        className="flex flex-row rounded-lg shadow-xl w-80 gap-4 bg-[#fafcff] items-center cursor-pointer"
+        className="flex rounded-lg shadow-xl w-80 space-x-4 bg-[#fafcff] items-center cursor-pointer"
         onClick={handleModal}
       >
         {/* Card Image */}
-        <div>
-          <Image
-            src={img ?? "https://picsum.photos/200"}
-            alt={`${name} recipe`}
-            width={96}
-            height={96}
-            className="rounded-lg w-24"
-          />
-        </div>
+        <Image
+          src={img ?? "https://picsum.photos/200"}
+          alt={`${name} recipe`}
+          width={96}
+          height={96}
+          className="rounded-lg object-cover w-24"
+        />
         {/* Recipe Details */}
         <div className="">
           <div className="text-lg">{name}</div>
-          <div className="font-light text-sm">
+          {/* <div className="font-light text-sm">
             You have all {ingredients.length} Ingredients
-          </div>
+          </div> */}
         </div>
       </div>
       {/* Modal */}
@@ -79,7 +96,12 @@ const RecipeCard: FC<Recipe> = ({
             <h3 className="font-semibold mb-2">Ingredients:</h3>
             <ul className="mb-4">
               {ingredients.map((e, i) => (
-                <li key={i}>
+                <li
+                  key={i}
+                  className={
+                    userIngArr.includes(e.ingredientId) ? "" : "text-red-500"
+                  }
+                >
                   {`- ${e.amount} ${e.measurement} ${e.ingredient.name}`}
                 </li>
               ))}
