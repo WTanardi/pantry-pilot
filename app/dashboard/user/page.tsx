@@ -6,7 +6,7 @@ import SignOut from "@/components/sign-out";
 import { Prisma } from "@prisma/client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 type Ingredient = Prisma.IngredientGetPayload<{
   select: {
@@ -15,12 +15,18 @@ type Ingredient = Prisma.IngredientGetPayload<{
     category: true;
   };
 }>;
+
 type Category = Prisma.CategoryGetPayload<{
   select: {
     id: true;
     name: true;
     img?: true;
-    ingredients: true;
+    ingredients: {
+      select: {
+        id: true;
+        name: true;
+      };
+    };
   };
 }>;
 
@@ -36,12 +42,11 @@ type Recipe = Prisma.RecipeGetPayload<{
         amount: true;
         measurement: true;
         ingredient: { select: { name: true } };
+        ingredientId: true;
       };
     };
   };
 }>;
-
-type Order = Prisma.OrderGetPayload<{}>;
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
@@ -49,8 +54,8 @@ export default function UserDashboard() {
   const [ingredients, setIngredients] = useState<Ingredient[] | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
-  const [orders, setOrders] = useState<Order[] | null>(null);
   const [showPantry, setShowPantry] = useState(true);
+  const [userIngArr, setUserIngArr] = useState<number[]>([0]);
 
   const handlePantryClick = () => {
     setShowPantry(true);
@@ -63,21 +68,15 @@ export default function UserDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [
-          ingredientResponse,
-          categoryResponse,
-          recipeResponse,
-          orderResponse,
-        ] = await Promise.all([
-          fetcher("/api/ingredient"),
-          fetcher("/api/category"),
-          fetcher("/api/recipe"),
-          fetcher("/api/order"),
-        ]);
+        const [ingredientResponse, categoryResponse, recipeResponse] =
+          await Promise.all([
+            fetcher("/api/ingredient"),
+            fetcher("/api/category"),
+            fetcher("/api/recipe"),
+          ]);
         setIngredients(ingredientResponse);
         setCategories(categoryResponse);
         setRecipes(recipeResponse);
-        setOrders(orderResponse);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -85,10 +84,20 @@ export default function UserDashboard() {
 
     fetchData();
   }, []);
-  // Check if data is fetched
-  // console.log("Ingredients: ", ingredients);
-  // console.log("Categories: ", categories);
-  // console.log("Recipes: ", recipes);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await axios.get("/api/userIngredient");
+        const dataArr = data.data.map((e: any) => e.id);
+        setUserIngArr(dataArr);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (!ingredients || !categories || !recipes) {
     // Handle loading state
@@ -131,7 +140,7 @@ export default function UserDashboard() {
             <div className="h-16">
               <div className="text-3xl font-bold">PantryPilot</div>
               <div className="font-light">
-                You have {ingredients.length} ingredients
+                You have {userIngArr.length} ingredients
               </div>
             </div>
             <div className="relative mt-4">
@@ -152,13 +161,10 @@ export default function UserDashboard() {
               <IngredientCard
                 key={i}
                 title={e.name}
-                ingCount={e.ingredients.length}
-                ingredients={e.ingredients.map((ingredient) =>
-                  ingredient.name.toString()
-                )}
-                maxIngCount={e.ingredients.length}
+                ingredients={e.ingredients}
                 imgPath={e.img ?? "/category/fish.webp"}
-              ></IngredientCard>
+                userIngArr={userIngArr}
+              />
             ))}
           </div>
         </div>
@@ -192,7 +198,7 @@ export default function UserDashboard() {
           {/* <!-- Recipes --> */}
           <div className="p-4 flex flex-wrap gap-y-4 justify-evenly overflow-y-scroll scrollbar-hide">
             {/* Recipe Card */}
-            {recipes?.map((e, i) => (
+            {recipes?.map((e) => (
               <RecipeCard
                 key={e.id}
                 name={e.name}
@@ -201,7 +207,8 @@ export default function UserDashboard() {
                 step={e.step}
                 price={e.price}
                 id={e.id}
-              ></RecipeCard>
+                userIngArr={userIngArr}
+              />
             ))}
           </div>
         </div>

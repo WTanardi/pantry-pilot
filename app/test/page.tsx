@@ -1,9 +1,12 @@
-import React, { FC } from "react";
+import { useSession } from "next-auth/react";
 
-interface pageProps {}
-
-const page: FC<pageProps> = ({}) => {
-  return <></>;
+const TestPage = () => {
+  const { data: session } = useSession();
+  return (
+    <>
+      <p>{session?.user.email}</p>
+    </>
+  );
 };
 
-export default page;
+export default TestPage;

@@ -1,21 +1,42 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { Prisma } from "@prisma/client";
+
+type Ingredient = Prisma.IngredientGetPayload<{
+  select: {
+    id: true;
+    name: true;
+  };
+}>;
 
 interface IngredientProps {
   name: string;
+  id: number;
+  userHas: boolean;
 }
 
-const Ingredient: FC<IngredientProps> = ({ name }) => {
-  const [userHas, setUserHas] = useState(false);
-  const handleClick = () => {
-    setUserHas(!userHas);
+const Ingredient: FC<IngredientProps> = ({ name, id, userHas }) => {
+  const { data: session } = useSession();
+
+  const originalState = userHas;
+
+  const [selected, setSelected] = useState(false);
+
+  const handleClick = async () => {
+    await axios.patch("/api/userIngredient", {
+      userId: session?.user.id,
+      ingredientId: id,
+    });
+    setSelected(!selected);
   };
   return (
     <>
       <div
         className={`text-white text-sm rounded-md border-x-8 border-y-4 select-none ${
-          userHas
+          selected || originalState
             ? "bg-emerald-500 border-emerald-500"
             : "bg-gray-400 border-gray-400"
         }`}
@@ -29,18 +50,16 @@ const Ingredient: FC<IngredientProps> = ({ name }) => {
 
 interface IngredientCardProps {
   title: string;
-  ingCount: number;
-  ingredients: Array<string>;
-  maxIngCount: number;
+  ingredients: Ingredient[];
   imgPath: string;
+  userIngArr: Array<number>;
 }
 
 const IngredientCard: FC<IngredientCardProps> = ({
   title,
-  ingCount,
   ingredients,
-  maxIngCount,
   imgPath,
+  userIngArr,
 }) => {
   const [showMore, setShowMore] = useState(false);
 
@@ -53,24 +72,17 @@ const IngredientCard: FC<IngredientCardProps> = ({
       {/* Card */}
       <div className="p-4 shadow-md bg-white flex-col border-2 border-rose-600 flex text-black rounded-2xl w-full">
         {/* Card Top */}
-        <div className="flex gap-2 pb-3 mb-3 border-b-2">
+        <div className="flex items-center space-x-4 pb-3 mb-3 border-b-2">
           {/* Card logo */}
-          <div className="">
-            <Image
-              src={imgPath}
-              alt={`${title} icon`}
-              width={50}
-              height={50}
-              className="w-12 h-12"
-            ></Image>
-          </div>
+          <Image
+            src={imgPath}
+            alt={`${title} icon`}
+            width={50}
+            height={50}
+            className="w-12 h-12"
+          />
           {/* Card title and ingredient */}
-          <div>
-            <div className="xl:text-lg">{title}</div>
-            <div className="text-black/50 text-sm">
-              {ingCount}/{maxIngCount} Ingredients
-            </div>
-          </div>
+          <div className="xl:text-lg">{title}</div>
         </div>
         {/* Card bottom */}
         <div className="flex flex-wrap gap-2 overflow-hidden items-start">
@@ -78,12 +90,22 @@ const IngredientCard: FC<IngredientCardProps> = ({
           {!showMore &&
             ingredients
               .slice(0, 10)
-              .map((ingredient, index) => (
-                <Ingredient name={ingredient} key={index}></Ingredient>
+              .map((e, i) => (
+                <Ingredient
+                  name={e.name}
+                  key={i}
+                  id={e.id}
+                  userHas={userIngArr.includes(e.id) ? true : false}
+                />
               ))}
           {showMore &&
-            ingredients.map((ingredient, index) => (
-              <Ingredient name={ingredient} key={index}></Ingredient>
+            ingredients.map((e, i) => (
+              <Ingredient
+                name={e.name}
+                key={i}
+                id={e.id}
+                userHas={userIngArr.includes(e.id) ? true : false}
+              />
             ))}
           {/* Show More button */}
           {ingredients.length > 10 && (

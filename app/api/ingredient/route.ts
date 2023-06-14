@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   const ingredients = await prisma.ingredient.findMany({
     select: {
       id: true,
@@ -10,7 +10,7 @@ export async function GET(req: Request) {
     },
   });
 
-  return NextResponse.json(ingredients)
+  return NextResponse.json(ingredients);
 }
 
 export async function POST(req: Request) {
@@ -22,12 +22,15 @@ export async function POST(req: Request) {
     },
   });
   if (exists) {
-    return NextResponse.json({ error: "Ingredient already exists" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Ingredient already exists" },
+      { status: 400 }
+    );
   } else {
     const ingredient = await prisma.ingredient.create({
       data: {
         name,
-        categoryId 
+        categoryId,
       },
     });
     return NextResponse.json(ingredient);
