@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useState, FC } from "react";
 import Image, { StaticImageData } from "next/image";
-import IngredientCard from "./IngredientCard";
 import burger from "@/public/hero/burger.webp";
 import bun from "@/public/hero/bun.webp";
 import beef from "@/public/hero/beef.webp";
@@ -156,8 +155,6 @@ const Hero = () => {
     setActiveStyle(style);
   };
 
-  const fewIngData = ingData.ingredients.slice(0, 4);
-
   return (
     <>
       <section className="flex pt-12">
@@ -172,7 +169,7 @@ const Hero = () => {
             pro.
           </p>
           {/* Subheading */}
-          <p className="py-8 text-lg max-lg:mx-auto text-stone-500 max-w-xs">
+          <p className="opacity-50 py-8 text-lg max-lg:mx-auto max-w-xs">
             Input any ingredients you have in your kitchen and we&apos;ll show
             you recipes you can make!
           </p>
@@ -204,15 +201,37 @@ const Hero = () => {
           {activeStyle === "pantry" && (
             <div className="flex-row flex flex-wrap items-center justify-center mx-8">
               {/* Ingredient card */}
-              {fewIngData.map((e, i) => (
-                <IngredientCard
+              {ingData.ingredients.map((e, i) => (
+                <div
+                  className="p-4 shadow-md flex-col border-2 border-rose-600 flex rounded-2xl w-full"
                   key={i}
-                  title={e.title}
-                  ingCount={e.ingredients.length}
-                  maxIngCount={e.ingredients.length + 5}
-                  ingredients={e.ingredients}
-                  imgPath={e.imgPath}
-                ></IngredientCard>
+                >
+                  {/* Card Top */}
+                  <div className="flex items-center space-x-4 pb-3 mb-3 border-b-2">
+                    {/* Card logo */}
+                    <Image
+                      src={e.imgPath}
+                      alt={`${e.title} icon`}
+                      width={50}
+                      height={50}
+                      className="w-12 h-12"
+                    />
+                    {/* Card title and ingredient */}
+                    <div className="xl:text-lg">{e.title}</div>
+                  </div>
+                  {/* Card bottom */}
+                  <div className="flex flex-wrap gap-2 overflow-hidden items-start">
+                    {/* Ingredients */}
+                    {e.ingredients.map((e, i) => (
+                      <div
+                        className="text-white text-sm rounded-md border-x-8 border-y-4 select-none bg-emerald-500 border-emerald-500"
+                        key={i}
+                      >
+                        {e}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           )}
