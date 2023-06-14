@@ -19,9 +19,9 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
   return (
     <>
       <div className="md:w-1/4">
-        <div className="bg-[#fafcff] shadow-2xl rounded-3xl overflow-hidden">
+        <div className="shadow-2xl rounded-3xl overflow-hidden">
           <div className="px-4 py-4">
-            <p className="text-gray-800 mb-4">&quot;{content}&quot;</p>
+            <p className=" mb-4">&quot;{content}&quot;</p>
             <div className="flex items-center">
               <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-emerald-500">
                 <Image
@@ -35,8 +35,8 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
                 ></Image>
               </div>
               <div className="ml-4">
-                <p className="text-gray-800 text-sm font-semibold">{name}</p>
-                <p className="text-gray-600 text-sm">{location}</p>
+                <p className="opacity-80 text-sm font-semibold">{name}</p>
+                <p className="opacity-60 text-sm">{location}</p>
               </div>
             </div>
           </div>

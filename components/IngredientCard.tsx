@@ -95,7 +95,7 @@ const IngredientCard: FC<IngredientCardProps> = ({
                   name={e.name}
                   key={i}
                   id={e.id}
-                  userHas={userIngArr.includes(e.id) ? true : false}
+                  userHas={userIngArr?.includes(e.id) ? true : false}
                 />
               ))}
           {showMore &&
@@ -104,7 +104,7 @@ const IngredientCard: FC<IngredientCardProps> = ({
                 name={e.name}
                 key={i}
                 id={e.id}
-                userHas={userIngArr.includes(e.id) ? true : false}
+                userHas={userIngArr?.includes(e.id) ? true : false}
               />
             ))}
           {/* Show More button */}

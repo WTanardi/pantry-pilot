@@ -50,9 +50,9 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gray-50 font-medium">
+    <div className="flex h-screen w-screen items-center justify-center font-medium">
       <div className="z-10 mx-4 w-full max-w-md overflow-hidden rounded-2xl border border-gray-100 shadow-xl">
-        <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center sm:px-16">
+        <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 px-4 py-6 pt-8 text-center sm:px-16">
           <Link href="/">
             <Image src={logo} priority alt="Logo" width={100} height={100} />
           </Link>
@@ -62,7 +62,7 @@ export default function Login() {
           </p>
         </div>
         <form
-          className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
+          className="flex flex-col space-y-4 px-4 py-8 sm:px-16"
           onSubmit={loginUser}
         >
           <div>
