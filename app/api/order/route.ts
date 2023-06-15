@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import prisma from '@/lib/prisma'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   const recipes = await prisma.order.findFirst({
@@ -11,13 +11,13 @@ export async function GET() {
       isPaid: true,
     },
     take: -1,
-  });
+  })
 
-  return NextResponse.json(recipes);
+  return NextResponse.json(recipes)
 }
 
 export async function POST(req: Request) {
-  const { totalPrice, foodId, userId, isPaid } = await req.json();
+  const { totalPrice, foodId, userId, isPaid } = await req.json()
 
   const order = await prisma.order.create({
     data: {
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       userId,
       isPaid,
     },
-  });
+  })
 
-  return NextResponse.json(order);
+  return NextResponse.json(order)
 }

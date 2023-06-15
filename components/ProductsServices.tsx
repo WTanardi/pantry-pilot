@@ -1,29 +1,29 @@
-import Image from "next/image";
-import rendang from "@/public/product/rendang.webp";
-import spaghetti from "@/public/product/spaghetti.webp";
-import foodBox from "@/public/product/foodbox.webp";
+import Image from 'next/image'
+import rendang from '@/public/product/rendang.webp'
+import spaghetti from '@/public/product/spaghetti.webp'
+import foodBox from '@/public/product/foodbox.webp'
 
 const ProductsServices = () => {
   const products = [
     {
       path: rendang,
-      title: "Local Recipes",
+      title: 'Local Recipes',
       content:
-        "Experience the unique and delicious flavors of your with our collection of local recipes! Discover easy-to-follow recipes that will make mealtime a memorable experience for you and your loved ones.",
+        'Experience the unique and delicious flavors of your with our collection of local recipes! Discover easy-to-follow recipes that will make mealtime a memorable experience for you and your loved ones.',
     },
     {
       path: foodBox,
-      title: "Food Order",
+      title: 'Food Order',
       content:
-        "Try out new flavors from your favorite restaurants before cooking! Order from nearby restaurants and get delicious meals delivered straight to your door. Explore new cuisines with ease.",
+        'Try out new flavors from your favorite restaurants before cooking! Order from nearby restaurants and get delicious meals delivered straight to your door. Explore new cuisines with ease.',
     },
     {
       path: spaghetti,
-      title: "International Recipes",
+      title: 'International Recipes',
       content:
-        "Explore the world through your taste buds with our collection of international recipes! Discover new and exciting flavors that will take your taste buds on a culinary journey.",
+        'Explore the world through your taste buds with our collection of international recipes! Discover new and exciting flavors that will take your taste buds on a culinary journey.',
     },
-  ];
+  ]
 
   return (
     <>
@@ -56,7 +56,7 @@ const ProductsServices = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default ProductsServices;
+export default ProductsServices

@@ -28,6 +28,13 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/dashboard/user/page.tsx", "app/test/page.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/dashboard/user/page.tsx",
+    "app/test/page.tsx"
+  ],
   "exclude": ["node_modules"]
 }

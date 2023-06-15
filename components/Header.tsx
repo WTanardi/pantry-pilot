@@ -1,22 +1,22 @@
-"use client";
-import Link from "next/link";
-import logo from "@/public/logo.webp";
-import Image from "next/image";
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+'use client'
+import Link from 'next/link'
+import logo from '@/public/logo.webp'
+import Image from 'next/image'
+import React, { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 interface Props {}
 
 const Header: React.FC<Props> = ({}) => {
-  const [isNavHidden, setIsNavHidden] = useState(true);
+  const [isNavHidden, setIsNavHidden] = useState(true)
 
   const toggleNav = () => {
-    setIsNavHidden((prevState) => !prevState);
-  };
+    setIsNavHidden((prevState) => !prevState)
+  }
 
   const hideNav = () => {
-    setIsNavHidden(true);
-  };
+    setIsNavHidden(true)
+  }
 
   return (
     <div className="container 2xl:max-w-7xl flex items-center justify-between py-8 px-4 md:px-8 mx-auto">
@@ -39,7 +39,7 @@ const Header: React.FC<Props> = ({}) => {
         {/* Mobile Menu */}
         <div
           className={`fixed inset-0 bg-white z-40 transition overflow-y-auto"
-            id="mobNav ${isNavHidden ? "hidden" : ""}`}
+            id="mobNav ${isNavHidden ? 'hidden' : ''}`}
         >
           <div className="flex flex-col items-center justify-center h-full">
             <ul className="flex flex-col text-4xl items-center gap-12 text-gray-800 font-bold px-8 py-4">
@@ -74,7 +74,7 @@ const Header: React.FC<Props> = ({}) => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

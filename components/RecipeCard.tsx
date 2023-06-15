@@ -1,46 +1,46 @@
-import React, { FC, useState } from "react";
-import Image from "next/image";
-import { Prisma } from "@prisma/client";
-import { X } from "lucide-react";
-import AddOrder from "@/app/dashboard/user/AddOrder";
+import React, { FC, useState } from 'react'
+import Image from 'next/image'
+import { Prisma } from '@prisma/client'
+import { X } from 'lucide-react'
+import AddOrder from '@/app/dashboard/user/AddOrder'
 
 type Recipe = Prisma.RecipeGetPayload<{
   select: {
-    id: true;
-    name: true;
-    img: true;
-    step: true;
-    price: true;
+    id: true
+    name: true
+    img: true
+    step: true
+    price: true
     ingredients: {
       select: {
-        amount: true;
-        measurement: true;
+        amount: true
+        measurement: true
         ingredient: {
           select: {
-            name: true;
-          };
-        };
-        ingredientId: true;
-      };
-    };
-  };
-}>;
+            name: true
+          }
+        }
+        ingredientId: true
+      }
+    }
+  }
+}>
 
 interface RecipeCardProps {
-  id: number;
-  name: string;
-  img: string | null;
+  id: number
+  name: string
+  img: string | null
   ingredients: {
-    amount: number;
-    measurement: string;
+    amount: number
+    measurement: string
     ingredient: {
-      name: string;
-    };
-    ingredientId: number;
-  }[];
-  step: string[];
-  price: number;
-  userIngArr: number[];
+      name: string
+    }
+    ingredientId: number
+  }[]
+  step: string[]
+  price: number
+  userIngArr: number[]
 }
 
 const RecipeCard: FC<RecipeCardProps> = ({
@@ -52,11 +52,11 @@ const RecipeCard: FC<RecipeCardProps> = ({
   price,
   userIngArr,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleModal = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
     <>
@@ -67,7 +67,7 @@ const RecipeCard: FC<RecipeCardProps> = ({
       >
         {/* Card Image */}
         <Image
-          src={img ?? "https://picsum.photos/200"}
+          src={img ?? 'https://picsum.photos/200'}
           alt={`${name} recipe`}
           width={96}
           height={96}
@@ -82,10 +82,10 @@ const RecipeCard: FC<RecipeCardProps> = ({
         </div>
       </div>
       {/* Modal */}
-      <div className={isOpen ? "modal modal-open" : "modal"}>
+      <div className={isOpen ? 'modal modal-open' : 'modal'}>
         <div className="modal-box p-0">
           <Image
-            src={img ?? "https://picsum.photos/200"}
+            src={img ?? 'https://picsum.photos/200'}
             alt={`${name} image`}
             width={350}
             height={350}
@@ -99,7 +99,7 @@ const RecipeCard: FC<RecipeCardProps> = ({
                 <li
                   key={i}
                   className={
-                    userIngArr.includes(e.ingredientId) ? "" : "text-red-500"
+                    userIngArr.includes(e.ingredientId) ? '' : 'text-red-500'
                   }
                 >
                   {`- ${e.amount} ${e.measurement} ${e.ingredient.name}`}
@@ -128,7 +128,7 @@ const RecipeCard: FC<RecipeCardProps> = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default RecipeCard;
+export default RecipeCard

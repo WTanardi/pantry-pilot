@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import prisma from '@/lib/prisma'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   const recipes = await prisma.order.findMany({
@@ -20,7 +20,7 @@ export async function GET() {
       userId: true,
       isPaid: true,
     },
-  });
+  })
 
-  return NextResponse.json(recipes);
+  return NextResponse.json(recipes)
 }

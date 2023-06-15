@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import prisma from '@/lib/prisma'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   const recipes = await prisma.recipe.findMany({
@@ -19,23 +19,23 @@ export async function GET() {
       price: true,
       step: true,
     },
-  });
+  })
 
-  return NextResponse.json(recipes);
+  return NextResponse.json(recipes)
 }
 
 export async function POST(req: Request) {
-  const { id, name, desc, price, step } = await req.json();
+  const { id, name, desc, price, step } = await req.json()
   const exists = await prisma.recipe.findUnique({
     where: {
       id,
     },
-  });
+  })
   if (exists) {
     return NextResponse.json(
-      { error: "Recipe already exists" },
-      { status: 400 }
-    );
+      { error: 'Recipe already exists' },
+      { status: 400 },
+    )
   } else {
     const recipe = await prisma.recipe.create({
       data: {
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
         price,
         step,
       },
-    });
-    return NextResponse.json(recipe);
+    })
+    return NextResponse.json(recipe)
   }
 }

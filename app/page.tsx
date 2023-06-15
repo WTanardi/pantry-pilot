@@ -1,27 +1,27 @@
-"use client";
-import AboutUs from "@/components/AboutUs";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import ProductsServices from "@/components/ProductsServices";
-import Testimonials from "@/components/Testimonials";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+'use client'
+import AboutUs from '@/components/AboutUs'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+import ProductsServices from '@/components/ProductsServices'
+import Testimonials from '@/components/Testimonials'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Home() {
-  const session = useSession();
-  const router = useRouter();
+  const session = useSession()
+  const router = useRouter()
 
   useEffect(() => {
-    if (session?.status === "authenticated") {
+    if (session?.status === 'authenticated') {
       if (session.data.user.isAdmin) {
-        router.push("/dashboard/admin");
+        router.push('/dashboard/admin')
       } else {
-        router.push("/dashboard/user");
+        router.push('/dashboard/user')
       }
     }
-  });
+  })
   return (
     <>
       <Header />
@@ -33,5 +33,5 @@ export default function Home() {
       </div>
       <Footer />
     </>
-  );
+  )
 }

@@ -1,34 +1,34 @@
-"use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { XSquare } from "lucide-react";
-import toast from "react-hot-toast";
+'use client'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import { XSquare } from 'lucide-react'
+import toast from 'react-hot-toast'
 
 type Ingredient = {
-  id: number;
-  name: string;
-  categoryId: number;
-};
+  id: number
+  name: string
+  categoryId: number
+}
 
 const Deleteingredient = ({ ingredient }: { ingredient: Ingredient }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
   const handleDelete = async (ingredientId: number) => {
-    setIsLoading(true);
-    await axios.delete(`/api/ingredient/${ingredientId}`);
-    toast.success(`${ingredient.name} deleted`);
-    setIsLoading(false);
-    router.refresh();
-    setIsOpen(false);
-  };
+    setIsLoading(true)
+    await axios.delete(`/api/ingredient/${ingredientId}`)
+    toast.success(`${ingredient.name} deleted`)
+    setIsLoading(false)
+    router.refresh()
+    setIsOpen(false)
+  }
 
   const handleModal = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
     <div>
@@ -36,7 +36,7 @@ const Deleteingredient = ({ ingredient }: { ingredient: Ingredient }) => {
         <XSquare />
       </button>
 
-      <div className={isOpen ? "modal modal-open" : "modal"}>
+      <div className={isOpen ? 'modal modal-open' : 'modal'}>
         <div className="modal-box">
           <h3 className="font-bold text-lg">
             Are you sure to delete {ingredient.name}?
@@ -63,7 +63,7 @@ const Deleteingredient = ({ ingredient }: { ingredient: Ingredient }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Deleteingredient;
+export default Deleteingredient

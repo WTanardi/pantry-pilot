@@ -1,29 +1,29 @@
-"use client";
-import Link from "next/link";
-import { useState, FC } from "react";
-import Image, { StaticImageData } from "next/image";
-import burger from "@/public/hero/burger.webp";
-import bun from "@/public/hero/bun.webp";
-import beef from "@/public/hero/beef.webp";
-import lettuce from "@/public/hero/lettuce.webp";
-import tomato from "@/public/hero/tomato.webp";
-import onion from "@/public/hero/onion.webp";
-import cheese from "@/public/hero/cheese.webp";
-import egg from "@/public/hero/egg.webp";
-import oliveOil from "@/public/hero/olive_oil.webp";
-import ketchup from "@/public/hero/ketchup.webp";
+'use client'
+import Link from 'next/link'
+import { useState, FC } from 'react'
+import Image, { StaticImageData } from 'next/image'
+import burger from '@/public/hero/burger.webp'
+import bun from '@/public/hero/bun.webp'
+import beef from '@/public/hero/beef.webp'
+import lettuce from '@/public/hero/lettuce.webp'
+import tomato from '@/public/hero/tomato.webp'
+import onion from '@/public/hero/onion.webp'
+import cheese from '@/public/hero/cheese.webp'
+import egg from '@/public/hero/egg.webp'
+import oliveOil from '@/public/hero/olive_oil.webp'
+import ketchup from '@/public/hero/ketchup.webp'
 
 declare namespace HeroTypes {
   interface IngredientBoxProps {
-    src: StaticImageData;
-    alt: string;
+    src: StaticImageData
+    alt: string
   }
 
   interface HeroButtonProps {
-    active: boolean;
-    onClick: () => void;
-    title: string;
-    subtitle: string;
+    active: boolean
+    onClick: () => void
+    title: string
+    subtitle: string
   }
 }
 
@@ -40,8 +40,8 @@ const IngredientBox: FC<HeroTypes.IngredientBoxProps> = ({ src, alt }) => {
         ></Image>
       </div>
     </>
-  );
-};
+  )
+}
 
 const HeroButton: React.FC<HeroTypes.HeroButtonProps> = ({
   active,
@@ -52,71 +52,71 @@ const HeroButton: React.FC<HeroTypes.HeroButtonProps> = ({
   return (
     <button
       className={`appearance-none w-40 px-3 pb-2 pt-1 border-4 border-transparent text-left ${
-        active ? "border-rose-600 bg-rose-600 rounded-2xl text-white" : ""
+        active ? 'border-rose-600 bg-rose-600 rounded-2xl text-white' : ''
       }`}
       onClick={onClick}
     >
       <p className="font-bold text-2xl">{title}</p>
       <p>{subtitle}</p>
     </button>
-  );
-};
+  )
+}
 
 const ingData = {
   ingredients: [
     {
-      title: "Pantry Essentials",
+      title: 'Pantry Essentials',
       ingredients: [
-        "butter",
-        "egg",
-        "garlic",
-        "milk",
-        "onion",
-        "sugar",
-        "flour",
-        "olive oil",
+        'butter',
+        'egg',
+        'garlic',
+        'milk',
+        'onion',
+        'sugar',
+        'flour',
+        'olive oil',
       ],
-      imgPath: "/category/pantryEssentials.webp",
+      imgPath: '/category/pantryEssentials.webp',
     },
     {
-      title: "Vegetables & Greens",
+      title: 'Vegetables & Greens',
       ingredients: [
-        "garlic",
-        "onion",
-        "bell pepper",
-        "carrot",
-        "scallion",
-        "tomato",
+        'garlic',
+        'onion',
+        'bell pepper',
+        'carrot',
+        'scallion',
+        'tomato',
       ],
-      imgPath: "/category/vegetablesGreens.webp",
+      imgPath: '/category/vegetablesGreens.webp',
     },
     {
-      title: "Meats",
+      title: 'Meats',
       ingredients: [
-        "bacon",
-        "ground beef",
-        "beef steak",
-        "ham",
-        "pork loin",
-        "sausage",
+        'bacon',
+        'ground beef',
+        'beef steak',
+        'ham',
+        'pork loin',
+        'sausage',
       ],
-      imgPath: "/category/meats.webp",
+      imgPath: '/category/meats.webp',
     },
     {
-      title: "Fruits",
+      title: 'Fruits',
       ingredients: [
-        "lemon",
-        "lime",
-        "apple",
-        "orange",
-        "banana",
-        "raisins",
-        "pineapple",
+        'lemon',
+        'lime',
+        'apple',
+        'orange',
+        'banana',
+        'raisins',
+        'pineapple',
       ],
-      imgPath: "/category/fruits.webp",
+      imgPath: '/category/fruits.webp',
     },
   ],
-};
+}
 
 const Hero = () => {
   const ingredientImgPath = [
@@ -129,31 +129,31 @@ const Hero = () => {
     egg,
     oliveOil,
     ketchup,
-  ];
+  ]
 
   const buttons = [
     {
-      id: "kitchen",
-      title: "Kitchen",
-      subtitle: "Any ingredients you have in your kitchen",
+      id: 'kitchen',
+      title: 'Kitchen',
+      subtitle: 'Any ingredients you have in your kitchen',
     },
     {
-      id: "pantry",
-      title: "Pantry",
-      subtitle: "Input them into our pantry",
+      id: 'pantry',
+      title: 'Pantry',
+      subtitle: 'Input them into our pantry',
     },
     {
-      id: "recipe",
-      title: "Recipe",
+      id: 'recipe',
+      title: 'Recipe',
       subtitle: "And we'll show you the recipes you can make!",
     },
-  ];
+  ]
 
-  const [activeStyle, setActiveStyle] = useState("kitchen");
+  const [activeStyle, setActiveStyle] = useState('kitchen')
 
   const handleToggleActive = (style: string) => {
-    setActiveStyle(style);
-  };
+    setActiveStyle(style)
+  }
 
   return (
     <>
@@ -186,7 +186,7 @@ const Hero = () => {
         {/* Hero Middle */}
         <div className="flex max-lg:hidden">
           {/* Hero style 1 */}
-          {activeStyle === "kitchen" && (
+          {activeStyle === 'kitchen' && (
             <div className="flex-row flex flex-wrap items-center max-xl:justify-center gap-4">
               {ingredientImgPath.map((e, i) => (
                 <IngredientBox
@@ -198,7 +198,7 @@ const Hero = () => {
             </div>
           )}
           {/* Hero style 2 */}
-          {activeStyle === "pantry" && (
+          {activeStyle === 'pantry' && (
             <div className="flex-row flex flex-wrap items-center justify-center mx-8">
               {/* Ingredient card */}
               {ingData.ingredients.map((e, i) => (
@@ -236,7 +236,7 @@ const Hero = () => {
             </div>
           )}
           {/* Hero style 3 */}
-          {activeStyle === "recipe" && (
+          {activeStyle === 'recipe' && (
             <div className="h-full shadow-md rounded-lg max-xl:mx-12 xl:mr-32 border-2 border-rose-600">
               <Image
                 src={burger}
@@ -297,7 +297,7 @@ const Hero = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

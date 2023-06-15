@@ -1,9 +1,9 @@
-"use client";
-import { Prisma } from "@prisma/client";
-import axios from "axios";
-import { Carrot, LogOut, Plus, Receipt, Soup } from "lucide-react";
-import { signOut } from "next-auth/react";
-import React, { FormEventHandler, useEffect, useState } from "react";
+'use client'
+import { Prisma } from '@prisma/client'
+import axios from 'axios'
+import { Carrot, LogOut, Plus, Receipt, Soup } from 'lucide-react'
+import { signOut } from 'next-auth/react'
+import React, { FormEventHandler, useEffect, useState } from 'react'
 import {
   Table,
   TableHeader,
@@ -11,182 +11,182 @@ import {
   TableHead,
   TableBody,
   TableCell,
-} from "@/components/ui/table";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import Updateingredient from "./UpdateIngredient";
-import Deleteingredient from "./DeleteIngredient";
-import { X } from "lucide-react";
-import UpdateRecipe from "./UpdateRecipe";
-import DeleteRecipe from "./DeleteRecipe";
+} from '@/components/ui/table'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
+import Updateingredient from './UpdateIngredient'
+import Deleteingredient from './DeleteIngredient'
+import { X } from 'lucide-react'
+import UpdateRecipe from './UpdateRecipe'
+import DeleteRecipe from './DeleteRecipe'
 
 type Ingredient = Prisma.IngredientGetPayload<{
   select: {
-    id: true;
-    name: true;
-    category: true;
-    categoryId: true;
-  };
-}>;
+    id: true
+    name: true
+    category: true
+    categoryId: true
+  }
+}>
 
 type Category = Prisma.CategoryGetPayload<{
   select: {
-    id: true;
-    name: true;
-    img: true;
-    ingredients: true;
-  };
-}>;
+    id: true
+    name: true
+    img: true
+    ingredients: true
+  }
+}>
 
 type Recipe = Prisma.RecipeGetPayload<{
   select: {
-    id: true;
-    name: true;
-    img: true;
-    desc: true;
-    ingredients: true;
-    price: true;
-    step: true;
-  };
-}>;
+    id: true
+    name: true
+    img: true
+    desc: true
+    ingredients: true
+    price: true
+    step: true
+  }
+}>
 
 type Order = Prisma.OrderGetPayload<{
   select: {
-    id: true;
-    foodId: true;
+    id: true
+    foodId: true
     food: {
       select: {
-        name: true;
-      };
-    };
-    userId: true;
+        name: true
+      }
+    }
+    userId: true
     user: {
       select: {
-        name: true;
-      };
-    };
-    totalPrice: true;
-    isPaid: true;
-  };
-}>;
+        name: true
+      }
+    }
+    totalPrice: true
+    isPaid: true
+  }
+}>
 
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+const fetcher = (url: string) => axios.get(url).then((res) => res.data)
 
 export default function AdminDashboard() {
-  const router = useRouter();
+  const router = useRouter()
 
   // Data fetching hooks
-  const [ingredients, setIngredients] = useState<Ingredient[] | null>(null);
-  const [categories, setCategories] = useState<Category[] | null>(null);
-  const [recipes, setRecipes] = useState<Recipe[] | null>(null);
-  const [orders, setOrders] = useState<Order[] | null>(null);
+  const [ingredients, setIngredients] = useState<Ingredient[] | null>(null)
+  const [categories, setCategories] = useState<Category[] | null>(null)
+  const [recipes, setRecipes] = useState<Recipe[] | null>(null)
+  const [orders, setOrders] = useState<Order[] | null>(null)
 
   // Navigation hooks
-  const [activeTab, setActiveTab] = useState<number>(1);
+  const [activeTab, setActiveTab] = useState<number>(1)
   const handleTabChange = (tabNo: number) => {
-    setActiveTab(tabNo);
-  };
+    setActiveTab(tabNo)
+  }
 
   // Ingredient add modal
-  const [isIngredientAddOpen, setIsIngredientAddOpen] = useState(false);
+  const [isIngredientAddOpen, setIsIngredientAddOpen] = useState(false)
 
   const handleIngredientAddModal = () => {
-    setIsIngredientAddOpen(!isIngredientAddOpen);
-  };
+    setIsIngredientAddOpen(!isIngredientAddOpen)
+  }
 
   // Recipe add modal
-  const [isRecipeAddOpen, setIsRecipeAddOpen] = useState(false);
+  const [isRecipeAddOpen, setIsRecipeAddOpen] = useState(false)
 
   const handleRecipeAddModal = () => {
-    setIsRecipeAddOpen(!isRecipeAddOpen);
-  };
+    setIsRecipeAddOpen(!isRecipeAddOpen)
+  }
 
   // Page load
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
   // CRUD hooks
   // Ingredient CRUD
   const [newIngredient, setNewIngredient] = useState({
     id: 0,
-    name: "",
+    name: '',
     categoryId: 1,
-  });
+  })
 
   const addIngredient: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setIsLoading(true);
+    setIsLoading(true)
 
     await axios
-      .post("/api/ingredient", {
+      .post('/api/ingredient', {
         id: newIngredient.id,
         name: newIngredient.name,
         categoryId: newIngredient.categoryId,
       })
-      .then(() => toast.success("Ingredient Add Success"))
-      .catch(() => toast.error("Something went wrong!"));
+      .then(() => toast.success('Ingredient Add Success'))
+      .catch(() => toast.error('Something went wrong!'))
 
-    setIsLoading(false);
+    setIsLoading(false)
 
     setNewIngredient({
       id: 0,
-      name: "",
+      name: '',
       categoryId: 1,
-    });
+    })
 
-    router.refresh;
+    router.refresh
 
-    setIsIngredientAddOpen(false);
-  };
+    setIsIngredientAddOpen(false)
+  }
 
   // Recipe CRUD
   const [newRecipe, setNewRecipe] = useState({
     id: 0,
-    name: "",
-    desc: "",
+    name: '',
+    desc: '',
     price: 0,
-    step: [""],
-  });
+    step: [''],
+  })
 
   const addRecipe: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setIsLoading(true);
+    setIsLoading(true)
 
     await axios
-      .post("/api/recipe", {
+      .post('/api/recipe', {
         id: newRecipe.id,
         name: newRecipe.name,
         desc: newRecipe.desc,
         price: newRecipe.price,
         step: newRecipe.step,
       })
-      .then(() => toast.success("Recipe Add Success"))
-      .catch(() => toast.error("Something went wrong!"));
+      .then(() => toast.success('Recipe Add Success'))
+      .catch(() => toast.error('Something went wrong!'))
 
-    setIsLoading(false);
+    setIsLoading(false)
 
     setNewRecipe({
       id: 0,
-      name: "",
-      desc: "",
+      name: '',
+      desc: '',
       price: 0,
-      step: [""],
-    });
+      step: [''],
+    })
 
-    setIsRecipeAddOpen(false);
+    setIsRecipeAddOpen(false)
 
-    router.refresh();
-  };
+    router.refresh()
+  }
 
   const removeStep = (index: number) => {
-    const updatedStep = [...newRecipe.step];
-    updatedStep.splice(index, 1);
+    const updatedStep = [...newRecipe.step]
+    updatedStep.splice(index, 1)
     setNewRecipe({
       ...newRecipe,
       step: updatedStep,
-    });
-  };
+    })
+  }
 
   // Fetch data
   useEffect(() => {
@@ -198,22 +198,22 @@ export default function AdminDashboard() {
           recipeResponse,
           orderResponse,
         ] = await Promise.all([
-          fetcher("/api/ingredient"),
-          fetcher("/api/category"),
-          fetcher("/api/recipe"),
-          fetcher("/api/adminOrder"),
-        ]);
-        setIngredients(ingredientResponse);
-        setCategories(categoryResponse);
-        setRecipes(recipeResponse);
-        setOrders(orderResponse);
+          fetcher('/api/ingredient'),
+          fetcher('/api/category'),
+          fetcher('/api/recipe'),
+          fetcher('/api/adminOrder'),
+        ])
+        setIngredients(ingredientResponse)
+        setCategories(categoryResponse)
+        setRecipes(recipeResponse)
+        setOrders(orderResponse)
       } catch (error) {
-        console.error("Error:", error);
+        console.error('Error:', error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   // Loader
   if (!ingredients || !categories || !recipes || !orders) {
@@ -240,7 +240,7 @@ export default function AdminDashboard() {
           <span className="sr-only">Loading...</span>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -271,7 +271,7 @@ export default function AdminDashboard() {
           </button>
           <button
             className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
-            onClick={() => signOut({ callbackUrl: "/login" })}
+            onClick={() => signOut({ callbackUrl: '/login' })}
           >
             <LogOut />
             <span className="text-xs mt-1">Sign out</span>
@@ -283,7 +283,7 @@ export default function AdminDashboard() {
             <div
               onClick={() => handleTabChange(1)}
               className={`flex gap-4 items-center cursor-pointer hover:text-white ${
-                activeTab === 1 ? "text-white" : "text-rose-300"
+                activeTab === 1 ? 'text-white' : 'text-rose-300'
               }`}
             >
               <Carrot />
@@ -292,7 +292,7 @@ export default function AdminDashboard() {
             <div
               onClick={() => handleTabChange(2)}
               className={`flex gap-4 items-center cursor-pointer hover:text-white ${
-                activeTab === 2 ? "text-white" : ""
+                activeTab === 2 ? 'text-white' : ''
               }`}
             >
               <Soup />
@@ -301,14 +301,14 @@ export default function AdminDashboard() {
             <div
               onClick={() => handleTabChange(3)}
               className={`flex gap-4 items-center cursor-pointer hover:text-white ${
-                activeTab === 3 ? "text-white" : ""
+                activeTab === 3 ? 'text-white' : ''
               }`}
             >
               <Receipt />
               <p>Order</p>
             </div>
             <div>
-              <button onClick={() => signOut({ callbackUrl: "/login" })}>
+              <button onClick={() => signOut({ callbackUrl: '/login' })}>
                 <LogOut size={36}></LogOut>
               </button>
             </div>
@@ -320,7 +320,7 @@ export default function AdminDashboard() {
             <>
               {/* Ingredient Add Modal */}
               <div
-                className={isIngredientAddOpen ? "modal modal-open" : "modal"}
+                className={isIngredientAddOpen ? 'modal modal-open' : 'modal'}
               >
                 <div className="modal-box">
                   <h3 className="font-bold text-lg">Add New Ingredient</h3>
@@ -428,7 +428,7 @@ export default function AdminDashboard() {
           {activeTab === 2 && (
             <>
               {/* Recipe Add Modal */}
-              <div className={isRecipeAddOpen ? "modal modal-open" : "modal"}>
+              <div className={isRecipeAddOpen ? 'modal modal-open' : 'modal'}>
                 <div className="modal-box">
                   <h3 className="font-bold text-lg">Add New Recipe</h3>
                   <form onSubmit={addRecipe}>
@@ -492,12 +492,12 @@ export default function AdminDashboard() {
                             type="text"
                             value={e}
                             onChange={(e) => {
-                              const updatedStep = [...newRecipe.step];
-                              updatedStep[i] = e.target.value;
+                              const updatedStep = [...newRecipe.step]
+                              updatedStep[i] = e.target.value
                               setNewRecipe({
                                 ...newRecipe,
                                 step: updatedStep,
-                              });
+                              })
                             }}
                             className="input input-bordered w-full"
                             placeholder={`Step ${i + 1}`}
@@ -517,8 +517,8 @@ export default function AdminDashboard() {
                         onClick={() => {
                           setNewRecipe({
                             ...newRecipe,
-                            step: [...newRecipe.step, ""],
-                          });
+                            step: [...newRecipe.step, ''],
+                          })
                         }}
                       >
                         Add Step
@@ -627,7 +627,7 @@ export default function AdminDashboard() {
                           ${e.totalPrice}
                         </TableCell>
                         <TableCell>
-                          {e.isPaid ? "Success" : "Cancelled"}
+                          {e.isPaid ? 'Success' : 'Cancelled'}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -639,5 +639,5 @@ export default function AdminDashboard() {
         </div>
       </div>
     </>
-  );
+  )
 }

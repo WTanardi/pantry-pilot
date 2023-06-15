@@ -1,54 +1,54 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { FormEventHandler, useEffect, useState } from "react";
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import LoadingDots from "@/components/loading-dots";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import logo from "@/public/logo.webp";
-import { Eye, EyeOff } from "lucide-react";
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { FormEventHandler, useEffect, useState } from 'react'
+import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import LoadingDots from '@/components/loading-dots'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
+import logo from '@/public/logo.webp'
+import { Eye, EyeOff } from 'lucide-react'
 
 export default function Login() {
-  const [loading, setLoading] = useState(false);
-  const session = useSession();
-  const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const session = useSession()
+  const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false)
   const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+    name: '',
+    email: '',
+    password: '',
+  })
 
   useEffect(() => {
-    if (session?.status === "authenticated") {
+    if (session?.status === 'authenticated') {
       if (session.data.user.isAdmin) {
-        router.push("/dashboard/admin");
+        router.push('/dashboard/admin')
       } else {
-        router.push("/dashboard/user");
+        router.push('/dashboard/user')
       }
     }
-  });
+  })
 
   const registerUser: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
     axios
-      .post("/api/auth/register", data)
+      .post('/api/auth/register', data)
       .then(
         () =>
-          toast.success("Account created! Redirecting to login...") &&
+          toast.success('Account created! Redirecting to login...') &&
           setTimeout(() => {
-            router.push("/login");
-          })
+            router.push('/login')
+          }),
       )
-      .catch(() => toast.error("Something went wrong!"));
-  };
+      .catch(() => toast.error('Something went wrong!'))
+  }
 
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
   return (
     <div className="flex h-screen w-screen items-center justify-center font-medium">
@@ -106,7 +106,7 @@ export default function Login() {
               <input
                 id="password"
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 required
                 className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
                 value={data.password}
@@ -124,24 +124,24 @@ export default function Login() {
             disabled={loading}
             className={`${
               loading
-                ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                : "border-rose-600 bg-rose-600 text-white hover:bg-white hover:text-rose-600"
+                ? 'cursor-not-allowed border-gray-200 bg-gray-100'
+                : 'border-rose-600 bg-rose-600 text-white hover:bg-white hover:text-rose-600'
             } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none select-none`}
           >
             {loading ? <LoadingDots color="#e11d48" /> : <p>Register</p>}
           </button>
-        <p className="text-center text-sm text-gray-600">
-            Already have an account?{" "}
+          <p className="text-center text-sm text-gray-600">
+            Already have an account?{' '}
             <Link
               href="/login"
               className="font-semibold text-blue-600 hover:text-blue-400"
             >
               Login
-            </Link>{" "}
+            </Link>{' '}
             instead.
           </p>
         </form>
       </div>
     </div>
-  );
+  )
 }
