@@ -1,70 +1,70 @@
-import { useState, SyntheticEvent } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { Edit } from "lucide-react";
-import { toast } from "react-hot-toast";
+import { useState, SyntheticEvent } from 'react'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import { Edit } from 'lucide-react'
+import { toast } from 'react-hot-toast'
 
 type Recipe = {
-  id: number;
-  name: string;
-  img: string | null;
-  desc: string | null;
-  price: number;
-  step: string[];
-};
+  id: number
+  name: string
+  img: string | null
+  desc: string | null
+  price: number
+  step: string[]
+}
 
 const UpdateRecipe = ({ recipes }: { recipes: Recipe }) => {
-  const [name, setName] = useState(recipes.name);
-  const [desc, setDesc] = useState(recipes.desc || "");
-  const [price, setPrice] = useState(recipes.price);
-  const [step, setStep] = useState(recipes.step);
+  const [name, setName] = useState(recipes.name)
+  const [desc, setDesc] = useState(recipes.desc || '')
+  const [price, setPrice] = useState(recipes.price)
+  const [step, setStep] = useState(recipes.step)
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
   const handleUpdate = async (e: SyntheticEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+    e.preventDefault()
+    setIsLoading(true)
     await axios.patch(`/api/recipe/${recipes.id}`, {
       name: name,
       desc: desc,
       price: price,
       step: step,
-    });
-    toast.success(`${name} updated`);
-    setIsLoading(false);
-    router.refresh; // Use replace instead of refresh to avoid infinite reloading
-    setIsOpen(false);
-  };
+    })
+    toast.success(`${name} updated`)
+    setIsLoading(false)
+    router.refresh // Use replace instead of refresh to avoid infinite reloading
+    setIsOpen(false)
+  }
 
   const handleModal = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   const addStep = () => {
-    setStep([...step, ""]);
-  };
+    setStep([...step, ''])
+  }
 
   const removeStep = (index: number) => {
-    const updatedStep = [...step];
-    updatedStep.splice(index, 1);
-    setStep(updatedStep);
-  };
+    const updatedStep = [...step]
+    updatedStep.splice(index, 1)
+    setStep(updatedStep)
+  }
 
   const updateStep = (index: number, value: string) => {
-    const updatedStep = [...step];
-    updatedStep[index] = value;
-    setStep(updatedStep);
-  };
+    const updatedStep = [...step]
+    updatedStep[index] = value
+    setStep(updatedStep)
+  }
 
   return (
     <div>
       <button onClick={handleModal}>
         <Edit />
       </button>
-      <div className={isOpen ? "modal modal-open" : "modal"}>
+      <div className={isOpen ? 'modal modal-open' : 'modal'}>
         <div className="modal-box">
           <form onSubmit={handleUpdate}>
             {/* Name */}
@@ -148,7 +148,7 @@ const UpdateRecipe = ({ recipes }: { recipes: Recipe }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UpdateRecipe;
+export default UpdateRecipe

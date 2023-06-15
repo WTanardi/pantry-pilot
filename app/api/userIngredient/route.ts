@@ -1,11 +1,11 @@
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
+import prisma from '@/lib/prisma'
+import { getServerSession } from 'next-auth'
+import { NextResponse } from 'next/server'
+import { authOptions } from '../auth/[...nextauth]/route'
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
-  const userEmail = session?.user.email;
+  const session = await getServerSession(authOptions)
+  const userEmail = session?.user.email
 
   const user = await prisma.user.findUnique({
     where: {
@@ -18,12 +18,12 @@ export async function GET() {
         },
       },
     },
-  });
-  return NextResponse.json(user?.ingredients);
+  })
+  return NextResponse.json(user?.ingredients)
 }
 
 export async function PATCH(req: Request) {
-  const { userId, ingredientId } = await req.json();
+  const { userId, ingredientId } = await req.json()
 
   const user = await prisma.user.findUnique({
     where: {
@@ -32,9 +32,9 @@ export async function PATCH(req: Request) {
     include: {
       ingredients: true,
     },
-  });
+  })
 
-  const exists = user?.ingredients.some((ing) => ing.id === ingredientId);
+  const exists = user?.ingredients.some((ing) => ing.id === ingredientId)
 
   if (!exists) {
     const user = await prisma.user.update({
@@ -49,9 +49,9 @@ export async function PATCH(req: Request) {
       include: {
         ingredients: true,
       },
-    });
+    })
 
-    return NextResponse.json(user);
+    return NextResponse.json(user)
   } else {
     const user = await prisma.user.update({
       where: {
@@ -65,8 +65,8 @@ export async function PATCH(req: Request) {
       include: {
         ingredients: true,
       },
-    });
+    })
 
-    return NextResponse.json(user);
+    return NextResponse.json(user)
   }
 }

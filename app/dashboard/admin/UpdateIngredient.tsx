@@ -1,54 +1,54 @@
-"use client";
-import { useState, SyntheticEvent } from "react";
-import type { Category } from "@prisma/client";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { Edit } from "lucide-react";
-import { toast } from "react-hot-toast";
+'use client'
+import { useState, SyntheticEvent } from 'react'
+import type { Category } from '@prisma/client'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import { Edit } from 'lucide-react'
+import { toast } from 'react-hot-toast'
 
 type Ingredient = {
-  id: number;
-  name: string;
-  categoryId: number;
-};
+  id: number
+  name: string
+  categoryId: number
+}
 
 const UpdateIngredient = ({
   categories,
   ingredient,
 }: {
-  categories: Category[];
-  ingredient: Ingredient;
+  categories: Category[]
+  ingredient: Ingredient
 }) => {
-  const [name, setName] = useState(ingredient.name);
-  const [categoryId, setCategoryId] = useState(ingredient.categoryId);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState(ingredient.name)
+  const [categoryId, setCategoryId] = useState(ingredient.categoryId)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
   const handleUpdate = async (e: SyntheticEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+    e.preventDefault()
+    setIsLoading(true)
     await axios.patch(`/api/ingredient/${ingredient.id}`, {
       name: name,
       categoryId: categoryId,
-    });
-    toast.success(`${name} updated`);
-    setIsLoading(false);
-    router.refresh();
-    setIsOpen(false);
-  };
+    })
+    toast.success(`${name} updated`)
+    setIsLoading(false)
+    router.refresh()
+    setIsOpen(false)
+  }
 
   const handleModal = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
     <div>
       <button onClick={handleModal}>
         <Edit />
       </button>
-      <div className={isOpen ? "modal modal-open" : "modal"}>
+      <div className={isOpen ? 'modal modal-open' : 'modal'}>
         <div className="modal-box">
           <h3 className="font-bold text-lg">Update {ingredient.name}</h3>
           <form onSubmit={handleUpdate}>
@@ -94,7 +94,7 @@ const UpdateIngredient = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UpdateIngredient;
+export default UpdateIngredient

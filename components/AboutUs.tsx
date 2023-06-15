@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import team from "@/public/team.webp";
+import Image from 'next/image'
+import Link from 'next/link'
+import team from '@/public/team.webp'
 
 const AboutUs = () => {
   return (
@@ -38,7 +38,7 @@ const AboutUs = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

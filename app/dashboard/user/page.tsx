@@ -1,103 +1,103 @@
-"use client";
-import IngredientCard from "@/components/IngredientCard";
-import RecipeCard from "@/components/RecipeCard";
-import { Book, LogOut, Refrigerator, Search } from "lucide-react";
-import SignOut from "@/components/sign-out";
-import { Prisma } from "@prisma/client";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { signOut } from "next-auth/react";
+'use client'
+import IngredientCard from '@/components/IngredientCard'
+import RecipeCard from '@/components/RecipeCard'
+import { Book, LogOut, Refrigerator, Search } from 'lucide-react'
+import SignOut from '@/components/sign-out'
+import { Prisma } from '@prisma/client'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { signOut } from 'next-auth/react'
 
 type Ingredient = Prisma.IngredientGetPayload<{
   select: {
-    id: true;
-    name: true;
-    category: true;
-  };
-}>;
+    id: true
+    name: true
+    category: true
+  }
+}>
 
 type Category = Prisma.CategoryGetPayload<{
   select: {
-    id: true;
-    name: true;
-    img?: true;
+    id: true
+    name: true
+    img?: true
     ingredients: {
       select: {
-        id: true;
-        name: true;
-      };
-    };
-  };
-}>;
+        id: true
+        name: true
+      }
+    }
+  }
+}>
 
 type Recipe = Prisma.RecipeGetPayload<{
   select: {
-    id: true;
-    name: true;
-    img: true;
-    step: true;
-    price: true;
+    id: true
+    name: true
+    img: true
+    step: true
+    price: true
     ingredients: {
       select: {
-        amount: true;
-        measurement: true;
-        ingredient: { select: { name: true } };
-        ingredientId: true;
-      };
-    };
-  };
-}>;
+        amount: true
+        measurement: true
+        ingredient: { select: { name: true } }
+        ingredientId: true
+      }
+    }
+  }
+}>
 
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+const fetcher = (url: string) => axios.get(url).then((res) => res.data)
 
 export default function UserDashboard() {
-  const [ingredients, setIngredients] = useState<Ingredient[] | null>(null);
-  const [categories, setCategories] = useState<Category[] | null>(null);
-  const [recipes, setRecipes] = useState<Recipe[] | null>(null);
-  const [showPantry, setShowPantry] = useState(true);
-  const [userIngArr, setUserIngArr] = useState<number[]>([0]);
+  const [ingredients, setIngredients] = useState<Ingredient[] | null>(null)
+  const [categories, setCategories] = useState<Category[] | null>(null)
+  const [recipes, setRecipes] = useState<Recipe[] | null>(null)
+  const [showPantry, setShowPantry] = useState(true)
+  const [userIngArr, setUserIngArr] = useState<number[]>([0])
 
   const handlePantryClick = () => {
-    setShowPantry(true);
-  };
+    setShowPantry(true)
+  }
 
   const handleRecipeClick = () => {
-    setShowPantry(false);
-  };
+    setShowPantry(false)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [ingredientResponse, categoryResponse, recipeResponse] =
           await Promise.all([
-            fetcher("/api/ingredient"),
-            fetcher("/api/category"),
-            fetcher("/api/recipe"),
-          ]);
-        setIngredients(ingredientResponse);
-        setCategories(categoryResponse);
-        setRecipes(recipeResponse);
+            fetcher('/api/ingredient'),
+            fetcher('/api/category'),
+            fetcher('/api/recipe'),
+          ])
+        setIngredients(ingredientResponse)
+        setCategories(categoryResponse)
+        setRecipes(recipeResponse)
       } catch (error) {
-        console.error("Error:", error);
+        console.error('Error:', error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await axios.get("/api/userIngredient");
-        const dataArr = data.data.map((e: any) => e.id);
-        setUserIngArr(dataArr);
+        const data = await axios.get('/api/userIngredient')
+        const dataArr = data.data.map((e: any) => e.id)
+        setUserIngArr(dataArr)
       } catch (error) {
-        console.error("Error:", error);
+        console.error('Error:', error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   if (!ingredients || !categories || !recipes) {
     // Handle loading state
@@ -123,7 +123,7 @@ export default function UserDashboard() {
           <span className="sr-only">Loading...</span>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -132,7 +132,7 @@ export default function UserDashboard() {
         {/* <!-- Pantry --> */}
         <div
           className={`w-full lg:w-1/4 flex flex-col h-screen bg-rose-600 text-white items-center max-lg:pb-16 ${
-            showPantry ? "" : "hidden"
+            showPantry ? '' : 'hidden'
           }`}
         >
           {/* <!-- Pantry title --> */}
@@ -162,7 +162,7 @@ export default function UserDashboard() {
                 key={i}
                 title={e.name}
                 ingredients={e.ingredients}
-                imgPath={e.img ?? "/category/fish.webp"}
+                imgPath={e.img ?? '/category/fish.webp'}
                 userIngArr={userIngArr}
               />
             ))}
@@ -171,7 +171,7 @@ export default function UserDashboard() {
         {/* <!-- Recipe --> */}
         <div
           className={`w-full lg:w-3/4 lg:flex flex-col h-screen ${
-            showPantry ? "hidden" : "flex"
+            showPantry ? 'hidden' : 'flex'
           }`}
         >
           {/* <!-- Recipe Header --> */}
@@ -229,7 +229,7 @@ export default function UserDashboard() {
             <span className="text-xs mt-1">Recipe</span>
           </button>
           <button
-            onClick={() => signOut({ callbackUrl: "/login" })}
+            onClick={() => signOut({ callbackUrl: '/login' })}
             className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700"
           >
             <LogOut />
@@ -238,5 +238,5 @@ export default function UserDashboard() {
         </nav>
       </main>
     </div>
-  );
+  )
 }

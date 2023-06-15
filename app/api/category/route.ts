@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import prisma from '@/lib/prisma'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   const categories = await prisma.category.findMany({
@@ -9,7 +9,7 @@ export async function GET() {
       img: true,
       ingredients: true,
     },
-  });
+  })
 
-  return NextResponse.json(categories);
+  return NextResponse.json(categories)
 }

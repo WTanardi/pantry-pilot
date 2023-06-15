@@ -5,8 +5,8 @@ const nextConfig = {
   },
   swcMinify: true,
   images: {
-    domains: ["source.unsplash.com", "picsum.photos"],
+    domains: ['source.unsplash.com', 'picsum.photos'],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

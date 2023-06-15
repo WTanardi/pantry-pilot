@@ -4,7 +4,9 @@
     "dev": "prisma generate && next dev",
     "build": "prisma generate && prisma db push && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@prisma/client": "^4.15.0",
@@ -37,6 +39,7 @@
     "eslint": "8.11.0",
     "eslint-config-next": "^13.0.5",
     "postcss": "^8.4.12",
+    "prettier": "^2.8.8",
     "prisma": "^4.15.0",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.6.2"

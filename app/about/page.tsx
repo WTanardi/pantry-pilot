@@ -1,8 +1,8 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Image from "next/image";
-import billy from "@/public/billy-portrait.webp";
-import cakra from "@/public/cakra-portrait.webp";
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import Image from 'next/image'
+import billy from '@/public/billy-portrait.webp'
+import cakra from '@/public/cakra-portrait.webp'
 
 const AboutPage = () => {
   return (
@@ -41,7 +41,7 @@ const AboutPage = () => {
       </div>
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage
