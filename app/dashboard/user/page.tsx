@@ -4,7 +4,7 @@ import RecipeCard from '@/components/RecipeCard'
 import { Book, LogOut, Refrigerator, Search } from 'lucide-react'
 import SignOut from '@/components/sign-out'
 import { Prisma } from '@prisma/client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import axios from 'axios'
 import { signOut } from 'next-auth/react'
 
@@ -57,6 +57,14 @@ export default function UserDashboard() {
   const [showPantry, setShowPantry] = useState(true)
   const [userIngArr, setUserIngArr] = useState<number[]>([0])
 
+  const [ingredientSearch, setIngredientSearch] = useState('')
+  const [recipeSearch, setRecipeSearch] = useState('')
+  const [filteredCategories, setFilteredCategories] = useState<
+    Category[] | null
+  >(null)
+
+  const [filteredRecipes, setFilteredRecipes] = useState<Recipe[] | null>(null)
+
   const handlePantryClick = () => {
     setShowPantry(true)
   }
@@ -98,6 +106,52 @@ export default function UserDashboard() {
 
     fetchData()
   }, [])
+
+  useEffect(() => {
+    if (ingredients && ingredientSearch) {
+      const filteredCategories = categories?.filter((category) => {
+        const categoryMatch = category.name
+          .toLowerCase()
+          .includes(ingredientSearch.toLowerCase())
+        const filteredIngredients = category.ingredients.filter((ingredient) =>
+          ingredient.name
+            .toLowerCase()
+            .includes(ingredientSearch.toLowerCase()),
+        )
+        return categoryMatch || filteredIngredients.length > 0
+      })
+      setFilteredCategories(filteredCategories || null)
+    } else {
+      setFilteredCategories(categories)
+    }
+  }, [ingredients, categories, ingredientSearch])
+
+  useEffect(() => {
+    const filterRecipes = () => {
+      if (!recipeSearch) {
+        setFilteredRecipes(recipes)
+      } else {
+        const filtered = recipes?.filter((recipe) =>
+          recipe.name.toLowerCase().includes(recipeSearch.toLowerCase()),
+        )
+        setFilteredRecipes(filtered || null) // Handle undefined case
+      }
+    }
+
+    filterRecipes()
+  }, [recipeSearch, recipes])
+
+  const handleIngredientSearchQueryChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    setIngredientSearch(event.target.value)
+  }
+
+  const handleRecipeSearchQueryChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRecipeSearch(event.target.value)
+  }
 
   const matchingRecipes = recipes?.filter((e) => {
     const matchingIngredients = e.ingredients.filter((ce) =>
@@ -154,10 +208,13 @@ export default function UserDashboard() {
             </div>
             <div className="relative mt-4">
               <input
-                className="block w-full py-2 px-3 leading-5 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block w-full py-2 px-3 leading-5 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-black"
                 type="text"
                 placeholder="Search..."
+                value={ingredientSearch}
+                onChange={handleIngredientSearchQueryChange}
               />
+
               <button className="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none">
                 <Search />
               </button>
@@ -166,7 +223,16 @@ export default function UserDashboard() {
           {/* <!-- Pantry Content --> */}
           <div className="flex flex-col md:flex-row md:flex-wrap gap-8 md:justify-center items-center p-8 overflow-y-auto">
             {/* IngredientCard */}
-            {categories.map((e, i) => (
+            {/* {categories.map((e, i) => (
+              <IngredientCard
+                key={i}
+                title={e.name}
+                ingredients={e.ingredients}
+                imgPath={e.img ?? '/category/fish.webp'}
+                userIngArr={userIngArr}
+              />
+            ))} */}
+            {filteredCategories?.map((e, i) => (
               <IngredientCard
                 key={i}
                 title={e.name}
@@ -195,9 +261,11 @@ export default function UserDashboard() {
             </div>
             <div className="relative mt-4">
               <input
-                className="block w-full py-2 px-3 leading-5 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block w-full py-2 px-3 leading-5 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-black"
                 type="text"
                 placeholder="Search..."
+                value={recipeSearch}
+                onChange={handleRecipeSearchQueryChange}
               />
               <button className="absolute inset-y-0 right-0 px-4 py-1 text-gray-300 font-medium rounded-md focus:outline-none">
                 <Search />
@@ -207,7 +275,7 @@ export default function UserDashboard() {
           {/* <!-- Recipes --> */}
           <div className="p-4 flex flex-wrap gap-y-4 justify-evenly overflow-y-scroll scrollbar-hide">
             {/* Recipe Card */}
-            {recipes?.map((e) => {
+            {filteredRecipes?.map((e) => {
               const matchingIngredients = e.ingredients.filter((ce) =>
                 userIngArr.includes(ce.ingredientId),
               )
