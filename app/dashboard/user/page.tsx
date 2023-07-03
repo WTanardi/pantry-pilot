@@ -99,6 +99,15 @@ export default function UserDashboard() {
     fetchData()
   }, [])
 
+  const matchingRecipes = recipes?.filter((e) => {
+    const matchingIngredients = e.ingredients.filter((ce) =>
+      userIngArr.includes(ce.ingredientId),
+    )
+    return matchingIngredients.length > 0
+  })
+
+  const numRecipes = matchingRecipes?.length
+
   if (!ingredients || !categories || !recipes) {
     // Handle loading state
     return (
@@ -178,7 +187,7 @@ export default function UserDashboard() {
           <div className="w-full p-8 text-white flex flex-col bg-emerald-500 justify-between">
             <div className="flex justify-between text-center max-lg:justify-center items-center h-16">
               <div className="text-3xl font-semibold">
-                You can make {recipes?.length} Recipes
+                You can make {numRecipes} ingredients
               </div>
               <div className="flex items-center gap-4 max-lg:hidden">
                 <SignOut />
@@ -198,18 +207,26 @@ export default function UserDashboard() {
           {/* <!-- Recipes --> */}
           <div className="p-4 flex flex-wrap gap-y-4 justify-evenly overflow-y-scroll scrollbar-hide">
             {/* Recipe Card */}
-            {recipes?.map((e) => (
-              <RecipeCard
-                key={e.id}
-                name={e.name}
-                ingredients={e.ingredients}
-                img={e.img}
-                step={e.step}
-                price={e.price}
-                id={e.id}
-                userIngArr={userIngArr}
-              />
-            ))}
+            {recipes?.map((e) => {
+              const matchingIngredients = e.ingredients.filter((ce) =>
+                userIngArr.includes(ce.ingredientId),
+              )
+              if (matchingIngredients.length > 0) {
+                return (
+                  <RecipeCard
+                    key={e.id}
+                    name={e.name}
+                    ingredients={e.ingredients}
+                    img={e.img}
+                    step={e.step}
+                    price={e.price}
+                    id={e.id}
+                    userIngArr={userIngArr}
+                  />
+                )
+              }
+              return null
+            })}
           </div>
         </div>
         {/* <!-- Mobile navigation --> */}
