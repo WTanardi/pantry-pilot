@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import Image from 'next/image'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
@@ -23,20 +23,17 @@ const Ingredient: FC<IngredientProps> = ({ name, id, userHas }) => {
 
   const originalState = userHas
 
-  const [selected, setSelected] = useState(false)
-
   const handleClick = async () => {
     await axios.patch('/api/userIngredient', {
       userId: session?.user.id,
       ingredientId: id,
     })
-    setSelected(!selected)
   }
   return (
     <>
       <div
         className={`text-white text-sm rounded-md border-x-8 border-y-4 select-none ${
-          selected || originalState
+          originalState
             ? 'bg-emerald-500 border-emerald-500'
             : 'bg-gray-400 border-gray-400'
         }`}
