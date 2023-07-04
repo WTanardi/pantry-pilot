@@ -56,12 +56,12 @@ export default function UserDashboard() {
   const [recipes, setRecipes] = useState<Recipe[] | null>(null)
   const [showPantry, setShowPantry] = useState(true)
   const [userIngArr, setUserIngArr] = useState<number[]>([0])
-
   const [ingredientSearch, setIngredientSearch] = useState('')
   const [recipeSearch, setRecipeSearch] = useState('')
   const [filteredCategories, setFilteredCategories] = useState<
     Category[] | null
   >(null)
+  const [numRecipes, setNumRecipes] = useState<number | null>()
 
   const [filteredRecipes, setFilteredRecipes] = useState<Recipe[] | null>(null)
 
@@ -91,7 +91,7 @@ export default function UserDashboard() {
     }
 
     fetchData()
-  }, [])
+  }, [userIngArr])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,7 +105,7 @@ export default function UserDashboard() {
     }
 
     fetchData()
-  }, [])
+  }, [userIngArr])
 
   useEffect(() => {
     if (ingredients && ingredientSearch) {
@@ -139,7 +139,7 @@ export default function UserDashboard() {
     }
 
     filterRecipes()
-  }, [recipeSearch, recipes])
+  }, [recipeSearch, recipes, userIngArr])
 
   const handleIngredientSearchQueryChange = (
     event: ChangeEvent<HTMLInputElement>,
@@ -153,14 +153,18 @@ export default function UserDashboard() {
     setRecipeSearch(event.target.value)
   }
 
-  const matchingRecipes = recipes?.filter((e) => {
-    const matchingIngredients = e.ingredients.filter((ce) =>
-      userIngArr.includes(ce.ingredientId),
-    )
-    return matchingIngredients.length > 0
-  })
-
-  const numRecipes = matchingRecipes?.length
+  useEffect(() => {
+    const matchRecipes = () => {
+      const matchingRecipes = recipes?.filter((e) => {
+        const matchingIngredients = e.ingredients.filter((ce) =>
+          userIngArr.includes(ce.ingredientId),
+        )
+        return matchingIngredients.length > 0
+      })
+      setNumRecipes(matchingRecipes?.length)
+    }
+    matchRecipes()
+  }, [recipes, userIngArr])
 
   if (!ingredients || !categories || !recipes) {
     // Handle loading state
@@ -223,15 +227,6 @@ export default function UserDashboard() {
           {/* <!-- Pantry Content --> */}
           <div className="flex flex-col md:flex-row md:flex-wrap gap-8 md:justify-center items-center p-8 overflow-y-auto">
             {/* IngredientCard */}
-            {/* {categories.map((e, i) => (
-              <IngredientCard
-                key={i}
-                title={e.name}
-                ingredients={e.ingredients}
-                imgPath={e.img ?? '/category/fish.webp'}
-                userIngArr={userIngArr}
-              />
-            ))} */}
             {filteredCategories?.map((e, i) => (
               <IngredientCard
                 key={i}
@@ -253,7 +248,7 @@ export default function UserDashboard() {
           <div className="w-full p-8 text-white flex flex-col bg-emerald-500 justify-between">
             <div className="flex justify-between text-center max-lg:justify-center items-center h-16">
               <div className="text-3xl font-semibold">
-                You can make {numRecipes} ingredients
+                You can make {numRecipes} Recipes
               </div>
               <div className="flex items-center gap-4 max-lg:hidden">
                 <SignOut />
