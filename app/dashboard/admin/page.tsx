@@ -213,7 +213,7 @@ export default function AdminDashboard() {
     }
 
     fetchData()
-  }, [])
+  }, [ingredients, categories, recipes, orders])
 
   // Loader
   if (!ingredients || !categories || !recipes || !orders) {

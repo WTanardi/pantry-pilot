@@ -15,7 +15,6 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const { id, name, categoryId } = await req.json()
-  console.log('categoryId: ', categoryId)
   const exists = await prisma.ingredient.findUnique({
     where: {
       id,
