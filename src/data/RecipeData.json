@@ -1,0 +1,225 @@
+{
+  "recipe": [
+    {
+      "name": "Grilled Salmon with Lime Butter Sauce",
+      "ingCount": 3,
+      "imgPath": ""
+    },
+    {
+      "name": "Pasta Carbonara",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Chicken Parmesan",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Vegetable Stir-Fry",
+      "ingCount": 6,
+      "imgPath": ""
+    },
+    {
+      "name": "Beef Tacos",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Caprese Salad",
+      "ingCount": 3,
+      "imgPath": ""
+    },
+    {
+      "name": "Garlic Shrimp Scampi",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Mushroom Risotto",
+      "ingCount": 6,
+      "imgPath": ""
+    },
+    {
+      "name": "Greek Salad",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Teriyaki Chicken",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Roasted Vegetables",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Spaghetti Bolognese",
+      "ingCount": 6,
+      "imgPath": ""
+    },
+    {
+      "name": "Honey Glazed Salmon",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Quinoa Salad",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Stuffed Bell Peppers",
+      "ingCount": 6,
+      "imgPath": ""
+    },
+    {
+      "name": "Chicken Caesar Salad",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Beef Stir-Fry",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Pesto Pasta",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Lemon Herb Chicken",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Eggplant Parmesan",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Caesar Salad",
+      "ingCount": 3,
+      "imgPath": ""
+    },
+    {
+      "name": "Shrimp Fried Rice",
+      "ingCount": 6,
+      "imgPath": ""
+    },
+    {
+      "name": "Mango Salsa Chicken",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Roasted Garlic Potatoes",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Sausage and Peppers",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Lemon Butter Chicken",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Pineapple Fried Rice",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Beef Burritos",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Spinach and Feta Stuffed Chicken",
+      "ingCount": 6,
+      "imgPath": ""
+    },
+    {
+      "name": "Tomato Mozzarella Salad",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Sticky Sesame Chicken",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Mushroom and Spinach Omelette",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Honey Mustard Salmon",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Caprese Stuffed Avocado",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Vegetable Lasagna",
+      "ingCount": 6,
+      "imgPath": ""
+    },
+    {
+      "name": "Chicken Noodle Soup",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Avocado Toast",
+      "ingCount": 3,
+      "imgPath": ""
+    },
+    {
+      "name": "Garlic Butter Shrimp Pasta",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Stuffed Mushrooms",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Teriyaki Salmon",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Cauliflower Fried Rice",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Pesto Chicken",
+      "ingCount": 4,
+      "imgPath": ""
+    },
+    {
+      "name": "Broccoli Cheddar Soup",
+      "ingCount": 5,
+      "imgPath": ""
+    },
+    {
+      "name": "Honey Soy Chicken",
+      "ingCount": 4,
+      "imgPath": ""
+    }
+  ]
+}
+
