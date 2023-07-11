@@ -81,6 +81,14 @@ export default function AdminDashboard() {
   const [recipes, setRecipes] = useState<Recipe[] | null>(null)
   const [orders, setOrders] = useState<Order[] | null>(null)
 
+  const sortedIngredients = ingredients?.slice(0).sort((a, b) => {
+    const nameA = a.name.toLowerCase()
+    const nameB = b.name.toLowerCase()
+    if (nameA < nameB) return -1
+    if (nameA > nameB) return 1
+    return 0
+  })
+
   // Navigation hooks
   const [activeTab, setActiveTab] = useState<number>(1)
   const handleTabChange = (tabNo: number) => {
@@ -144,9 +152,36 @@ export default function AdminDashboard() {
     id: 0,
     name: '',
     desc: '',
-    price: 0,
+    price: 1,
     step: [''],
+    ingredients: [{ ingredientId: 1, amount: 1, measurement: '' }],
   })
+
+  const handleIngredientChange = (
+    index: number,
+    field: string,
+    value: string | number,
+    removeIngredient?: boolean,
+  ) => {
+    if (removeIngredient) {
+      const updatedIngredients = [...newRecipe.ingredients]
+      updatedIngredients.splice(index, 1)
+      setNewRecipe({
+        ...newRecipe,
+        ingredients: updatedIngredients,
+      })
+    } else {
+      const updatedIngredients = [...newRecipe.ingredients]
+      updatedIngredients[index] = {
+        ...updatedIngredients[index],
+        [field]: value,
+      }
+      setNewRecipe({
+        ...newRecipe,
+        ingredients: updatedIngredients,
+      })
+    }
+  }
 
   const addRecipe: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
@@ -160,6 +195,7 @@ export default function AdminDashboard() {
         desc: newRecipe.desc,
         price: newRecipe.price,
         step: newRecipe.step,
+        ingredients: newRecipe.ingredients,
       })
       .then(() => toast.success('Recipe Add Success'))
       .catch(() => toast.error('Something went wrong!'))
@@ -170,8 +206,9 @@ export default function AdminDashboard() {
       id: 0,
       name: '',
       desc: '',
-      price: 0,
+      price: 1,
       step: [''],
+      ingredients: [{ ingredientId: 1, amount: 1, measurement: '' }],
     })
 
     setIsRecipeAddOpen(false)
@@ -431,7 +468,7 @@ export default function AdminDashboard() {
               <div className={isRecipeAddOpen ? 'modal modal-open' : 'modal'}>
                 <div className="modal-box">
                   <h3 className="font-bold text-lg">Add New Recipe</h3>
-                  <form onSubmit={addRecipe}>
+                  <form onSubmit={addRecipe} className="gap-2 flex-col flex">
                     {/* Name */}
                     <div className="form-control w-full">
                       <label className="label font-bold">Recipe Name</label>
@@ -464,6 +501,96 @@ export default function AdminDashboard() {
                         placeholder="Description"
                       />
                     </div>
+                    {/* Ingredients */}
+                    <div className="form-control w-full">
+                      <label className="label font-bold">Ingredients</label>
+                      {newRecipe.ingredients.map((ingredient, index) => (
+                        <div
+                          key={index}
+                          className="flex gap-2 pl-2 mb-2 border-l-2 justify-between"
+                        >
+                          <div className="form-control flex-1 w-1/3">
+                            <select
+                              value={ingredient.ingredientId}
+                              onChange={(e) =>
+                                handleIngredientChange(
+                                  index,
+                                  'ingredientId',
+                                  Number(e.target.value),
+                                )
+                              }
+                              className="select select-bordered"
+                            >
+                              <option value="" disabled>
+                                Select an Ingredient
+                              </option>
+                              {sortedIngredients?.map((ingredient) => (
+                                <option
+                                  key={ingredient.id}
+                                  value={ingredient.id}
+                                >
+                                  {ingredient.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="form-control flex-1 w-1/12">
+                            <input
+                              type="number"
+                              value={ingredient.amount}
+                              step={0.1}
+                              onChange={(e) =>
+                                handleIngredientChange(
+                                  index,
+                                  'amount',
+                                  Number(e.target.value),
+                                )
+                              }
+                              className="input input-bordered"
+                            />
+                          </div>
+                          <div className="form-control flex-1 w-1/12">
+                            <input
+                              type="text"
+                              value={ingredient.measurement}
+                              onChange={(e) =>
+                                handleIngredientChange(
+                                  index,
+                                  'measurement',
+                                  e.target.value,
+                                )
+                              }
+                              className="input input-bordered"
+                              placeholder="Cup"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            className="btn btn-error mt-auto"
+                            onClick={() =>
+                              handleIngredientChange(index, '', '', true)
+                            }
+                          >
+                            <X className="text-white" />
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        className="btn btn-primary ml-2"
+                        onClick={() => {
+                          setNewRecipe({
+                            ...newRecipe,
+                            ingredients: [
+                              ...newRecipe.ingredients,
+                              { ingredientId: 0, amount: 0, measurement: '' },
+                            ],
+                          })
+                        }}
+                      >
+                        Add Ingredient
+                      </button>
+                    </div>
                     {/* Price */}
                     <div className="form-control w-full">
                       <label className="label font-bold">Price</label>
@@ -485,7 +612,7 @@ export default function AdminDashboard() {
                       <label className="label font-bold">Steps</label>
                       {newRecipe.step.map((e, i) => (
                         <div
-                          className="flex justify-between items-center mt-2"
+                          className="flex justify-between items-center pl-2 mb-2 border-l-2"
                           key={i}
                         >
                           <input
@@ -513,7 +640,7 @@ export default function AdminDashboard() {
                       ))}
                       <button
                         type="button"
-                        className="btn btn-primary mt-2"
+                        className="btn btn-primary ml-2"
                         onClick={() => {
                           setNewRecipe({
                             ...newRecipe,
